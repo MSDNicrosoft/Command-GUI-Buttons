@@ -1,0 +1,45 @@
+name: Mod 构建
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检查源代码
+        uses: actions/checkout@v2
+      
+      - name: 安装 JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 17
+
+      - name: Gradle 缓存
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Gradle 可执行属性添加
+        run: chmod +x gradlew
+
+      - name: 使用 Gradle 构建
+        run: ./gradlew build
+
+#      - name: 保留重混淆 Jar 文件
+#        run: |
+#          rm build/libs/*-dev.jar
+#          rm build/libs/*-sources.jar
+
+      - name: 上传 Jar 构建输出
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build-Artifacts
+          path: build/libs
