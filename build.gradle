@@ -34,15 +34,15 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     implementation group: "com.alibaba", name: "fastjson", version: "${project.version_fastjson}"
-    implementation "com.googlecode.json-simple:json-simple:${project.version_json-simple}"
+    implementation "com.googlecode.json-simple:json-simple:${project.version_json_simple}"
 
-    implementation "com.cedarsoftware:json-io:${project.version_json-io}"
+    implementation "com.cedarsoftware:json-io:${project.version_json_io}"
 
-    implementation group: "com.googlecode.json-simple", name: "json-simple", version: "${project.version_json-simple}"
+    implementation group: "com.googlecode.json-simple", name: "json-simple", version: "${project.version_json_simple}"
 
     include "com.alibaba:fastjson:${project.version_fastjson}"
-    include "com.googlecode.json-simple:json-simple:${project.version_json-simple}"
-    include "com.cedarsoftware:json-io:${project.version_json-io}"
+    include "com.googlecode.json-simple:json-simple:${project.version_json_simple}"
+    include "com.cedarsoftware:json-io:${project.version_json_io}"
     include "io.github.cottonmc:LibGui:${project.version_libgui}"
 
     modImplementation "io.github.cottonmc:LibGui:${project.version_libgui}"
