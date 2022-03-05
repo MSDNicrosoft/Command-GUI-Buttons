@@ -12,10 +12,10 @@ group = project.maven_group as Object
 
 repositories {
 	maven {
-        url 'https://maven.aliyun.com/nexus/content/groups/public'
+        url "https://maven.aliyun.com/nexus/content/groups/public"
     }
     maven {
-        url 'https://repository.hanbings.io/proxy'
+        url "https://repository.hanbings.io/proxy"
     }
     maven {
         name = "CottonMC"
@@ -33,19 +33,19 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.79'
-    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation group: "com.alibaba", name: "fastjson", version: "${project.version_fastjson}"
+    implementation "com.googlecode.json-simple:json-simple:${project.version_json-simple}"
 
-    implementation 'com.cedarsoftware:json-io:4.13.0'
+    implementation "com.cedarsoftware:json-io:${project.version_json-io}"
 
-    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation group: "com.googlecode.json-simple", name: "json-simple", version: "${project.version_json-simple}"
 
-    include 'com.alibaba:fastjson:1.2.79'
-    include 'com.googlecode.json-simple:json-simple:1.1.1'
-    include 'com.cedarsoftware:json-io:4.13.0'
-    include "io.github.cottonmc:LibGui:5.3.0+1.18"
+    include "com.alibaba:fastjson:${project.version_fastjson}"
+    include "com.googlecode.json-simple:json-simple:${project.version_json-simple}"
+    include "com.cedarsoftware:json-io:${project.version_json-io}"
+    include "io.github.cottonmc:LibGui:${project.version_libgui}"
 
-    modImplementation "io.github.cottonmc:LibGui:5.3.0+1.18"
+    modImplementation "io.github.cottonmc:LibGui:${project.version_libgui}"
 }
 
 processResources {
