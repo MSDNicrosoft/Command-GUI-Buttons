@@ -1,9 +1,15 @@
 name: Mod 构建
 
-on: [ push, pull_request ]
+on:
+  push:
+    paths:
+      - "*.gradle"
+      - "gradle.properties"
+      - "src/**"
+    pull_request:
 
 jobs:
-  build:
+  Build:
 
     runs-on: ubuntu-latest
 
@@ -22,6 +28,7 @@ jobs:
         with:
           path: |
             ~/.gradle/caches
+            ~/.gradle/loom-cache
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
