@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "command-gui-buttons",
+  "version": "${version}",
+  "name": "Command GUI Buttons",
+  "description": "Create GUI buttons in-game to execute commands",
+  "authors": [
+    "MSDNicrosoft"
+  ],
+  "contact": {
+    "sources": "https://github.com/MSDNicrosoft/Command-GUI-Buttons"
+  },
+  "license": "GPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "cn.msdnicrosoft.commandbuttons.CommandButtons"
+    ]
+  },
+  "depends": {
+    "fabric-key-binding-api-v1": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}
