@@ -10,9 +10,7 @@ on:
 
 jobs:
   Build:
-
     runs-on: ubuntu-latest
-
     steps:
       - name: 检查源代码
         uses: actions/checkout@v2
@@ -39,11 +37,6 @@ jobs:
 
       - name: 使用 Gradle 构建
         run: ./gradlew build
-
-#      - name: 保留重混淆 Jar 文件
-#        run: |
-#          rm build/libs/*-dev.jar
-#          rm build/libs/*-sources.jar
 
       - name: 上传 Jar 构建输出
         uses: actions/upload-artifact@v2
