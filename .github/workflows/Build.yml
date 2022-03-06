@@ -6,7 +6,7 @@ on:
       - "*.gradle"
       - "gradle.properties"
       - "src/**"
-    pull_request:
+  pull_request:
 
 jobs:
   Build:
