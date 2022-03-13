@@ -5,6 +5,8 @@
   "name": "Command GUI Buttons",
   "description": "Create GUI buttons in-game to execute commands",
   "authors": [
+    "JosephG",
+    "Abbanon",
     "MSDNicrosoft"
   ],
   "contact": {
