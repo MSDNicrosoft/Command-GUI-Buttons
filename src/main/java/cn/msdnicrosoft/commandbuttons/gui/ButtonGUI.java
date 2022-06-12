@@ -9,7 +9,7 @@ import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WTextField;
 import io.github.cottonmc.cotton.gui.widget.WToggleButton;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ButtonGUI extends LightweightGuiDescription {
         addCloseButton(root);
 
         // Add delete toggle button
-        WToggleButton delToggle = new WToggleButton(new TranslatableText("Delete"));
+        WToggleButton delToggle = new WToggleButton(Text.translatable("Delete"));
         root.add(delToggle, 0, 11, 3, 1);
 
         addSavedButtons(root, delToggle);
@@ -36,7 +36,7 @@ public class ButtonGUI extends LightweightGuiDescription {
     }
 
     private void addCloseButton(WGridPanel root) {
-        WButton escButton = new WButton(new TranslatableText("x"));
+        WButton escButton = new WButton(Text.translatable("x"));
         escButton.setOnClick(() -> {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.closeScreen();
@@ -48,17 +48,17 @@ public class ButtonGUI extends LightweightGuiDescription {
         // Add text field for command NAME entry
         WTextField nameTextField = new WTextField();
         nameTextField.setMaxLength(11);
-        nameTextField.setSuggestion("Name");
+        nameTextField.setSuggestion(Text.translatable("Name"));
         root.add(nameTextField, 0, 12, 6, 1);
 
         // Add text field for command / entry
         WTextField commandTextField = new WTextField();
-        commandTextField.setSuggestion("Command");
+        commandTextField.setSuggestion(Text.translatable("Command"));
         commandTextField.setMaxLength(300);
         root.add(commandTextField, 6, 12, 11, 1);
 
         // Add button for command entry
-        WButton addCmdBtn = new WButton(new TranslatableText("+"));
+        WButton addCmdBtn = new WButton(Text.translatable("+"));
         addCmdBtn.setOnClick(() -> addGUIButton(root, nameTextField, commandTextField, toggle));
         root.add(addCmdBtn, 18, 12, 1, 1);
     }
@@ -74,7 +74,7 @@ public class ButtonGUI extends LightweightGuiDescription {
 
             if (!isListTooLong()) {
                 String commandString = command.getText();
-                WButton button = new WButton(new TranslatableText(name.getText()));
+                WButton button = new WButton(Text.translatable(name.getText()));
                 button.setOnClick(() -> {
                     if (isDeleteToggled.getToggle()) {
                         ConfigFile.removeObject(newJsonObject);
@@ -107,7 +107,7 @@ public class ButtonGUI extends LightweightGuiDescription {
     // function to load buttons from commands.json
     private void addGUIButton(WGridPanel root, String name, String command, WToggleButton isDeleteToggled, JSONObject object) {
         if (!name.equals("") && !command.equals("")) {
-            WButton button = new WButton(new TranslatableText(name));
+            WButton button = new WButton(Text.translatable(name));
             button.setOnClick(() -> {
                 if (isDeleteToggled.getToggle()) {
                     ConfigFile.removeObject(object);
