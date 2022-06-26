@@ -1,7 +1,7 @@
 package cn.msdnicrosoft.commandbuttons;
 
-import com.alibaba.fastjson.JSON;
 import com.cedarsoftware.util.io.JsonWriter;
+import com.google.gson.Gson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -49,7 +49,7 @@ public class ConfigFile {
     private static void writeToFile(JSONArray jsonArray) {
         try {
             fileWriter = new FileWriter("commands.json");
-            String jArrayToString = JSON.toJSONString(jsonArray);
+            String jArrayToString = new Gson().toJson(jsonArray);
             String formattedJson = JsonWriter.formatJson(jArrayToString);
             fileWriter.write(formattedJson);
         } catch (IOException e) {
