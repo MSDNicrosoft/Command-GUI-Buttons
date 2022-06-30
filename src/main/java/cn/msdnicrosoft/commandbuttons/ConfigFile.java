@@ -80,7 +80,7 @@ public class ConfigFile {
             }
             return commandObjects;
         } catch (IOException | ParseException e) {
-            System.out.println("Commands.json not yet initialized!");
+            System.out.println("commands.json not yet initialized!");
         }
         return null;
     }
