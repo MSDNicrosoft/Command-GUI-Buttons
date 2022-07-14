@@ -15,19 +15,17 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class ButtonGUI extends LightweightGuiDescription {
-
     int xValue = 0;
     int yValue = 1;
 
     public ButtonGUI() {
-
         // initialize root panel of GUI
         WGridPanel root = new WGridPanel();
         setupBackground(root);
         addCloseButton(root);
 
         // Add delete toggle button
-        WToggleButton delToggle = new WToggleButton(Text.translatable("Delete"));
+        WToggleButton delToggle = new WToggleButton(Text.translatable("command-gui-buttons.gui.delete"));
         root.add(delToggle, 0, 11, 3, 1);
 
         addSavedButtons(root, delToggle);
@@ -36,7 +34,7 @@ public class ButtonGUI extends LightweightGuiDescription {
     }
 
     private void addCloseButton(WGridPanel root) {
-        WButton escButton = new WButton(Text.translatable("x"));
+        WButton escButton = new WButton(Text.literal("X"));
         escButton.setOnClick(() -> {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.closeScreen();
@@ -48,17 +46,17 @@ public class ButtonGUI extends LightweightGuiDescription {
         // Add text field for command NAME entry
         WTextField nameTextField = new WTextField();
         nameTextField.setMaxLength(11);
-        nameTextField.setSuggestion(Text.translatable("Name"));
+        nameTextField.setSuggestion(Text.translatable("command-gui-buttons.gui.name"));
         root.add(nameTextField, 0, 12, 6, 1);
 
         // Add text field for command / entry
         WTextField commandTextField = new WTextField();
-        commandTextField.setSuggestion(Text.translatable("Command"));
+        commandTextField.setSuggestion(Text.translatable("command-gui-buttons.gui.command"));
         commandTextField.setMaxLength(300);
         root.add(commandTextField, 6, 12, 11, 1);
 
         // Add button for command entry
-        WButton addCmdBtn = new WButton(Text.translatable("+"));
+        WButton addCmdBtn = new WButton(Text.literal("+"));
         addCmdBtn.setOnClick(() -> addGUIButton(root, nameTextField, commandTextField, toggle));
         root.add(addCmdBtn, 18, 12, 1, 1);
     }
@@ -74,15 +72,14 @@ public class ButtonGUI extends LightweightGuiDescription {
 
             if (!isListTooLong()) {
                 String commandString = command.getText();
-                WButton button = new WButton(Text.translatable(name.getText()));
+                WButton button = new WButton(Text.literal(name.getText()));
                 button.setOnClick(() -> {
                     if (isDeleteToggled.getToggle()) {
                         ConfigFile.removeObject(newJsonObject);
                         root.remove(button);
                     } else {
-                        CommandButtons.runCommand(commandString);
+                        CommandButtons.send(commandString);
                     }
-
                 });
                 root.add(button, xValue, yValue, 4, 1);
 
@@ -97,9 +94,8 @@ public class ButtonGUI extends LightweightGuiDescription {
             command.setText("");
 
             root.validate(this);
-
         } else {
-            System.out.println("No name and value entered!");
+            CommandButtons.LOGGER.warn("No name and value entered!");
         }
 
     }
@@ -107,13 +103,13 @@ public class ButtonGUI extends LightweightGuiDescription {
     // function to load buttons from commands.json
     private void addGUIButton(WGridPanel root, String name, String command, WToggleButton isDeleteToggled, JSONObject object) {
         if (!name.equals("") && !command.equals("")) {
-            WButton button = new WButton(Text.translatable(name));
+            WButton button = new WButton(Text.literal(name));
             button.setOnClick(() -> {
                 if (isDeleteToggled.getToggle()) {
                     ConfigFile.removeObject(object);
                     root.remove(button);
                 } else {
-                    CommandButtons.runCommand(command);
+                    CommandButtons.send(command);
                 }
 
             });
@@ -121,7 +117,7 @@ public class ButtonGUI extends LightweightGuiDescription {
             adjustBounds();
             root.validate(this);
         } else {
-            System.out.println("No name and value entered!");
+            CommandButtons.LOGGER.warn("No name and value entered!");
         }
     }
 
@@ -139,9 +135,7 @@ public class ButtonGUI extends LightweightGuiDescription {
                 if (i >= 19) break;
             }
         }
-
     }
-
 
     private void adjustBounds() {
         if (xValue % 12 == 0 && xValue != 0) {
@@ -167,6 +161,4 @@ public class ButtonGUI extends LightweightGuiDescription {
         setRootPanel(root);
         root.setSize(350, 240);
     }
-
-
 }
