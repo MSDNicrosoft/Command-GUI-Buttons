@@ -1,4 +1,4 @@
-name: Mod 构建
+name: Mod Build
 
 on:
   push:
@@ -14,16 +14,16 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - name: 获取源代码
+      - name: Checkout repository
         uses: actions/checkout@v2
       
-      - name: 安装 JDK
+      - name: Setup Java JDK
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: 17
 
-      - name: Gradle 缓存
+      - name: Cache Gradle 
         uses: actions/cache@v2
         with:
           path: |
@@ -34,13 +34,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Gradle 可执行属性添加
+      - name: Gradle executable property additions
         run: chmod +x gradlew
 
-      - name: 使用 Gradle 构建
+      - name: Build with Gradle
         run: ./gradlew build
 
-      - name: 上传 Jar 构建输出
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Build-Artifacts
