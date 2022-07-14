@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ConfigFile {
-
     private static final JSONParser parser = new JSONParser();
     private static FileWriter fileWriter;
 
@@ -25,7 +24,7 @@ public class ConfigFile {
             array.add(jsonObject);
             writeToFile(array);
         } catch (IOException e) {
-            System.out.println("Commands.json doesn't exist. Creating one...!");
+            CommandButtons.LOGGER.warn("Commands.json doesn't exist. Creating one...!");
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(jsonObject);
             writeToFile(jsonArray);
@@ -80,7 +79,8 @@ public class ConfigFile {
             }
             return commandObjects;
         } catch (IOException | ParseException e) {
-            System.out.println("commands.json not yet initialized!");
+            CommandButtons.LOGGER.error("Commands.json not yet initialized!");
+            e.printStackTrace();
         }
         return null;
     }
@@ -99,8 +99,5 @@ public class ConfigFile {
         // get commands.json
         // remove corresponding button from json
         removeFromFile(objToRemove);
-
     }
-
-
 }

@@ -1,27 +1,45 @@
 package cn.msdnicrosoft.commandbuttons;
 
-
 import cn.msdnicrosoft.commandbuttons.gui.ButtonGUI;
 import cn.msdnicrosoft.commandbuttons.gui.ButtonGUIScreen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 
 public class CommandButtons implements ModInitializer {
-
-    public static final String MOD_ID = "mgbuttons";
+    public static final String MOD_ID = "command-gui-buttons";
     private static ArrayList<JSONObject> masterCommList;
+    private static final MinecraftClient mc = MinecraftClient.getInstance();
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public static void runCommand(String command) {
-        assert MinecraftClient.getInstance().player != null;
-        MinecraftClient.getInstance().player.sendChatMessage(command);
+    public static void send(String text) {
+        if (text.startsWith("/")) {
+            send(text.substring(1), true);
+        } else {
+            send(text, false);
+        }
+    }
+
+    public static void send(String text, boolean useCommand) {
+        ClientPlayerEntity player = mc.player;
+        if (player == null) {
+            return;
+        }
+        if (useCommand) {
+            player.sendCommand(text);
+        } else {
+            player.sendChatMessage(text);
+        }
     }
 
     // Assign masterCommList to JSONArray<objects> (from commands.json). Runs once.
@@ -63,6 +81,4 @@ public class CommandButtons implements ModInitializer {
             }
         });
     }
-
 }
-

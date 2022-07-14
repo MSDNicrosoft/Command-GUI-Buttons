@@ -7,8 +7,4 @@ public class ButtonGUIScreen extends CottonClientScreen {
     public ButtonGUIScreen(GuiDescription description) {
         super(description);
     }
-
-
 }
-
-
