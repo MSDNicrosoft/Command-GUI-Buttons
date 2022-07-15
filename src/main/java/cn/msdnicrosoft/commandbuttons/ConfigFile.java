@@ -79,7 +79,7 @@ public class ConfigFile {
             }
             return commandObjects;
         } catch (IOException | ParseException e) {
-            CommandButtons.LOGGER.error("Commands.json not yet initialized!");
+            CommandButtons.LOGGER.error("commands.json not yet initialized!");
             e.printStackTrace();
         }
         return null;

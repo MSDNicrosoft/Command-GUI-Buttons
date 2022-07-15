@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "command-gui-buttons",
+  "id": "mgbuttons",
   "version": "${version}",
   "name": "Command GUI Buttons",
   "description": "Create GUI buttons in-game to execute commands",

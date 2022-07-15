@@ -17,7 +17,7 @@ import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 
 public class CommandButtons implements ModInitializer {
-    public static final String MOD_ID = "command-gui-buttons";
+    public static final String MOD_ID = "mgbuttons";
     private static ArrayList<JSONObject> masterCommList;
     private static final MinecraftClient mc = MinecraftClient.getInstance();
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);

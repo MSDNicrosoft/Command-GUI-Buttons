@@ -1,5 +1,5 @@
 {
-  "command-gui-buttons.gui.command": "命令",
-  "command-gui-buttons.gui.delete": "删除",
-  "command-gui-buttons.gui.name": "名称"
+  "mgbuttons.gui.command": "命令",
+  "mgbuttons.gui.delete": "删除",
+  "mgbuttons.gui.name": "名称"
 }
