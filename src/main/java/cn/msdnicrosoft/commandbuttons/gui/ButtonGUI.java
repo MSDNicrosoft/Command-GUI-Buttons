@@ -25,7 +25,7 @@ public class ButtonGUI extends LightweightGuiDescription {
         addCloseButton(root);
 
         // Add delete toggle button
-        WToggleButton delToggle = new WToggleButton(Text.translatable("command-gui-buttons.gui.delete"));
+        WToggleButton delToggle = new WToggleButton(Text.translatable("mgbuttons.gui.delete"));
         root.add(delToggle, 0, 11, 3, 1);
 
         addSavedButtons(root, delToggle);
@@ -46,12 +46,12 @@ public class ButtonGUI extends LightweightGuiDescription {
         // Add text field for command NAME entry
         WTextField nameTextField = new WTextField();
         nameTextField.setMaxLength(11);
-        nameTextField.setSuggestion(Text.translatable("command-gui-buttons.gui.name"));
+        nameTextField.setSuggestion(Text.translatable("mgbuttons.gui.name"));
         root.add(nameTextField, 0, 12, 6, 1);
 
         // Add text field for command / entry
         WTextField commandTextField = new WTextField();
-        commandTextField.setSuggestion(Text.translatable("command-gui-buttons.gui.command"));
+        commandTextField.setSuggestion(Text.translatable("mgbuttons.gui.command"));
         commandTextField.setMaxLength(300);
         root.add(commandTextField, 6, 12, 11, 1);
 
