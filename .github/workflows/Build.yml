@@ -6,7 +6,7 @@ on:
       - "*.gradle"
       - "gradle.properties"
       - "src/**"
-      - "gradle/*"
+      - "gradle/**"
       - ".github/workflows/*"
   pull_request:
 
