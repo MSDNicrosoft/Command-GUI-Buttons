@@ -17,7 +17,7 @@
     "sources": "https://github.com/MSDNicrosoft/Command-GUI-Buttons"
   },
   "license": "GPL-3.0",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "cn.msdnicrosoft.commandbuttons.CommandButtons"
