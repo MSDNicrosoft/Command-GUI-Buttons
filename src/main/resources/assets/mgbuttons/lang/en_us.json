@@ -1,5 +1,7 @@
 {
   "mgbuttons.gui.command": "Command",
   "mgbuttons.gui.delete": "Delete",
-  "mgbuttons.gui.name": "Name"
+  "mgbuttons.gui.name": "Name",
+  "mgbuttons.key.category": "Command GUI Buttons",
+  "mgbuttons.key.opengui": "Open GUI"
 }

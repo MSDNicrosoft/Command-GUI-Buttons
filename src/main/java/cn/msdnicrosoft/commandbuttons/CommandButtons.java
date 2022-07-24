@@ -68,10 +68,10 @@ public class CommandButtons implements ModInitializer {
     private void assignGuiToKey() {
         // Currently, assigns to the G key
         KeyMapping keyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-                "key.commandbuttons.opengui", // The translation key of the keybinding's name
+                "mgbuttons.key.opengui", // The translation key of the keybinding's name
                 InputConstants.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
                 GLFW.GLFW_KEY_G, // The keycode of the key
-                "gui.commandbuttons.mgbuttons" // The translation key of the keybinding's category.
+                "mgbuttons.key.category" // The translation key of the keybinding's category.
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
