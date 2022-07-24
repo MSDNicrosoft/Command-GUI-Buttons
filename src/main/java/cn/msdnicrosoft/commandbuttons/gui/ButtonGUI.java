@@ -36,7 +36,9 @@ public class ButtonGUI extends LightweightGuiDescription {
     private void addCloseButton(WGridPanel root) {
         WButton escButton = new WButton(Component.literal("X"));
         escButton.setOnClick(() -> {
-            assert Minecraft.getInstance().player != null;
+            if (Minecraft.getInstance().player == null) {
+                return;
+            }
             Minecraft.getInstance().player.clientSideCloseContainer();
         });
         root.add(escButton, 17, 1, 2, 2);
