@@ -2,13 +2,13 @@ package cn.msdnicrosoft.commandbuttons;
 
 import cn.msdnicrosoft.commandbuttons.gui.ButtonGUI;
 import cn.msdnicrosoft.commandbuttons.gui.ButtonGUIScreen;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CommandButtons implements ModInitializer {
     public static final String MOD_ID = "mgbuttons";
     private static ArrayList<JSONObject> masterCommList;
-    private static final MinecraftClient mc = MinecraftClient.getInstance();
+    private static final Minecraft mc = Minecraft.getInstance();
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void send(String text) {
@@ -31,14 +31,14 @@ public class CommandButtons implements ModInitializer {
     }
 
     public static void send(String text, boolean useCommand) {
-        ClientPlayerEntity player = mc.player;
+        LocalPlayer player = mc.player;
         if (player == null) {
             return;
         }
         if (useCommand) {
-            player.sendCommand(text);
+            player.command(text);
         } else {
-            player.sendChatMessage(text);
+            player.chat(text);
         }
     }
 
@@ -67,16 +67,16 @@ public class CommandButtons implements ModInitializer {
 
     private void assignGuiToKey() {
         // Currently, assigns to the G key
-        KeyBinding keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        KeyMapping keyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
                 "key.commandbuttons.opengui", // The translation key of the keybinding's name
-                InputUtil.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
+                InputConstants.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
                 GLFW.GLFW_KEY_G, // The keycode of the key
                 "gui.commandbuttons.mgbuttons" // The translation key of the keybinding's category.
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (keyBinding.wasPressed()) {
-                MinecraftClient.getInstance().setScreen(new ButtonGUIScreen(new ButtonGUI()));
+            while (keyBinding.consumeClick()) {
+                Minecraft.getInstance().setScreen(new ButtonGUIScreen(new ButtonGUI()));
                 // client.player.closeScreen();
             }
         });

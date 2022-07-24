@@ -19,3 +19,9 @@ Up to 20 buttons are currently supported! More are planned.
 
 ### How It Works
 The list of commands are serialized into a JSON format and stored locally on the users’ systems. The mod writes any new commands into the JSON as new buttons are created, and loads the JSON at the start of the game. A local list instance exists for reading and loading the buttons each time, so that file reading is kept to a minimum.
+
+## Development
+
+### Mappings
+
+We are using the **Mojang official** mappings to de-obfuscate Minecraft and insert patches.
