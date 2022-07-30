@@ -6,9 +6,12 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.Util;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.chat.ClientChatPreview;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.Component;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -32,13 +35,15 @@ public class CommandButtons implements ModInitializer {
 
     public static void send(String text, boolean useCommand) {
         LocalPlayer player = mc.player;
+        ClientChatPreview chatPreview = new ClientChatPreview(mc);
+        Component component = Util.mapNullable(chatPreview.pull(text), ClientChatPreview.Preview::response);
         if (player == null) {
             return;
         }
         if (useCommand) {
-            player.command(text);
+            player.commandSigned(text, component);
         } else {
-            player.chat(text);
+            player.chatSigned(text, component);
         }
     }
 
