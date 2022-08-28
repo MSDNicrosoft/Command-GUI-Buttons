@@ -26,10 +26,12 @@ public class CommandButtons implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void send(String text) {
-        if (text.startsWith("/")) {
-            send(text.substring(1), true);
-        } else {
-            send(text, false);
+        for (String i : text.split(" && ")) {
+            if (i.startsWith("/")) {
+                send(i.substring(1), true);
+            } else {
+                send(i, false);
+            }
         }
     }
 
