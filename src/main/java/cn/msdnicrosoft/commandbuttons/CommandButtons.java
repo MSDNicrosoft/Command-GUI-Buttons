@@ -9,15 +9,16 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.Util;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.chat.ClientChatPreview;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CommandButtons implements ModInitializer {
     public static final String MOD_ID = "mgbuttons";
@@ -25,27 +26,21 @@ public class CommandButtons implements ModInitializer {
     private static final Minecraft mc = Minecraft.getInstance();
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public static void send(String text) {
-        for (String i : text.split(" && ")) {
-            if (i.startsWith("/")) {
-                send(i.substring(1), true);
-            } else {
-                send(i, false);
-            }
-        }
+    public static void send(@NotNull String text) {
+        Arrays.stream(text.split("&&"))
+                .map(String::trim)
+                .forEach(CommandButtons::_send);
     }
 
-    public static void send(String text, boolean useCommand) {
+    private static void _send(String text) {
         LocalPlayer player = mc.player;
-        ClientChatPreview chatPreview = new ClientChatPreview(mc);
-        Component component = Util.mapNullable(chatPreview.pull(text), ClientChatPreview.Preview::response);
         if (player == null) {
             return;
         }
-        if (useCommand) {
-            player.commandSigned(text, component);
+        if (text.startsWith("/")) {
+            player.connection.sendCommand(text.substring(1));
         } else {
-            player.chatSigned(text, component);
+            player.connection.sendChat(text);
         }
     }
 
