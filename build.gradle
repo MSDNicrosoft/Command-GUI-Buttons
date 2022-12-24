@@ -10,10 +10,6 @@ version = project.mod_version as Object
 group = project.maven_group as Object
 
 repositories {
-	maven {
-        name("Aliyun")
-        url("https://maven.aliyun.com/nexus/content/groups/public")
-    }
     maven {
         name("HangBing Proxy")
         url("https://repository.hanbings.io/proxy")
@@ -22,7 +18,13 @@ repositories {
         name("CottonMC")
         url("https://server.bbkr.space/artifactory/libs-release")
     }
+    maven {
+        name("CurseMaven")
+        url("https://www.cursemaven.com")
+    }
+
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -31,18 +33,13 @@ dependencies {
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
+    modApi("curse.maven:modmenu-308702:${project.modmenu_version}")
+
+    modCompileOnly("org.projectlombok:lombok:${project.lombok_version}")
+    annotationProcessor("org.projectlombok:lombok:${project.lombok_version}")
+
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
-
-    implementation("com.google.code.gson:gson:${project.gson_version}")
-    modImplementation("com.google.code.gson:gson:${project.gson_version}")
-
-    implementation("com.googlecode.json-simple:json-simple:${project.json_simple_version}")
-    implementation group: "com.googlecode.json-simple", name: "json-simple", version: "${project.json_simple_version}"
-    include("com.googlecode.json-simple:json-simple:${project.json_simple_version}")
-
-    implementation("com.cedarsoftware:json-io:${project.json_io_version}")
-    include("com.cedarsoftware:json-io:${project.json_io_version}")
 
     modImplementation("io.github.cottonmc:LibGui:${project.libgui_version}")
     include("io.github.cottonmc:LibGui:${project.libgui_version}")
