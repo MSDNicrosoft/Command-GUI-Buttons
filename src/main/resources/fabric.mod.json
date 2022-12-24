@@ -21,8 +21,14 @@
   "entrypoints": {
     "main": [
       "cn.msdnicrosoft.commandbuttons.CommandButtons"
+    ],
+    "modmenu": [
+      "cn.msdnicrosoft.commandbuttons.compat.modmenu.ModMenuImpl"
     ]
   },
+  "mixins": [
+    "mgbuttons.mixins.json"
+  ],
   "depends": {
     "fabric-key-binding-api-v1": "*",
     "minecraft": "1.19.x",
