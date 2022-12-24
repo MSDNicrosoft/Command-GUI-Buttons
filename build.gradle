@@ -11,47 +11,48 @@ group = project.maven_group as Object
 
 repositories {
 	maven {
-        url "https://maven.aliyun.com/nexus/content/groups/public"
+        name("Aliyun")
+        url("https://maven.aliyun.com/nexus/content/groups/public")
     }
     maven {
-        url "https://repository.hanbings.io/proxy"
+        name("HangBing Proxy")
+        url("https://repository.hanbings.io/proxy")
     }
     maven {
-        name = "CottonMC"
-        url = "https://server.bbkr.space/artifactory/libs-release"
+        name("CottonMC")
+        url("https://server.bbkr.space/artifactory/libs-release")
     }
     mavenCentral()
 }
 
 dependencies {
     // To change the versions see the gradle.properties file
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings(loom.officialMojangMappings())
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
-    implementation "com.google.code.gson:gson:${project.gson_version}"
-    modImplementation "com.google.code.gson:gson:${project.gson_version}"
+    implementation("com.google.code.gson:gson:${project.gson_version}")
+    modImplementation("com.google.code.gson:gson:${project.gson_version}")
 
-    implementation "com.googlecode.json-simple:json-simple:${project.json_simple_version}"
+    implementation("com.googlecode.json-simple:json-simple:${project.json_simple_version}")
     implementation group: "com.googlecode.json-simple", name: "json-simple", version: "${project.json_simple_version}"
-    include "com.googlecode.json-simple:json-simple:${project.json_simple_version}"
+    include("com.googlecode.json-simple:json-simple:${project.json_simple_version}")
 
-    implementation "com.cedarsoftware:json-io:${project.json_io_version}"
-    include "com.cedarsoftware:json-io:${project.json_io_version}"
+    implementation("com.cedarsoftware:json-io:${project.json_io_version}")
+    include("com.cedarsoftware:json-io:${project.json_io_version}")
 
-    modImplementation "io.github.cottonmc:LibGui:${project.libgui_version}"
-    include "io.github.cottonmc:LibGui:${project.libgui_version}"
+    modImplementation("io.github.cottonmc:LibGui:${project.libgui_version}")
+    include("io.github.cottonmc:LibGui:${project.libgui_version}")
 }
 
 processResources {
-    inputs.property "version", project.version
-
     filesMatching("fabric.mod.json") {
-        include "fabric.mod.json"
-        expand "version": project.version
+        expand(
+            "version": project.version,
+        )
     }
 }
 
