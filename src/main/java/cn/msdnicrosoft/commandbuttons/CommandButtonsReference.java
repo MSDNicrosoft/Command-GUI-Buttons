@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CommandButtonsReference {
-    @Getter()
+    @Getter
     private static final String modIdentifier = "mgbuttons";
     @Getter
     private static final String modName = FabricLoader.getInstance().getModContainer(modIdentifier)
