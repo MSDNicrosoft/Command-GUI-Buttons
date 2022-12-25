@@ -66,7 +66,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
         int index = this.item.getRaw().indexOf(string);
         commandItemDestination.getCommand().setMaxLength(Integer.MAX_VALUE);
         commandItemDestination.getCommand().setText(string);
-        commandItemDestination.getCommand().setReleaseFocusCallback((s -> this.item.getRaw().set(index, s)));
+        commandItemDestination.getCommand().setFocusLostCallback((s -> this.item.getRaw().set(index, s)));
         commandItemDestination.getCommand().setSuggestion(Component.translatable("mgbuttons.gui.edit.type_with_index", index + 1));
         if (this.item.getRaw().indexOf(string) == 0) {
             commandItemDestination.getUp().setEnabled(false);
