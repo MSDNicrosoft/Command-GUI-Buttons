@@ -21,6 +21,9 @@ public class CommandListPanel<D, W extends WWidget> extends WListPanel<D, W> {
         this.search = search;
     }
 
+    /*
+     * Modified from LibGui
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void layout() {

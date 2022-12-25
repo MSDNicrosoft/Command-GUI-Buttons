@@ -1,8 +1,11 @@
 {
   "mgbuttons.gui.command": "Command",
-  "mgbuttons.gui.delete": "Delete",
-  "mgbuttons.gui.name": "Name",
-  "mgbuttons.gui.search": "Search...",
+  "mgbuttons.gui.edit.name": "Name",
+  "mgbuttons.gui.edit.type": "Type command...",
+  "mgbuttons.gui.edit.type_with_index": "Type command %d",
+  "mgbuttons.gui.main.delete": "Delete mode",
+  "mgbuttons.gui.main.edit": "Edit mode",
+  "mgbuttons.gui.main.search": "Search...",
   "mgbuttons.key.category": "Command GUI Buttons",
   "mgbuttons.key.opengui": "Open GUI"
 }

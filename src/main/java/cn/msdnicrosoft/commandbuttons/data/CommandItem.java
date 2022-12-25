@@ -2,12 +2,14 @@ package cn.msdnicrosoft.commandbuttons.data;
 
 import lombok.*;
 
+import java.util.ArrayList;
+
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
-@Setter
 @ToString
 public class CommandItem {
+    @Setter
     private String displayName;
-    private String raw;
+    private ArrayList<String> raw;
 }
