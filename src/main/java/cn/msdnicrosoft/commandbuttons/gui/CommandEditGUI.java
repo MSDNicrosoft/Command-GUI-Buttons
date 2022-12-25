@@ -3,6 +3,7 @@ package cn.msdnicrosoft.commandbuttons.gui;
 import cn.msdnicrosoft.commandbuttons.data.CommandItem;
 import cn.msdnicrosoft.commandbuttons.data.CommandItemDestination;
 import cn.msdnicrosoft.commandbuttons.data.ConfigManager;
+import cn.msdnicrosoft.commandbuttons.data.Text;
 import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.function.BiConsumer;
 
 public class CommandEditGUI extends LightweightGuiDescription {
-    private final BiConsumer<String, CommandItemDestination> creator = this::defBtnBehavior;
+    private final BiConsumer<Text, CommandItemDestination> creator = this::defBtnBehavior;
 
     private final WGridPanel root = new WGridPanel(5);
     private final CommandItem item;
@@ -23,7 +24,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
     private final WTextField input = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.edit.type")).setMaxLength(Integer.MAX_VALUE);
     private final WButton addBtn = new WButton(Component.literal("+")).setOnClick(this::addBtnCallback);
 
-    private final CommandEditListPanel<String, CommandItemDestination> raw;
+    private final CommandEditListPanel<Text, CommandItemDestination> raw;
     private boolean editMode;
 
     public CommandEditGUI(CommandItem item) {
@@ -56,19 +57,19 @@ public class CommandEditGUI extends LightweightGuiDescription {
 
     private void addBtnCallback() {
         if (!this.input.getText().trim().isEmpty()) {
-            this.item.getRaw().add(input.getText().trim());
+            this.item.getRaw().add(new Text(input.getText().trim()));
             this.input.setText("");
             this.raw.layout();
         }
     }
 
-    private void defBtnBehavior(String string, @NotNull CommandItemDestination commandItemDestination) {
-        int index = this.item.getRaw().indexOf(string);
+    private void defBtnBehavior(Text text, @NotNull CommandItemDestination commandItemDestination) {
+        int index = this.item.getRaw().indexOf(text);
         commandItemDestination.getCommand().setMaxLength(Integer.MAX_VALUE);
-        commandItemDestination.getCommand().setText(string);
-        commandItemDestination.getCommand().setFocusLostCallback((s -> this.item.getRaw().set(index, s)));
+        commandItemDestination.getCommand().setText(text.getText());
+        commandItemDestination.getCommand().setFocusLostCallback((s -> this.item.getRaw().set(index, new Text(s))));
         commandItemDestination.getCommand().setSuggestion(Component.translatable("mgbuttons.gui.edit.type_with_index", index + 1));
-        if (this.item.getRaw().indexOf(string) == 0) {
+        if (this.item.getRaw().indexOf(text) == 0) {
             commandItemDestination.getUp().setEnabled(false);
         } else {
             commandItemDestination.getUp().setEnabled(true);
@@ -77,7 +78,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
                 this.raw.layout();
             });
         }
-        if (this.item.getRaw().indexOf(string) == this.item.getRaw().size() - 1) {
+        if (this.item.getRaw().indexOf(text) == this.item.getRaw().size() - 1) {
             commandItemDestination.getDown().setEnabled(false);
         } else {
             commandItemDestination.getDown().setEnabled(true);
@@ -87,7 +88,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
             });
         }
         commandItemDestination.getDelete().setOnClick(() -> {
-            this.item.getRaw().remove(string);
+            this.item.getRaw().remove(text);
             this.raw.layout();
         });
     }

@@ -4,6 +4,7 @@ import cn.msdnicrosoft.commandbuttons.CommandButtons;
 import cn.msdnicrosoft.commandbuttons.data.CommandDestination;
 import cn.msdnicrosoft.commandbuttons.data.CommandItem;
 import cn.msdnicrosoft.commandbuttons.data.ConfigManager;
+import cn.msdnicrosoft.commandbuttons.data.Text;
 import com.google.common.collect.Lists;
 import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
@@ -59,7 +60,7 @@ public class CommandGUI extends LightweightGuiDescription {
                 ConfigManager.remove(item);
                 this.commandPanel.layout();
             } else {
-                item.getRaw().forEach(CommandButtons::send);
+                item.getRaw().stream().map(Text::getText).forEach(CommandButtons::send);
             }
         });
     }

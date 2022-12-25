@@ -1,15 +1,23 @@
 package cn.msdnicrosoft.commandbuttons.data;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 @AllArgsConstructor
-@EqualsAndHashCode
 @Getter
-@ToString
 public class CommandItem {
     @Setter
     private String displayName;
-    private ArrayList<String> raw;
+    private ArrayList<Text> raw;
+
+    public void serialize(@NotNull JsonObject jsonObject) {
+        jsonObject.addProperty("displayName", this.displayName);
+        JsonArray raw = new JsonArray();
+        this.raw.forEach(text -> raw.add(text.getText()));
+        jsonObject.add("raw", raw);
+    }
 }
