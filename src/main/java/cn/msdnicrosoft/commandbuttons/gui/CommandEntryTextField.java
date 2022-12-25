@@ -7,13 +7,18 @@ import java.util.function.Consumer;
 
 public class CommandEntryTextField extends WTextField {
     @Setter
-    private Consumer<String> releaseFocusCallback;
+    private Consumer<String> focusLostCallback;
 
     @Override
     public void releaseFocus() {
-        if (this.releaseFocusCallback != null) {
-            releaseFocusCallback.accept(this.getText());
-        }
         super.releaseFocus();
+    }
+
+    @Override
+    public void onFocusLost() {
+        if (this.focusLostCallback != null) {
+            focusLostCallback.accept(this.getText());
+        }
+        super.onFocusLost();
     }
 }
