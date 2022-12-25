@@ -20,7 +20,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
     private final WGridPanel root = new WGridPanel(5);
     private final CommandItem item;
     private final WTextField displayName = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.edit.name"));
-    private final WTextField input = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.edit.type"));
+    private final WTextField input = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.edit.type")).setMaxLength(Integer.MAX_VALUE);
     private final WButton addBtn = new WButton(Component.literal("+")).setOnClick(this::addBtnCallback);
 
     private final CommandEditListPanel<String, CommandItemDestination> raw;
@@ -64,6 +64,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
 
     private void defBtnBehavior(String string, @NotNull CommandItemDestination commandItemDestination) {
         int index = this.item.getRaw().indexOf(string);
+        commandItemDestination.getCommand().setMaxLength(Integer.MAX_VALUE);
         commandItemDestination.getCommand().setText(string);
         commandItemDestination.getCommand().setReleaseFocusCallback((s -> this.item.getRaw().set(index, s)));
         commandItemDestination.getCommand().setSuggestion(Component.translatable("mgbuttons.gui.edit.type_with_index", index + 1));
