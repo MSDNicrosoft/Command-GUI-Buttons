@@ -52,7 +52,7 @@ public class ConfigManager {
             List<CommandItem> list = new GsonBuilder().create().fromJson(reader, new TypeToken<List<CommandItem>>(){}.getType());
             ConfigManager.data.clear();
             ConfigManager.data.addAll(list);
-        } catch (IOException e) {
+        } catch (IOException | JsonSyntaxException e) {
             CommandButtonsReference.getLogger().error("Cannot load commands data: {}", e);
         }
     }
@@ -75,32 +75,4 @@ public class ConfigManager {
     public static void init() {
         ConfigManager.loadFromFile();
     }
-
-    /*
-    static class Serializer implements JsonDeserializer<CommandItem>, JsonSerializer<CommandItem> {
-        @Override
-        public JsonElement serialize(CommandItem src, Type typeOfSrc, JsonSerializationContext context) {
-            JsonObject jsonObject = new JsonObject();
-            src.serialize(jsonObject);
-            return jsonObject;
-        }
-
-        @Override
-        public CommandItem deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            if (json.isJsonObject()) {
-                JsonObject jsonObject = json.getAsJsonObject();
-                return ConfigManager.createEntry(jsonObject);
-            }
-            return null;
-        }
-    }
-
-
-    public static @NotNull CommandItem createEntry(@NotNull JsonObject jsonObject) {
-        String displayName = jsonObject.has("displayName") ? jsonObject.get("displayName").getAsString() : "Unknown";
-        String raw = jsonObject.has("displayName") ? jsonObject.get("displayName").getAsString() : "Unknown Raw";
-        return new CommandItem(displayName, raw);
-    }
-
-     */
 }
