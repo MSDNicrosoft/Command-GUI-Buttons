@@ -2,7 +2,8 @@ package cn.msdnicrosoft.commandbuttons.data;
 
 import cn.msdnicrosoft.commandbuttons.CommandButtonsReference;
 import com.google.common.collect.Lists;
-import com.google.gson.*;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import lombok.Getter;
 
@@ -49,7 +50,8 @@ public class ConfigManager {
         }
 
         try (BufferedReader reader = Files.newBufferedReader(path)) {
-            List<CommandItem> list = new GsonBuilder().create().fromJson(reader, new TypeToken<List<CommandItem>>(){}.getType());
+            List<CommandItem> list = new GsonBuilder().create().fromJson(reader, new TypeToken<List<CommandItem>>() {
+            }.getType());
             ConfigManager.data.clear();
             ConfigManager.data.addAll(list);
         } catch (IOException | JsonSyntaxException e) {
@@ -65,14 +67,19 @@ public class ConfigManager {
 
     public static void add(CommandItem item) {
         ConfigManager.data.add(item);
-        ConfigManager.saveToFile();
+        ConfigManager.save();
     }
+
     public static void remove(CommandItem item) {
         ConfigManager.data.remove(item);
-        ConfigManager.saveToFile();
+        ConfigManager.save();
     }
 
     public static void init() {
         ConfigManager.loadFromFile();
+    }
+
+    public static void save() {
+        ConfigManager.saveToFile();
     }
 }

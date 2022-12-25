@@ -1,8 +1,8 @@
 package cn.msdnicrosoft.commandbuttons;
 
 import cn.msdnicrosoft.commandbuttons.data.ConfigManager;
-import cn.msdnicrosoft.commandbuttons.gui.CommandGUIScreen;
 import cn.msdnicrosoft.commandbuttons.gui.CommandGUI;
+import cn.msdnicrosoft.commandbuttons.gui.WrapperCommandGUIScreen;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -12,8 +12,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
-
-import java.util.Arrays;
 
 public class CommandButtons implements ModInitializer {
     @Override
@@ -28,26 +26,20 @@ public class CommandButtons implements ModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (keyBinding.consumeClick()) {
-                Minecraft.getInstance().setScreen(new CommandGUIScreen(new CommandGUI()));
+                Minecraft.getInstance().setScreen(new WrapperCommandGUIScreen(new CommandGUI()));
             }
         });
     }
 
     public static void send(@NotNull String text) {
-        Arrays.stream(text.split("&&"))
-                .map(String::trim)
-                .forEach(CommandButtons::_send);
-    }
-
-    private static void _send(String text) {
         LocalPlayer player = Minecraft.getInstance().player;
-        if (player == null) {
+        if (player == null || text.trim().isEmpty()) {
             return;
         }
         if (text.startsWith("/")) {
-            player.connection.sendCommand(text.substring(1));
+            player.connection.sendCommand(text.substring(1).trim());
         } else {
-            player.connection.sendChat(text);
+            player.connection.sendChat(text.trim());
         }
     }
 }

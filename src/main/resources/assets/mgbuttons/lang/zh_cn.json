@@ -1,8 +1,11 @@
 {
   "mgbuttons.gui.command": "命令",
-  "mgbuttons.gui.delete": "删除",
-  "mgbuttons.gui.name": "名称",
-  "mgbuttons.gui.search": "搜索...",
+  "mgbuttons.gui.edit.name": "名称",
+  "mgbuttons.gui.edit.type": "输入命令...",
+  "mgbuttons.gui.edit.type_with_index": "输入命令 %d",
+  "mgbuttons.gui.main.delete": "删除模式",
+  "mgbuttons.gui.main.edit": "编辑模式",
+  "mgbuttons.gui.main.search": "搜索...",
   "mgbuttons.key.category": "Command GUI Buttons",
   "mgbuttons.key.opengui": "打开 GUI"
 }
