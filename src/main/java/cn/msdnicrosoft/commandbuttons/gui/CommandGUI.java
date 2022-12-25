@@ -21,7 +21,7 @@ public class CommandGUI extends LightweightGuiDescription {
     private final WTextField search = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.search"));
     private final WTextField defName = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.name"));
     private final WTextField defRaw = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.command"));
-    private final WToggleButton deleteMode = new WToggleButton(Component.translatable("mgbuttons.gui.delete"));
+    private final WToggleButton deleteMode = new WToggleButton(Component.translatable("mgbuttons.gui.delete")).setColor(0xFFFFFF, 0xFFFFFF);
     private final WButton addBtn = new WButton(Component.literal("+")).setOnClick(this::addCallBack);
 
     private final CommandListPanel<CommandItem, CommandDestination> commandPanel = new CommandListPanel<>(
@@ -42,7 +42,6 @@ public class CommandGUI extends LightweightGuiDescription {
         this.root.add(this.defRaw, 20, 43, 34, 2);
         this.root.add(this.addBtn, 55, 43, 4, 4);
         this.root.add(this.deleteMode, 60, 43, 4, 4);
-        this.rootPanel.setBackgroundPainter(BackgroundPainter.createColorful(0x4D000000));
     }
 
     private void createCommandPanel() {
@@ -81,5 +80,6 @@ public class CommandGUI extends LightweightGuiDescription {
     @Override
     public void addPainters() {
         super.addPainters();
+        this.rootPanel.setBackgroundPainter(BackgroundPainter.createColorful(0x4D000000));
     }
 }
