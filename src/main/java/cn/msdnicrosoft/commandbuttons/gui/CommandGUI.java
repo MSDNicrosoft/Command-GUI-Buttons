@@ -55,7 +55,11 @@ public class CommandGUI extends LightweightGuiDescription {
         destination.getButton().setOnClick(() -> {
             if (this.editBtn.getToggle()) {
                 CommandEditGUI gui = new CommandEditGUI(item, true);
-                Minecraft.getInstance().setScreen(new WrapperCommandGUIScreen(gui, gui::saveData));
+                WrapperCommandGUIScreen guiScreen = new WrapperCommandGUIScreen(gui);
+                guiScreen.setCloseCallback(gui::saveData);
+                guiScreen.setReturnAction(this.commandPanel::layout);
+                guiScreen.setParent(Minecraft.getInstance().screen);
+                Minecraft.getInstance().setScreen(guiScreen);
             } else if (this.deleteBtn.getToggle()) {
                 ConfigManager.remove(item);
                 this.commandPanel.layout();
@@ -67,7 +71,11 @@ public class CommandGUI extends LightweightGuiDescription {
 
     private void addCallBack() {
         CommandEditGUI gui = new CommandEditGUI(new CommandItem("", Lists.newArrayList()));
-        Minecraft.getInstance().setScreen(new WrapperCommandGUIScreen(gui, gui::saveData));
+        WrapperCommandGUIScreen guiScreen = new WrapperCommandGUIScreen(gui);
+        guiScreen.setCloseCallback(gui::saveData);
+        guiScreen.setReturnAction(this.commandPanel::layout);
+        guiScreen.setParent(Minecraft.getInstance().screen);
+        Minecraft.getInstance().setScreen(guiScreen);
     }
 
     private void editBtnCallback(@NotNull Boolean aBoolean) {
