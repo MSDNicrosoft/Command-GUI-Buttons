@@ -2,7 +2,9 @@ package cn.msdnicrosoft.commandbuttons.data;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
