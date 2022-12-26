@@ -79,9 +79,9 @@ public class CommandListPanel<D, W extends WWidget> extends WListPanel<D, W> {
                     } else {
                         w = unconfigured.remove(0);
                     }
-                    configurator.accept(d, w);
                     configured.put(d, w);
                 }
+                configurator.accept(d, w);
 
                 ((IWWidget) w).setX(10 + (w.getWidth() + 3) * offsetX);
                 ((IWWidget) w).setY(5 + offsetY * 22);

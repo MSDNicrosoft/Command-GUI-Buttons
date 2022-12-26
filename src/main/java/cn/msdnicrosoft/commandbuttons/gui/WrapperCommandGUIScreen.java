@@ -3,19 +3,29 @@ package cn.msdnicrosoft.commandbuttons.gui;
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
+import lombok.Getter;
+import lombok.Setter;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.glfw.GLFW;
 
 public class WrapperCommandGUIScreen extends CottonClientScreen {
     @Nullable
-    private final Runnable closeCallback;
+    @Getter
+    @Setter
+    private Runnable closeCallback;
+    @Getter
+    @Setter
+    @Nullable
+    private Screen parent;
+    @Getter
+    @Setter
+    @Nullable
+    private Runnable returnAction;
 
     public WrapperCommandGUIScreen(GuiDescription description) {
-        this(description, null);
-    }
-
-    public WrapperCommandGUIScreen(GuiDescription description, Runnable closeCallback) {
         super(description);
-        this.closeCallback = closeCallback;
     }
 
     @Override
@@ -29,5 +39,19 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
             closeCallback.run();
         }
         super.removed();
+    }
+
+    @Override
+    public boolean keyPressed(int ch, int keyCode, int modifiers) {
+        // Support for returning to previous screens.
+        if (ch == GLFW.GLFW_KEY_ESCAPE && this.parent != null) {
+            Minecraft.getInstance().setScreen(this.parent);
+            if (this.returnAction != null) {
+                // Need to apply list update in main screen.
+                this.returnAction.run();
+            }
+            return true;
+        }
+        return super.keyPressed(ch, keyCode, modifiers);
     }
 }

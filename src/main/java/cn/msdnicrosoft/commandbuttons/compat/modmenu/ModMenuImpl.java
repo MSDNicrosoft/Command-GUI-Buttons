@@ -8,6 +8,10 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 public class ModMenuImpl implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return (screen) -> new WrapperCommandGUIScreen(new CommandGUI());
+        return screen -> {
+            WrapperCommandGUIScreen guiScreen = new WrapperCommandGUIScreen(new CommandGUI());
+            guiScreen.setParent(screen);
+            return guiScreen;
+        };
     }
 }
