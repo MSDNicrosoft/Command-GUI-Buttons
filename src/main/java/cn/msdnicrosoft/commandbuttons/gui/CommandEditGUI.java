@@ -17,7 +17,6 @@ import java.util.function.BiConsumer;
 
 public class CommandEditGUI extends LightweightGuiDescription {
     private final BiConsumer<Text, CommandItemDestination> creator = this::defBtnBehavior;
-
     private final WGridPanel root = new WGridPanel(5);
     private final CommandItem item;
     private final WTextField displayName = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.edit.name"));
@@ -25,7 +24,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
     private final WButton addBtn = new WButton(Component.literal("+")).setOnClick(this::addBtnCallback);
 
     private final CommandEditListPanel<Text, CommandItemDestination> raw;
-    private boolean editMode;
+    private final boolean editMode;
 
     public CommandEditGUI(CommandItem item) {
         this(item, false);
@@ -96,7 +95,6 @@ public class CommandEditGUI extends LightweightGuiDescription {
     public void saveData() {
         if (!this.editMode) {
             ConfigManager.add(item);
-            this.editMode = true;
         }
         ConfigManager.save();
     }
