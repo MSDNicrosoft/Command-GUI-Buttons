@@ -104,7 +104,7 @@ loom {
     }
 }
 
-setArchivesBaseName("${project.archives_base_name}-mc${project.minecraft_dependency}")
+setArchivesBaseName("${project.archives_base_name}-mc${project.minecraft_out}")
 setVersion(project.parent.version)
 setGroup(project.maven_group)
 
