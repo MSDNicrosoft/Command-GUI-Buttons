@@ -81,7 +81,7 @@ loom {
             bufferedWriter.write("forceUnicodeFont:true\n")
             bufferedWriter.write("fov:1.0\n")
             bufferedWriter.write("gamma:16.0\n")
-            bufferedWriter.write("guiScale:2\n")
+            bufferedWriter.write("guiScale:3\n")
             bufferedWriter.write("lang:${Locale.getDefault().toString()}\n")
             bufferedWriter.write("maxFps:260\n")
             bufferedWriter.write("renderDistance:10\n")
@@ -118,7 +118,7 @@ processResources {
                 "mod_name"             : project.mod_name,
                 "mod_license"          : project.mod_license,
                 "mod_sources"          : project.mod_sources,
-                "mod_version"          : project.mod_version,
+                "mod_version"          : project.version,
         ])
     }
 }
