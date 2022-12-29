@@ -1,73 +1,20 @@
 plugins {
-    id 'fabric-loom' version '1.0-SNAPSHOT'
+    id("maven-publish")
+    id("fabric-loom").version("1.0-SNAPSHOT").apply(false)
+    // https://github.com/ReplayMod/preprocessor
+    // https://github.com/Fallen-Breath/preprocessor
+    id("com.replaymod.preprocess").version("897c4096e2")
+    id("org.ajoberstar.grgit").version("5.0.0")
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = "${project.archives_base_name}-mc${project.minecraft_version}-fabric"
-version = project.mod_version as Object
-group = project.maven_group as Object
-
-repositories {
-    maven {
-        name("HangBing Proxy")
-        url("https://repository.hanbings.io/proxy")
-    }
-    maven {
-        name("CottonMC")
-        url("https://server.bbkr.space/artifactory/libs-release")
-    }
-    maven {
-        name("CurseMaven")
-        url("https://www.cursemaven.com")
-    }
-
-    mavenCentral()
-    mavenLocal()
+preprocess {
+    def mc1193 = createNode("1.19.3", 1_19_03, "mojang")
 }
 
-dependencies {
-    // To change the versions see the gradle.properties file
-    minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+def ENV = System.getenv()
+String realVersion = "${project.mod_version}"
+realVersion += "." + (ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "${new Date().format("yyyyMMdd.HHmmss")}")
+realVersion += (grgit.status().clean ? "+" : ".dirty.")
+realVersion += grgit.head().abbreviatedId
 
-    modApi("curse.maven:modmenu-308702:${project.modmenu_version}")
-
-    modCompileOnly("org.projectlombok:lombok:${project.lombok_version}")
-    annotationProcessor("org.projectlombok:lombok:${project.lombok_version}")
-
-    // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
-
-    modImplementation("io.github.cottonmc:LibGui:${project.libgui_version}")
-    include("io.github.cottonmc:LibGui:${project.libgui_version}")
-}
-
-processResources {
-    filesMatching("fabric.mod.json") {
-        expand(
-            "version": project.version,
-        )
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    // Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-    it.options.encoding = "UTF-8"
-    it.options.release = 17
-}
-
-java {
-    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-    // if it is present.
-    // If you remove this line, sources will not be generated.
-    withSourcesJar()
-}
-
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
-    }
-}
+version(realVersion)

@@ -38,11 +38,18 @@ jobs:
       - name: Gradle executable property additions
         run: chmod +x gradlew
 
+      - name: Preprocess resources
+        env:
+          BUILD_NUMBER: ${{ github.run_number}}
+        run: ./gradlew preprocessResources
+
       - name: Build with Gradle
+        env:
+          BUILD_NUMBER: ${{ github.run_number}}
         run: ./gradlew build
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Build-Artifacts
-          path: build/libs
+          path: fabricWrapper/build/tmp/jars/*.jar

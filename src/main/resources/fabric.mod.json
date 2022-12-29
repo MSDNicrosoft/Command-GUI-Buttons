@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "mgbuttons",
-  "version": "${version}",
-  "name": "Command GUI Buttons",
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
   "description": "Create GUI buttons in-game to execute commands",
   "authors": [
     "JosephG",
@@ -14,9 +14,9 @@
     "MapleDust"
   ],
   "contact": {
-    "sources": "https://github.com/MSDNicrosoft/Command-GUI-Buttons"
+    "sources": "${mod_sources}"
   },
-  "license": "GPL-3.0",
+  "license": "${mod_license}",
   "environment": "client",
   "entrypoints": {
     "main": [
@@ -27,11 +27,10 @@
     ]
   },
   "mixins": [
-    "mgbuttons.mixins.json"
+    "${mod_id}.mixins.json"
   ],
   "depends": {
     "fabric-key-binding-api-v1": "*",
-    "minecraft": "1.19.x",
-    "java": ">=17"
+    "minecraft": "${minecraft_dependency}"
   }
 }
