@@ -25,9 +25,9 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
 
     @Shadow
     protected BiConsumer<D, W> configurator;
-    private int mgbutton$index;
+    private int mgbuttons$index;
 
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings({"ConstantConditions", "InvalidInjectorMethodSignature"})
     @ModifyVariable(
             method = "layout",
             at = @At(
@@ -37,7 +37,7 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
     )
     private int interceptionIndex(int index) {
         if (((Object) this) instanceof CommandEditListPanel) {
-            this.mgbutton$index = index;
+            this.mgbuttons$index = index;
         }
         return index;
     }
@@ -53,7 +53,7 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
     )
     private void forceApplySettingsEveryTime(CallbackInfo ci) {
         if (((Object) this) instanceof CommandEditListPanel) {
-            D d = this.data.get(this.mgbutton$index);
+            D d = this.data.get(this.mgbuttons$index);
             W w = this.configured.get(d);
             this.configurator.accept(d, w);
         }
