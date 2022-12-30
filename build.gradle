@@ -20,8 +20,7 @@ preprocess {
 
 def ENV = System.getenv()
 String realVersion = "${project.mod_version}"
-realVersion += "." + (ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "${new Date().format("yyyyMMdd.HHmmss")}")
-realVersion += (grgit.status().clean ? "+" : "-dirty.")
+realVersion += "." + (ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}+" : "${new Date().format("yyyyMMdd.HHmmss")}${(grgit.status().clean ? "+" : "-dirty.")}")
 realVersion += grgit.head().abbreviatedId
 
 setVersion(realVersion)
