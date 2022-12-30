@@ -51,6 +51,7 @@ public class CommandButtons implements ModInitializer {
         //$$ Component component = ccp.pull(text);
         //#endif
         //#endif
+        //#if MC >= 11900
         if (text.startsWith("/")) {
             //#if MC >= 11903
             player.connection.sendCommand(text.substring(1).trim());
@@ -64,5 +65,8 @@ public class CommandButtons implements ModInitializer {
             //$$ player.chatSigned(text, component);
             //#endif
         }
+        //#else
+        //$$ player.chat(text.trim());
+        //#endif
     }
 }
