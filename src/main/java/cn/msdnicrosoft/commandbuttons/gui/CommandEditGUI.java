@@ -65,6 +65,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
 
     private void defBtnBehavior(Text text, @NotNull CommandItemDestination commandItemDestination) {
         int index = this.item.getRaw().indexOf(text);
+        commandItemDestination.getCommand().validate(this.raw.getHost());
         commandItemDestination.getCommand().setMaxLength(Integer.MAX_VALUE);
         commandItemDestination.getCommand().setText(text.getText());
         commandItemDestination.getCommand().setFocusLostCallback((s -> this.item.getRaw().set(index, new Text(s))));
