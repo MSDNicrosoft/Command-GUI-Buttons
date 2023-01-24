@@ -8,6 +8,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+//#if MC <= 11701
+//$$ import org.spongepowered.asm.mixin.injection.ModifyArg;
+//#endif
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -26,6 +29,23 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
     @Shadow
     protected BiConsumer<D, W> configurator;
     private int mgbuttons$index;
+
+    //#if MC <= 11701
+    //$$ @SuppressWarnings("ConstantConditions")
+    //$$ @ModifyArg(
+    //$$         method = "layout",
+    //$$         at = @At(
+    //$$                 value = "INVOKE",
+    //$$                 target = "Lio/github/cottonmc/cotton/gui/widget/WScrollBar;setMaxValue(I)Lio/github/cottonmc/cotton/gui/widget/WScrollBar;"
+    //$$         )
+    //$$ )
+    //$$ private int fixScrollBar(int maxValue) {
+    //$$     if (((Object) this) instanceof CommandEditListPanel) {
+    //$$         maxValue++;
+    //$$     }
+    //$$     return maxValue;
+    //$$ }
+    //#endif
 
     @SuppressWarnings({"ConstantConditions", "InvalidInjectorMethodSignature"})
     @ModifyVariable(
