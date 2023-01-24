@@ -1,5 +1,6 @@
 apply(plugin: "fabric-loom")
 apply(plugin: "com.replaymod.preprocess")
+apply(plugin: "net.kyori.blossom")
 
 int mcVersion = 1
 
@@ -46,6 +47,8 @@ dependencies {
     // Make development client more comfortable.
     modRuntimeOnly("curse.maven:lazydfu-433518:${project.lazydfu_version}")
     modRuntimeOnly("curse.maven:smooth-boot-415758:${project.smoothboot_version}")
+
+    runtimeOnly(project(path: ":fabricWrapper"))
 }
 
 loom {
@@ -108,17 +111,24 @@ setArchivesBaseName("${project.archives_base_name}-mc${project.minecraft_out}")
 setVersion(project.parent.version)
 setGroup(project.maven_group)
 
+blossom {
+    replaceToken("\${mod_id}", project.minecraft_version.replace(".", "_"), )
+    replaceToken("\${minecraft_version_id}", project.mod_id)
+}
+
 processResources {
     outputs.upToDateWhen { false }
 
     filesMatching("fabric.mod.json") {
         expand([
-                "minecraft_dependency" : project.minecraft_dependency,
-                "mod_id"               : project.mod_id,
-                "mod_name"             : project.mod_name,
-                "mod_license"          : project.mod_license,
-                "mod_sources"          : project.mod_sources,
-                "mod_version"          : project.version,
+                "minecraft_dependency"  : project.minecraft_dependency,
+                "minecraft_version_id"  : project.minecraft_version.replace(".", "_"),
+                "minecraft_version_out" : project.minecraft_out,
+                "mod_id"                : project.mod_id,
+                "mod_name"              : project.mod_name,
+                "mod_license"           : project.mod_license,
+                "mod_sources"           : project.mod_sources,
+                "mod_version"           : project.version,
         ])
     }
 }
