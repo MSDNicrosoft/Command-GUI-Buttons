@@ -10,10 +10,10 @@ public class CommandButtonsReference {
     @Getter
     private static final String modIdentifier = "${mod_id}";
     @Getter
-    private static final String modName = FabricLoader.getInstance().getModContainer(modIdentifier)
+    private static final String modName = FabricLoader.getInstance().getModContainer(currentModIdentifier)
             .orElseThrow(RuntimeException::new).getMetadata().getName();
     @Getter
-    private static final String modVersion = FabricLoader.getInstance().getModContainer(modIdentifier)
+    private static final String modVersion = FabricLoader.getInstance().getModContainer(currentModIdentifier)
             .orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
     @Getter
     private static final Logger logger = LogManager.getLogger(modIdentifier);
