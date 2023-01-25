@@ -14,9 +14,16 @@ public class CommandItemDestination extends WPlainPanel {
     private final WButton delete = new WButton().setLabel(ComponentCompatApi.literal("×"));
 
     public CommandItemDestination() {
-        this.add(this.command, 1, 0, 159, 20);
-        this.add(this.up, 165, 0, 20, 20);
-        this.add(this.down, 185, 0, 20, 20);
-        this.add(this.delete, 205, 0, 20, 20);
+        //#if MC > 11605
+        this.add(this.command, 1, 0, 164, 20);
+        this.add(this.up, 170, 0, 20, 20);
+        this.add(this.down, 190, 0, 20, 20);
+        this.add(this.delete, 210, 0, 20, 20);
+        //#else
+        //$$ this.add(this.command, 0, 0, 170, 20);
+        //$$ this.add(this.up, 175, 0, 20, 20);
+        //$$ this.add(this.down, 195, 0, 20, 20);
+        //$$ this.add(this.delete, 215, 0, 20, 20);
+        //#endif
     }
 }

@@ -9,6 +9,10 @@ public class CommandDestination extends WPlainPanel {
     WButton button = new WButton();
 
     public CommandDestination() {
-        this.add(this.button, 0, 0, 75, 20);
+        //#if MC > 11605
+        this.add(this.button, 0, 0, 78, 20);
+        //#else
+        //$$ this.add(this.button, 0, 0, 80, 20);
+        //#endif
     }
 }

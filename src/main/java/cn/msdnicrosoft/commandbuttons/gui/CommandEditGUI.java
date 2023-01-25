@@ -42,10 +42,17 @@ public class CommandEditGUI extends LightweightGuiDescription {
         this.root.setSize(250, 260);
         this.displayName.setText(this.item.getDisplayName());
         this.displayName.setFocusLostCallback((this.item::setDisplayName));
+        //#if MC > 11605
         this.root.add(this.displayName, 1, 1, 48, 4);
         this.root.add(this.raw, 0, 6, 49, 40);
         this.root.add(this.input, 1, 47, 43, 4);
         this.root.add(this.addBtn, 45, 47, 4, 4);
+        //#else
+        //$$ this.root.add(this.displayName, 0, 0, 50, 4);
+        //$$ this.root.add(this.raw, 0, 5, 50, 40);
+        //$$ this.root.add(this.input, 0, 46, 45, 4);
+        //$$ this.root.add(this.addBtn, 46, 46, 4, 4);
+        //#endif
         this.root.validate(this);
     }
 

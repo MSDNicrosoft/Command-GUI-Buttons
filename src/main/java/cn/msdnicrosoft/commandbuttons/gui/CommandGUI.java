@@ -46,7 +46,7 @@ public class CommandGUI extends LightweightGuiDescription {
         this.root.add(this.deleteBtn, 25, 43, 4, 4);
         //#else
         //$$ this.root.add(this.search, 0, 0, 70, 2);
-        //$$ this.root.add(this.commandPanel, 1, 7, 68, 36);
+        //$$ this.root.add(this.commandPanel, 0, 7, 70, 36);
         //$$ this.root.add(this.addBtn, 0, 45, 4, 4);
         //$$ this.root.add(this.editBtn, 5, 45, 4, 4);
         //$$ this.root.add(this.deleteBtn, 24, 45, 4, 4);
@@ -55,7 +55,6 @@ public class CommandGUI extends LightweightGuiDescription {
     }
 
     private void createCommandPanel() {
-        this.commandPanel.setBackgroundPainter(BackgroundPainter.createColorful(0x00000000));
         this.search.setChangedListener(s -> this.commandPanel.layout());
     }
 
