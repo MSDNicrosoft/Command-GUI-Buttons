@@ -52,4 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Build-Artifacts
-          path: fabricWrapper/build/tmp/jars/*.jar
+          path: |
+            LICENSE
+            fabricWrapper/build/libs/*.jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
