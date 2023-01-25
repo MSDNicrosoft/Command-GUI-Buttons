@@ -19,7 +19,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
     private final BiConsumer<Text, CommandItemDestination> creator = this::defBtnBehavior;
     private final WGridPanel root = new WGridPanel(5);
     private final CommandItem item;
-    private final WTextField displayName = new WTextField().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.name"));
+    private final CommandEntryTextField displayName = (CommandEntryTextField) new CommandEntryTextField().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.name"));
     private final WTextField input = new WTextField().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.type")).setMaxLength(Integer.MAX_VALUE);
     private final WButton addBtn = new WButton(ComponentCompatApi.literal("+")).setOnClick(this::addBtnCallback);
 
@@ -41,7 +41,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
     private void setupRoot() {
         this.root.setSize(250, 260);
         this.displayName.setText(this.item.getDisplayName());
-        this.displayName.setChangedListener(this.item::setDisplayName);
+        this.displayName.setFocusLostCallback((this.item::setDisplayName));
         this.root.add(this.displayName, 1, 1, 48, 4);
         this.root.add(this.raw, 0, 6, 49, 40);
         this.root.add(this.input, 1, 47, 43, 4);
