@@ -1,14 +1,14 @@
 package cn.msdnicrosoft.commandbuttons.data;
 
 import cn.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
-import cn.msdnicrosoft.commandbuttons.gui.CommandEntryTextField;
+import cn.msdnicrosoft.commandbuttons.gui.WTextFieldExtra;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import lombok.Getter;
 
 @Getter
 public class CommandItemDestination extends WPlainPanel {
-    private final CommandEntryTextField command = new CommandEntryTextField();
+    private final WTextFieldExtra command = new WTextFieldExtra();
     private final WButton up = new WButton().setLabel(ComponentCompatApi.literal("↑"));
     private final WButton down = new WButton().setLabel(ComponentCompatApi.literal("↓"));
     private final WButton delete = new WButton().setLabel(ComponentCompatApi.literal("×"));

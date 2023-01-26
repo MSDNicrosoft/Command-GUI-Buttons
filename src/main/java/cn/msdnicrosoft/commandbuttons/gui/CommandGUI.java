@@ -21,7 +21,7 @@ import java.util.function.BiConsumer;
 public class CommandGUI extends LightweightGuiDescription {
     private final BiConsumer<CommandItem, CommandDestination> creator = this::defBtnBehavior;
 
-    private final WTextField search = new WTextField().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.main.search"));
+    private final WTextFieldExtra search = (WTextFieldExtra) new WTextFieldExtra().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.main.search"));
     private final WButton addBtn = new WButton(ComponentCompatApi.literal("+")).setOnClick(this::addCallBack);
     private final WToggleButton editBtn = new WToggleButton(ComponentCompatApi.translatable("mgbuttons.gui.main.edit")).setColor(0xFFFFFF, 0xFFFFFF).setOnToggle(this::editBtnCallback);
     private final WToggleButton deleteBtn = new WToggleButton(ComponentCompatApi.translatable("mgbuttons.gui.main.delete")).setColor(0xFFFFFF, 0xFFFFFF).setOnToggle(this::deleteBtnCallback);
