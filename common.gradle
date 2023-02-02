@@ -112,8 +112,8 @@ setVersion(project.parent.version)
 setGroup(project.maven_group)
 
 blossom {
-    replaceToken("\${mod_id}", project.minecraft_version.replace(".", "_"), )
-    replaceToken("\${minecraft_version_id}", project.mod_id)
+    replaceToken("\${mod_id}", project.mod_id)
+    replaceToken("\${minecraft_version_id}", project.minecraft_version.replace(".", "_"))
 }
 
 processResources {
