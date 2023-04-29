@@ -16,8 +16,8 @@ repositories {
     }
 
     maven {
-        name("CurseMaven")
-        url("https://www.cursemaven.com")
+        name("Modrinth Maven")
+        url("https://api.modrinth.com/maven")
     }
 
     maven {
@@ -42,11 +42,11 @@ dependencies {
     // Dependency
     modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
     modApi("io.github.cottonmc:LibGui:${project.libgui_version}")
-    modApi("curse.maven:modmenu-308702:${project.modmenu_version}")
+    modApi("maven.modrinth:modmenu:${project.modmenu_version}")
 
     // Make development client more comfortable.
-    modRuntimeOnly("curse.maven:lazydfu-433518:${project.lazydfu_version}")
-    modRuntimeOnly("curse.maven:smooth-boot-415758:${project.smoothboot_version}")
+    modRuntimeOnly("maven.modrinth:lazydfu:${project.lazydfu_version}")
+    modRuntimeOnly("maven.modrinth:smoothboot-fabric:${project.smoothboot_version}")
 
     runtimeOnly(project(path: ":fabricWrapper"))
 }
