@@ -84,7 +84,7 @@ loom {
             bufferedWriter.write("forceUnicodeFont:true\n")
             bufferedWriter.write("fov:1.0\n")
             bufferedWriter.write("gamma:16.0\n")
-            bufferedWriter.write("guiScale:3\n")
+            bufferedWriter.write("guiScale:2\n")
             bufferedWriter.write("lang:${Locale.getDefault().toString()}\n")
             bufferedWriter.write("maxFps:260\n")
             bufferedWriter.write("renderDistance:10\n")
@@ -137,7 +137,7 @@ java {
     withSourcesJar()
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
 
