@@ -31,7 +31,8 @@
   ],
   "depends": {
     "fabric-key-binding-api-v1": "*",
-    "minecraft": "${minecraft_dependency}"
+    "minecraft": "${minecraft_dependency}",
+    "libgui": "*"
   },
   "custom": {
     "modmenu:clientsideOnly": true,
