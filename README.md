@@ -1,8 +1,16 @@
+<div align="right">
+  English
+  |
+  <a title="简体中文" href="./README_ZH_CN.md">简体中文</a>
+</div>
+
 # Command GUI Buttons
 
->Fork from https://github.com/joseph-garcia/command-gui-buttons
+> Fork from https://github.com/joseph-garcia/command-gui-buttons
 
-Command GUI Buttons is a fabric mod for Minecraft that allows users to create custom command buttons on their clients. Users can bring up this menu in-game with the G key, type in the Name and Command they want to create a button for, and press the `+` to create. It will then show up as a button on their screen to use whenever they want, as the button will automatically execute the command or send chat message they initially entered.
+Command GUI Buttons is a fabric mod for Minecraft that allows users to create custom command buttons on their clients.
+Users can bring up this menu in-game with the <kbd>G</kbd> key, type in the button's Name and Command they want to create, and
+press the `+` to create. It will then show up as a button on their screen to use whenever they want.
 
 Create buttons for preset chat messages, commands like `/warp home`, or anything else that goes in the chat box.
 
@@ -19,15 +27,34 @@ Create buttons for preset chat messages, commands like `/warp home`, or anything
 
 ## How to Use:
 
-  - Bring up the menu in-game with the `G` key
-  - Type in the Name and Command you want to save into a button
-  - Press the `+` button
+- Bring up the menu in-game with the <kbd>G</kbd> key
+- Type in the Name and Command you want to save into a button
+- Press the `+` button
 
 ### How It Works
 
-The list of commands are serialized into a JSON format and stored locally on the users’ systems. The mod writes any new commands into the JSON as new buttons are created, and loads the JSON at the start of the game. A local list instance exists for reading and loading the buttons each time, so that file reading is kept to a minimum.
+The list of commands are serialized into a JSON format and stored locally on the users’ systems. The mod writes any new
+commands into the JSON as new buttons are created, and loads the JSON at the next start of the game.
 
 ## Development
+
+## Support
+
+Current main development for Minecraft version: `1.19.4`
+
+And use `preprocess` to be compatible with the following versions.
+
+**Note: We only accept the following versions of issues.**
+
+**Please note that this information is time-sensitive and any version of the issue not listed here will be closed.**
+
+- Minecraft `1.16.5`
+- Minecraft `1.17.1`
+- Minecraft `1.18.2`
+- Minecraft `1.19`
+- Minecraft `1.19.2`
+- Minecraft `1.19.3`
+- Minecraft `1.19.4`
 
 ### Mappings
 
@@ -35,4 +62,4 @@ We are using the **Mojang official** mappings to de-obfuscate Minecraft and inse
 
 ### Plan(s)
 
-- [] Use the `preprocess` to support low Minecraft versions
+- [x] Use the `preprocess` to support low Minecraft versions
