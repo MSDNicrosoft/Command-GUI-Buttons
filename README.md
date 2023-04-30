@@ -8,8 +8,8 @@
 
 > Fork from https://github.com/joseph-garcia/command-gui-buttons
 
-[![Last build](https://img.shields.io/github/actions/workflow/status/MSDNicrosoft/Command-GUI-Buttons/Build.yml?label=Last%20build&style=flat-square)](https://github.com/Hendrix-Shen/Tweak-My-Client/actions/workflows/CI.yml)
-[![Github Release](https://img.shields.io/github/v/release/MSDNicrosoft/Command-GUI-Buttons?label=Github%20Release&style=flat-square)](https://github.com/Hendrix-Shen/Tweak-My-Client/releases)
+[![Last build](https://img.shields.io/github/actions/workflow/status/MSDNicrosoft/Command-GUI-Buttons/Build.yml?label=Last%20build&style=flat-square)](https://github.com/MSDNicrosoft/Command-GUI-Buttons/workflows/Build.yml)
+[![Github Release](https://img.shields.io/github/v/release/MSDNicrosoft/Command-GUI-Buttons?label=Github%20Release&style=flat-square)](https://github.com/MSDNicrosoft/Command-GUI-Buttons/releases)
 
 ## Description
 
