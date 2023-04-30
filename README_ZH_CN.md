@@ -1,18 +1,38 @@
 <div align="right">
-  简体中文
-  |
   <a title="English" href="./README.md">English</a>
-</div>
+  |
+  简体中文
+</div>>
 
 # Command GUI Buttons
 
 > 复刻自 https://github.com/joseph-garcia/command-gui-buttons
+
+## 描述
 
 Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户端上创建自定义命令按钮。
 用户可以在游戏中使用 <kbd>G</kbd> 键调出此菜单，输入他们想要为其创建按钮的名称和命令。
 完成之后，相关内容将在屏幕上显示为数个按钮，以便随时使用。
 
 为预设的聊天消息、`/warp home` 等命令，或聊天框中的任何内容创建按钮。
+
+## 依赖
+
+| 依赖         | 类型 | 链接                                                                                                                                                             |
+|------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Fabric API | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) \| [Modrinth](https://modrinth.com/mod/fabric-api/)                                      | 
+| LibGui     | 必须 | [GitHub](https://github.com/CottonMC/LibGui/releases) \| [Maven(Not recommend)](https://server.bbkr.space/artifactory/libs-release/io/github/cottonmc/LibGui/) |
+
+为了方便，下方已列出下载链接：
+
+| Minecraft 版本 | Fabric API                                                                                                                                                      | LibGui (**请使用给定的版本**)                                                          |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| 1.16.5       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.16.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.16.5) | 3.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/3.4.0)          |
+| 1.17.1       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.17.1) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.17.1) | 4.2.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/4.2.3)          |
+| 1.18.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.18.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.18.2) | 5.4.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/5.4.2)          |
+| 1.19         | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19)     | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0)          |
+| 1.19.3       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3) | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3)          |
+| 1.19.4       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4) | 7.0.0-rc1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.0.0-rc.1) |
 
 ## 功能
 
@@ -25,7 +45,7 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 ![Command Edit](./.github/preview/command.png)
 ![Message Edit](.github/preview/message.png)
 
-## 如何使用:
+## 如何使用
 
 - 使用 <kbd>G</kbd> 键调出游戏内的菜单
 - 键入要保存的按钮名称及其命令
@@ -38,7 +58,7 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 
 ## 开发
 
-## 支持
+### 支持
 
 当前主开发版本: `1.19.4`
 
