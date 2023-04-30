@@ -1,0 +1,58 @@
+plugins {
+    id('java-library')
+}
+
+setArchivesBaseName(project.archives_base_name)
+setVersion(project.parent.version)
+setGroup(project.maven_group)
+
+def fabric_subprojects = project.parent.subprojects.findAll({
+    it.name != "fabricWrapper"
+})
+
+fabric_subprojects.collect {
+    evaluationDependsOn(":${it.name}")
+}
+
+jar {
+    // disable cache
+    outputs.upToDateWhen { false }
+    dependsOn(fabric_subprojects.collect {
+        it.tasks.remapJar
+    })
+
+    from("../LICENSE")
+    from("build/tmp/submods")
+
+    doFirst {
+        delete fileTree("build/tmp/submods/META-INF/jars")
+        copy {
+            from {
+                fabric_subprojects.collect {
+                    it.remapJar.outputs.files
+                }
+            }
+            into("build/tmp/submods/META-INF/jars")
+        }
+    }
+}
+
+import groovy.json.JsonBuilder
+
+processResources {
+    // disable cache
+    outputs.upToDateWhen { false }
+    var jars = []
+    fabric_subprojects.each({
+        jars.add(["file": "META-INF/jars/${it.archivesBaseName}-${it.version}.jar"])
+    })
+    filesMatching("fabric.mod.json") {
+        expand(["mod_version"         : project.version,
+                "mod_id"              : project.mod_id,
+                "mod_name"            : project.mod_name,
+                "mod_sources"         : project.mod_sources,
+                "mod_license"         : project.mod_license,
+                "sub_jars"            : new JsonBuilder(jars).toPrettyString(),
+        ])
+    }
+}

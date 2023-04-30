@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       
       - name: Setup Java JDK
         uses: actions/setup-java@v3
@@ -34,9 +36,15 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Configuration git
+        run: |
+          git config core.filemode false
 
       - name: Gradle executable property additions
         run: chmod +x gradlew
+
+      - name: Preprocess resources
+        run: ./gradlew preprocessResources
 
       - name: Build with Gradle
         run: ./gradlew build
@@ -45,4 +53,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Build-Artifacts
-          path: build/libs
+          path: |
+            LICENSE
+            fabricWrapper/build/libs/*.jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/*.jar

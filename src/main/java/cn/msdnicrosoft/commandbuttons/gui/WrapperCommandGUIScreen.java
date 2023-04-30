@@ -1,6 +1,8 @@
 package cn.msdnicrosoft.commandbuttons.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
+//#if MC < 1194
+//$$ import com.mojang.blaze3d.vertex.PoseStack;
+//#endif
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import lombok.Getter;
@@ -28,10 +30,12 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
         super(description);
     }
 
-    @Override
-    protected void fillGradient(PoseStack poseStack, int i, int j, int k, int l, int m, int n) {
-        // Do not use background color.
-    }
+    //#if MC <= 1193
+    //$$ @Override
+    //$$ protected void fillGradient(PoseStack poseStack, int i, int j, int k, int l, int m, int n) {
+    //$$    // Do not use background color.
+    //$$ }
+    //#endif
 
     @Override
     public void removed() {

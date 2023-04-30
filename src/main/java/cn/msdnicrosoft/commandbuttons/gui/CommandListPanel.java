@@ -21,7 +21,7 @@ public class CommandListPanel<D, W extends WWidget> extends WListPanel<D, W> {
         this.search = search;
     }
 
-    /*
+    /**
      * Modified from LibGui
      */
     @SuppressWarnings("unchecked")
@@ -83,8 +83,8 @@ public class CommandListPanel<D, W extends WWidget> extends WListPanel<D, W> {
                 }
                 configurator.accept(d, w);
 
-                ((IWWidget) w).setX(10 + (w.getWidth() + 3) * offsetX);
-                ((IWWidget) w).setY(5 + offsetY * 22);
+                ((IWWidget) w).setX((w.getWidth() + 5) * offsetX);
+                ((IWWidget) w).setY(offsetY * 22);
                 offsetX++;
 
                 if (offsetX >= 4) {

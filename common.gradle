@@ -1,0 +1,146 @@
+apply(plugin: "fabric-loom")
+apply(plugin: "com.replaymod.preprocess")
+apply(plugin: "net.kyori.blossom")
+
+int mcVersion = 1
+
+preprocess {
+    mcVersion = vars.get()["MC"]
+    tabIndentation = false
+}
+
+repositories {
+    maven {
+        name("CottonMC")
+        url("https://server.bbkr.space/artifactory/libs-release")
+    }
+
+    maven {
+        name("Modrinth Maven")
+        url("https://api.modrinth.com/maven")
+    }
+
+    maven {
+        name("HangBing Proxy")
+        url("https://repository.hanbings.io/proxy")
+    }
+
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    // Development environment
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings(loom.officialMojangMappings())
+    modApi("net.fabricmc:fabric-loader:${project.loader_version}")
+
+    // Annotation processor
+    modApi("org.projectlombok:lombok:${project.lombok_version}")
+    annotationProcessor("org.projectlombok:lombok:${project.lombok_version}")
+
+    // Dependency
+    modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+    modApi("io.github.cottonmc:LibGui:${project.libgui_version}")
+    modApi("maven.modrinth:modmenu:${project.modmenu_version}")
+
+    // Make development client more comfortable.
+    modRuntimeOnly("maven.modrinth:lazydfu:${project.lazydfu_version}")
+    modRuntimeOnly("maven.modrinth:smoothboot-fabric:${project.smoothboot_version}")
+
+    runtimeOnly(project(path: ":fabricWrapper"))
+}
+
+loom {
+    runConfigs.all {
+        // Dump modified classes automatically.
+        property("mixin.debug.export", "true")
+    }
+
+    // We need large window.
+    runConfigs.client {
+        programArgs([
+                "--width",
+                "1920",
+                "--height",
+                "1080",
+        ])
+        runDir("run/client")
+    }
+
+    // Useless, but we write here.
+    runConfigs.server {
+        runDir("run/server")
+    }
+
+    // Setup client default settings.
+    runClient {
+        defaultCharacterEncoding("UTF-8")
+        if (!new File("${projectDir}/run/client/options.txt").exists()) {
+            new File("${projectDir}/run/client").mkdirs()
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/client/options.txt"))
+            bufferedWriter.write("autoJump:false\n")
+            bufferedWriter.write("enableVsync:false\n")
+            bufferedWriter.write("forceUnicodeFont:true\n")
+            bufferedWriter.write("fov:1.0\n")
+            bufferedWriter.write("gamma:16.0\n")
+            bufferedWriter.write("guiScale:2\n")
+            bufferedWriter.write("lang:${Locale.getDefault().toString()}\n")
+            bufferedWriter.write("maxFps:260\n")
+            bufferedWriter.write("renderDistance:10\n")
+            bufferedWriter.write("soundCategory_master:0.0")
+            bufferedWriter.close()
+        }
+    }
+
+    // Useless, but we write here.
+    // Setup server default settings.
+    runServer {
+        defaultCharacterEncoding("UTF-8")
+        // Agree eula before server init.
+        if (!new File("${projectDir}/run/server/eula.txt").exists()) {
+            new File("${projectDir}/run/server").mkdirs()
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/server/eula.txt"))
+            bufferedWriter.write("eula=true")
+            bufferedWriter.close()
+        }
+    }
+}
+
+setArchivesBaseName("${project.archives_base_name}-mc${project.minecraft_out}")
+setVersion(project.parent.version)
+setGroup(project.maven_group)
+
+blossom {
+    replaceToken("\${mod_id}", project.mod_id)
+    replaceToken("\${minecraft_version_id}", project.minecraft_version.replace(".", "_"))
+}
+
+processResources {
+    outputs.upToDateWhen { false }
+
+    filesMatching("fabric.mod.json") {
+        expand([
+                "minecraft_dependency"  : project.minecraft_dependency,
+                "minecraft_version_id"  : project.minecraft_version.replace(".", "_"),
+                "minecraft_version_out" : project.minecraft_out,
+                "mod_id"                : project.mod_id,
+                "mod_name"              : project.mod_name,
+                "mod_license"           : project.mod_license,
+                "mod_sources"           : project.mod_sources,
+                "mod_version"           : project.version,
+        ])
+    }
+}
+
+java {
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+jar {
+    from("../../LICENSE")
+}

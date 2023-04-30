@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "${mod_id}-${minecraft_version_id}",
+  "id": "${mod_id}",
   "version": "${mod_version}",
-  "name": "${mod_name} for MC ${minecraft_version_out}",
+  "name": "${mod_name}",
   "description": "Create GUI buttons in-game to execute commands",
   "authors": [
     "JosephG",
@@ -19,27 +19,15 @@
   "license": "${mod_license}",
   "environment": "client",
   "entrypoints": {
-    "main": [
-      "cn.msdnicrosoft.commandbuttons.CommandButtons"
-    ],
     "modmenu": [
       "cn.msdnicrosoft.commandbuttons.compat.modmenu.ModMenuImpl"
     ]
   },
-  "mixins": [
-    "${mod_id}.mixins.json"
-  ],
   "depends": {
-    "fabric-key-binding-api-v1": "*",
-    "minecraft": "${minecraft_dependency}",
-    "libgui": "*"
+    "fabric-key-binding-api-v1": "*"
   },
   "custom": {
-    "modmenu:clientsideOnly": true,
-    "modmenu:parent": "${mod_id}",
-    "modmenu": {
-      "clientsideOnly": true,
-      "parent": "${mod_id}"
-    }
-  }
+    "modmenu:clientsideOnly": true
+  },
+  "jars": ${sub_jars}
 }

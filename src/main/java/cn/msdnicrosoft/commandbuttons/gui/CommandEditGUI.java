@@ -1,5 +1,6 @@
 package cn.msdnicrosoft.commandbuttons.gui;
 
+import cn.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
 import cn.msdnicrosoft.commandbuttons.data.CommandItem;
 import cn.msdnicrosoft.commandbuttons.data.CommandItemDestination;
 import cn.msdnicrosoft.commandbuttons.data.ConfigManager;
@@ -9,7 +10,6 @@ import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WTextField;
-import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -19,9 +19,9 @@ public class CommandEditGUI extends LightweightGuiDescription {
     private final BiConsumer<Text, CommandItemDestination> creator = this::defBtnBehavior;
     private final WGridPanel root = new WGridPanel(5);
     private final CommandItem item;
-    private final WTextField displayName = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.edit.name"));
-    private final WTextField input = new WTextField().setSuggestion(Component.translatable("mgbuttons.gui.edit.type")).setMaxLength(Integer.MAX_VALUE);
-    private final WButton addBtn = new WButton(Component.literal("+")).setOnClick(this::addBtnCallback);
+    private final WTextFieldExtra displayName = (WTextFieldExtra) new WTextFieldExtra().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.name"));
+    private final WTextField input = new WTextField().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.type")).setMaxLength(Integer.MAX_VALUE);
+    private final WButton addBtn = new WButton(ComponentCompatApi.literal("+")).setOnClick(this::addBtnCallback);
 
     private final CommandEditListPanel<Text, CommandItemDestination> raw;
     private final boolean editMode;
@@ -41,11 +41,19 @@ public class CommandEditGUI extends LightweightGuiDescription {
     private void setupRoot() {
         this.root.setSize(250, 260);
         this.displayName.setText(this.item.getDisplayName());
-        this.displayName.setChangedListener(this.item::setDisplayName);
+        this.displayName.setFocusLostCallback((this.item::setDisplayName));
+        //#if MC > 11605
         this.root.add(this.displayName, 1, 1, 48, 4);
         this.root.add(this.raw, 0, 6, 49, 40);
         this.root.add(this.input, 1, 47, 43, 4);
         this.root.add(this.addBtn, 45, 47, 4, 4);
+        //#else
+        //$$ this.root.add(this.displayName, 0, 0, 50, 4);
+        //$$ this.root.add(this.raw, 0, 5, 50, 40);
+        //$$ this.root.add(this.input, 0, 46, 45, 4);
+        //$$ this.root.add(this.addBtn, 46, 46, 4, 4);
+        //#endif
+        this.root.validate(this);
     }
 
     @Override
@@ -64,10 +72,13 @@ public class CommandEditGUI extends LightweightGuiDescription {
 
     private void defBtnBehavior(Text text, @NotNull CommandItemDestination commandItemDestination) {
         int index = this.item.getRaw().indexOf(text);
+        if (this.raw.getHost() != null) {
+            commandItemDestination.getCommand().validate(this.raw.getHost());
+        }
         commandItemDestination.getCommand().setMaxLength(Integer.MAX_VALUE);
         commandItemDestination.getCommand().setText(text.getText());
         commandItemDestination.getCommand().setFocusLostCallback((s -> this.item.getRaw().set(index, new Text(s))));
-        commandItemDestination.getCommand().setSuggestion(Component.translatable("mgbuttons.gui.edit.type_with_index", index + 1));
+        commandItemDestination.getCommand().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.type_with_index", index + 1));
         if (this.item.getRaw().indexOf(text) == 0) {
             commandItemDestination.getUp().setEnabled(false);
         } else {
