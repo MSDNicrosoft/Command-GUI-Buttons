@@ -13,9 +13,7 @@ import net.minecraft.client.player.LocalPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 //#if MC >= 11900 && MC <= 11902
-//#if MC >= 11901
 //$$ import net.minecraft.Util;
-//#endif
 //$$ import net.minecraft.client.gui.chat.ClientChatPreview;
 //$$ import net.minecraft.network.chat.Component;
 //#endif
@@ -45,11 +43,7 @@ public class CommandButtons implements ModInitializer {
         }
         //#if MC >= 11900 && MC <= 11902
         //$$ ClientChatPreview ccp = new ClientChatPreview(Minecraft.getInstance());
-        //#if MC >= 11901
         //$$ Component component = Util.mapNullable(ccp.pull(text), ClientChatPreview.Preview::response);
-        //#else
-        //$$ Component component = ccp.pull(text);
-        //#endif
         //#endif
         //#if MC >= 11900
         if (text.startsWith("/")) {
