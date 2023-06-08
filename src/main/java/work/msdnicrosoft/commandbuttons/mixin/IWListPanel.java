@@ -1,4 +1,4 @@
-package cn.msdnicrosoft.commandbuttons.mixin;
+package work.msdnicrosoft.commandbuttons.mixin;
 
 import io.github.cottonmc.cotton.gui.widget.WListPanel;
 import io.github.cottonmc.cotton.gui.widget.WWidget;

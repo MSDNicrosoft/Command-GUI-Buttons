@@ -1,11 +1,11 @@
-package cn.msdnicrosoft.commandbuttons.data;
+package work.msdnicrosoft.commandbuttons.data;
 
-import cn.msdnicrosoft.commandbuttons.CommandButtonsReference;
 import com.google.common.collect.Lists;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import work.msdnicrosoft.commandbuttons.CommandButtonsReference;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

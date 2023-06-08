@@ -1,4 +1,4 @@
-package cn.msdnicrosoft.commandbuttons.data;
+package work.msdnicrosoft.commandbuttons.data;
 
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;

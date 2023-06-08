@@ -1,12 +1,12 @@
-package cn.msdnicrosoft.commandbuttons.gui;
+package work.msdnicrosoft.commandbuttons.gui;
 
-import cn.msdnicrosoft.commandbuttons.data.CommandItem;
-import cn.msdnicrosoft.commandbuttons.mixin.IWListPanel;
-import cn.msdnicrosoft.commandbuttons.mixin.IWWidget;
 import com.google.common.collect.Lists;
 import io.github.cottonmc.cotton.gui.widget.WListPanel;
 import io.github.cottonmc.cotton.gui.widget.WTextField;
 import io.github.cottonmc.cotton.gui.widget.WWidget;
+import work.msdnicrosoft.commandbuttons.data.CommandItem;
+import work.msdnicrosoft.commandbuttons.mixin.IWListPanel;
+import work.msdnicrosoft.commandbuttons.mixin.IWWidget;
 
 import java.util.List;
 import java.util.function.BiConsumer;

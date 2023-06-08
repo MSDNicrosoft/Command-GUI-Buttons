@@ -1,10 +1,10 @@
-package cn.msdnicrosoft.commandbuttons.data;
+package work.msdnicrosoft.commandbuttons.data;
 
-import cn.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
-import cn.msdnicrosoft.commandbuttons.gui.WTextFieldExtra;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import lombok.Getter;
+import work.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
+import work.msdnicrosoft.commandbuttons.gui.WTextFieldExtra;
 
 @Getter
 public class CommandItemDestination extends WPlainPanel {

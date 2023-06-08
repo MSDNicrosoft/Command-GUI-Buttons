@@ -1,9 +1,9 @@
-package cn.msdnicrosoft.commandbuttons.compat.modmenu;
+package work.msdnicrosoft.commandbuttons.compat.modmenu;
 
-import cn.msdnicrosoft.commandbuttons.gui.CommandGUI;
-import cn.msdnicrosoft.commandbuttons.gui.WrapperCommandGUIScreen;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
+import work.msdnicrosoft.commandbuttons.gui.CommandGUI;
+import work.msdnicrosoft.commandbuttons.gui.WrapperCommandGUIScreen;
 
 public class ModMenuImpl implements ModMenuApi {
     @Override

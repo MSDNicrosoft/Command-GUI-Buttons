@@ -1,16 +1,16 @@
-package cn.msdnicrosoft.commandbuttons.gui;
+package work.msdnicrosoft.commandbuttons.gui;
 
-import cn.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
-import cn.msdnicrosoft.commandbuttons.data.CommandItem;
-import cn.msdnicrosoft.commandbuttons.data.CommandItemDestination;
-import cn.msdnicrosoft.commandbuttons.data.ConfigManager;
-import cn.msdnicrosoft.commandbuttons.data.Text;
 import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WTextField;
 import org.jetbrains.annotations.NotNull;
+import work.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
+import work.msdnicrosoft.commandbuttons.data.CommandItem;
+import work.msdnicrosoft.commandbuttons.data.CommandItemDestination;
+import work.msdnicrosoft.commandbuttons.data.ConfigManager;
+import work.msdnicrosoft.commandbuttons.data.Text;
 
 import java.util.Collections;
 import java.util.function.BiConsumer;

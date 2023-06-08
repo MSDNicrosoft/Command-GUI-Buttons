@@ -1,4 +1,4 @@
-package cn.msdnicrosoft.commandbuttons.data;
+package work.msdnicrosoft.commandbuttons.data;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

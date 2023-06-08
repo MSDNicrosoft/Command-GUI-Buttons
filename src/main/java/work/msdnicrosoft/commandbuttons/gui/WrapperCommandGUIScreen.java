@@ -1,4 +1,4 @@
-package cn.msdnicrosoft.commandbuttons.gui;
+package work.msdnicrosoft.commandbuttons.gui;
 
 //#if MC < 1194
 //$$ import com.mojang.blaze3d.vertex.PoseStack;

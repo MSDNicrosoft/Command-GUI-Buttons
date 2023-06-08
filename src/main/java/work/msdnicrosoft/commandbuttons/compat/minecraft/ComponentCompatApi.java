@@ -1,4 +1,4 @@
-package cn.msdnicrosoft.commandbuttons.compat.minecraft;
+package work.msdnicrosoft.commandbuttons.compat.minecraft;
 
 import net.minecraft.network.chat.Component;
 //#if MC < 11900

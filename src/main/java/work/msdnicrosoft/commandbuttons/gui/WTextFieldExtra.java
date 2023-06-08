@@ -1,4 +1,4 @@
-package cn.msdnicrosoft.commandbuttons.gui;
+package work.msdnicrosoft.commandbuttons.gui;
 
 import io.github.cottonmc.cotton.gui.widget.WTextField;
 import lombok.Setter;

@@ -1,8 +1,5 @@
-package cn.msdnicrosoft.commandbuttons;
+package work.msdnicrosoft.commandbuttons;
 
-import cn.msdnicrosoft.commandbuttons.data.ConfigManager;
-import cn.msdnicrosoft.commandbuttons.gui.CommandGUI;
-import cn.msdnicrosoft.commandbuttons.gui.WrapperCommandGUIScreen;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -12,6 +9,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
+import work.msdnicrosoft.commandbuttons.data.ConfigManager;
+import work.msdnicrosoft.commandbuttons.gui.CommandGUI;
+import work.msdnicrosoft.commandbuttons.gui.WrapperCommandGUIScreen;
 //#if MC >= 11900 && MC <= 11902
 //$$ import net.minecraft.Util;
 //$$ import net.minecraft.client.gui.chat.ClientChatPreview;

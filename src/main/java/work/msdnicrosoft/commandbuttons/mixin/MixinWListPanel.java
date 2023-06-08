@@ -1,6 +1,5 @@
-package cn.msdnicrosoft.commandbuttons.mixin;
+package work.msdnicrosoft.commandbuttons.mixin;
 
-import cn.msdnicrosoft.commandbuttons.gui.CommandEditListPanel;
 import io.github.cottonmc.cotton.gui.widget.WClippedPanel;
 import io.github.cottonmc.cotton.gui.widget.WListPanel;
 import io.github.cottonmc.cotton.gui.widget.WWidget;
@@ -15,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 //#endif
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import work.msdnicrosoft.commandbuttons.gui.CommandEditListPanel;
 
 import java.util.HashMap;
 import java.util.List;

@@ -20,7 +20,7 @@
   "environment": "client",
   "entrypoints": {
     "modmenu": [
-      "cn.msdnicrosoft.commandbuttons.compat.modmenu.ModMenuImpl"
+      "work.msdnicrosoft.commandbuttons.compat.modmenu.ModMenuImpl"
     ]
   },
   "depends": {

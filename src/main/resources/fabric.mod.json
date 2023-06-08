@@ -20,10 +20,10 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-      "cn.msdnicrosoft.commandbuttons.CommandButtons"
+      "work.msdnicrosoft.commandbuttons.CommandButtons"
     ],
     "modmenu": [
-      "cn.msdnicrosoft.commandbuttons.compat.modmenu.ModMenuImpl"
+      "work.msdnicrosoft.commandbuttons.compat.modmenu.ModMenuImpl"
     ]
   },
   "mixins": [

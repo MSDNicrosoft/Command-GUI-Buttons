@@ -1,4 +1,4 @@
-package cn.msdnicrosoft.commandbuttons;
+package work.msdnicrosoft.commandbuttons;
 
 import lombok.Getter;
 import net.fabricmc.loader.api.FabricLoader;
