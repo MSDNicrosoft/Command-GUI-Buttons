@@ -24,7 +24,7 @@ preprocess {
 }
 
 def ENV = System.getenv()
-String realVersion = "${project.mod_version}."
+String realVersion = "${project.mod_version}+build."
 realVersion += ENV.GITHUB_RUN_NUMBER ? ENV.GITHUB_RUN_NUMBER : new Date().format("yyyyMMdd.HHmmss")
 if (grgit != null) {
     realVersion += grgit.status().isClean() ? "+${grgit.head().abbreviatedId}" : "+uncommited"
