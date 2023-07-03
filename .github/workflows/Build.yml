@@ -31,16 +31,17 @@ jobs:
         with:
           path: |
             ~/.gradle/caches
-            ~/.gradle/loom-cache
+            ./.gradle/loom-cache
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
       - name: Configuration git
         run: |
           git config core.filemode false
 
-      - name: Gradle executable property additions
+      - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Preprocess resources
