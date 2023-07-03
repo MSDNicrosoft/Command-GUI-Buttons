@@ -28,15 +28,15 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 
 为了方便，下方已列出下载链接：
 
-| Minecraft 版本 | Fabric API                                                                                                                                                      | LibGui (**请使用给定的版本**)                                                               |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| 1.16.5       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.16.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.16.5) | 3.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/3.4.0)               |
-| 1.17.1       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.17.1) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.17.1) | 4.2.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/4.2.3)               |
-| 1.18.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.18.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.18.2) | 5.4.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/5.4.2)               |
-| 1.19.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.2) | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0)               |
-| 1.19.3       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3) | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3)               |
-| 1.19.4       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4) | 7.1.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.1.0)               |
-| 1.20         | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20)     | 8.0.0-beta.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/8.0.0-beta.1) |
+| Minecraft 版本 | Fabric API                                                                                                                                                      | LibGui (**请使用给定的版本**)                                                 |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| 1.16.5       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.16.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.16.5) | 3.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/3.4.0) |
+| 1.17.1       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.17.1) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.17.1) | 4.2.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/4.2.3) |
+| 1.18.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.18.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.18.2) | 5.4.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/5.4.2) |
+| 1.19.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.2) | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0) |
+| 1.19.3       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3) | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3) |
+| 1.19.4       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4) | 7.1.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.1.1) |
+| 1.20.1       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.1) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.1) | 8.0.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/8.0.1) |
 
 ## 功能
 
@@ -64,7 +64,7 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 
 ### 支持
 
-当前主开发版本: `1.20`
+当前主开发版本: `1.20.1`
 
 并且使用 `预处理` 来兼容下列版本。
 
@@ -78,7 +78,7 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 - Minecraft `1.19.2`
 - Minecraft `1.19.3`
 - Minecraft `1.19.4`
-- Minecraft `1.20`
+- Minecraft `1.20.1`
 
 ### 混淆映射表
 

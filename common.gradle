@@ -2,13 +2,6 @@ apply(plugin: "fabric-loom")
 apply(plugin: "com.replaymod.preprocess")
 apply(plugin: "net.kyori.blossom")
 
-int mcVersion = 1
-
-preprocess {
-    mcVersion = vars.get()["MC"]
-    tabIndentation = false
-}
-
 repositories {
     maven {
         name("CottonMC")
@@ -29,6 +22,19 @@ repositories {
     mavenLocal()
 }
 
+int mcVersion = 1
+
+preprocess {
+    mcVersion = vars.get().get("MC")
+    tabIndentation = false
+}
+
+def runtimeDependencies = [
+        // Module, Property prefix, Resolve condition, Transitive dependencies.
+        ["maven.modrinth:lazydfu",           "lazydfu",    mcVersion < 12000, false],
+        ["maven.modrinth:smoothboot-fabric", "smoothboot", mcVersion < 12000, false],
+]
+
 dependencies {
     // Development environment
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -45,8 +51,18 @@ dependencies {
     modApi("maven.modrinth:modmenu:${project.modmenu_version}")
 
     // Make development client more comfortable.
-    modRuntimeOnly("maven.modrinth:lazydfu:${project.lazydfu_version}")
-    modRuntimeOnly("maven.modrinth:smoothboot-fabric:${project.smoothboot_version}")
+    runtimeDependencies.forEach { item ->
+        String dependencyNotation = item[0]
+        String propertyPrefix = item[1]
+        boolean shouldResolve = item[2]
+        boolean shouldTransitive = item[3]
+
+        if (shouldResolve) {
+            modRuntimeOnly("${dependencyNotation}:${project.property("${propertyPrefix}_version")}:") {
+                transitive(shouldTransitive)
+            }
+        }
+    }
 
     runtimeOnly(project(path: ":fabricWrapper"))
 }
@@ -121,14 +137,14 @@ processResources {
 
     filesMatching("fabric.mod.json") {
         expand([
-                "minecraft_dependency"  : project.minecraft_dependency,
-                "minecraft_version_id"  : project.minecraft_version.replace(".", "_"),
-                "minecraft_version_out" : project.minecraft_out,
-                "mod_id"                : project.mod_id,
-                "mod_name"              : project.mod_name,
-                "mod_license"           : project.mod_license,
-                "mod_sources"           : project.mod_sources,
-                "mod_version"           : project.version,
+                "minecraft_dependency" : project.minecraft_dependency,
+                "minecraft_version_id" : project.minecraft_version.replace(".", "_"),
+                "minecraft_version_out": project.minecraft_out,
+                "mod_id"               : project.mod_id,
+                "mod_name"             : project.mod_name,
+                "mod_license"          : project.mod_license,
+                "mod_sources"          : project.mod_sources,
+                "mod_version"          : project.version,
         ])
     }
 }
