@@ -13,11 +13,11 @@
 
 ## Description
 
-Command GUI Buttons is a fabric mod for Minecraft that allows users to create custom command buttons on their clients.
+Command GUI Buttons is a fabric mod for Minecraft that allows users to create buttons on their clients
+for preset chat messages, commands such as `/warp home`, or anything in the chat box.
 Users can bring up this menu in-game with the <kbd>G</kbd> key, type in the button's Name and Command they want to
-create, and press the `+` to create. It will then show up as a button on their screen to use whenever they want.
+create, and press the `+` to create. Then, the button will appear on users' screen for use whenever they want.
 
-Create buttons for preset chat messages, commands like `/warp home`, or anything else that goes in the chat box.
 
 ## Dependencies
 
