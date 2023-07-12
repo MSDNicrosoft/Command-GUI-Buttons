@@ -123,9 +123,13 @@ loom {
     }
 }
 
-setArchivesBaseName("${project.archives_base_name}-mc${project.minecraft_out}")
 setVersion(project.parent.version)
 setGroup(project.maven_group)
+
+
+base {
+    archivesName = "${project.archives_base_name}-mc${project.minecraft_out}"
+}
 
 blossom {
     replaceToken("\${mod_id}", project.mod_id)
