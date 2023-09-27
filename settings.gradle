@@ -1,5 +1,8 @@
 pluginManagement {
     repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
         maven {
             name("Fabric")
             url("https://maven.fabricmc.net/")
@@ -12,8 +15,6 @@ pluginManagement {
             name("Nyan Maven")
             url("https://maven.hendrixshen.top")
         }
-        mavenCentral()
-        gradlePluginPortal()
     }
 }
 
