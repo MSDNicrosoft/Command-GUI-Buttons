@@ -1,28 +1,26 @@
 package work.msdnicrosoft.commandbuttons.gui;
 
-//#if MC < 1194
+//#if MC < 12000
 //$$ import com.mojang.blaze3d.vertex.PoseStack;
 //#endif
+import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
+@Getter
+@Setter
 public class WrapperCommandGUIScreen extends CottonClientScreen {
     @Nullable
-    @Getter
-    @Setter
     private Runnable closeCallback;
-    @Getter
-    @Setter
     @Nullable
     private Screen parent;
-    @Getter
-    @Setter
     @Nullable
     private Runnable returnAction;
 
@@ -30,12 +28,30 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
         super(description);
     }
 
-    //#if MC <= 1193
-    //$$ @Override
-    //$$ protected void fillGradient(PoseStack poseStack, int i, int j, int k, int l, int m, int n) {
-    //$$    // Do not use background color.
-    //$$ }
-    //#endif
+    // Do not render background color in-game
+    @Override
+    public void renderBackground(
+            //#if MC > 11904
+            GuiGraphics guiGraphics
+            //#else
+            //$$ PoseStack poseStack
+            //#if MC < 11904
+            //$$ ,int vOffset
+            //#endif
+            //#endif
+    ) {
+        if (this.minecraft != null && this.minecraft.level == null) {
+            this.renderDirtBackground(
+                    //#if MC > 11904
+                    guiGraphics
+                    //#elseif MC > 11903
+                    //$$ poseStack
+                    //#else
+                    //$$ vOffset
+                    //#endif
+            );
+        }
+    }
 
     @Override
     public void removed() {
