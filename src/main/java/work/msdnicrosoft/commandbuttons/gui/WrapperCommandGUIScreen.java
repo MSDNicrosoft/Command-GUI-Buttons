@@ -3,7 +3,6 @@ package work.msdnicrosoft.commandbuttons.gui;
 //#if MC < 12000
 //$$ import com.mojang.blaze3d.vertex.PoseStack;
 //#endif
-import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import lombok.Getter;
@@ -33,6 +32,11 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
     public void renderBackground(
             //#if MC > 11904
             GuiGraphics guiGraphics
+            //#if MC > 12001
+            //$$ ,int mouseX,
+            //$$ int mouseY,
+            //$$ float partialTick
+            //#endif
             //#else
             //$$ PoseStack poseStack
             //#if MC < 11904
