@@ -8,7 +8,7 @@ setVersion(project.parent.version)
 setGroup(project.maven_group)
 
 base {
-    archivesName = "${project.archives_base_name}-all"
+    archivesBaseName = "${project.archives_base_name}-all"
 }
 
 def fabric_subprojects = project.parent.subprojects.findAll({
@@ -47,7 +47,7 @@ processResources {
     outputs.upToDateWhen { false }
     var jars = []
     fabric_subprojects.each({
-        jars.add(["file": "META-INF/jars/${project.archives_base_name}-${it.version}.jar"])
+        jars.add(["file": "META-INF/jars/${it.archivesBaseName}-${it.version}.jar"])
     })
     filesMatching("fabric.mod.json") {
         expand(["mod_version"         : project.version,

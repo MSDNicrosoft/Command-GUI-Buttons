@@ -128,7 +128,7 @@ setGroup(project.maven_group)
 
 
 base {
-    archivesName = "${project.archives_base_name}-mc${project.minecraft_out}"
+    archivesBaseName = "${project.archives_base_name}-mc${project.minecraft_out}"
 }
 
 blossom {
