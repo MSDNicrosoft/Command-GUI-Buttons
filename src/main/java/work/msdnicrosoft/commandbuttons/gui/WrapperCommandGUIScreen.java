@@ -27,15 +27,16 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
         super(description);
     }
 
+
     // Do not render background color in-game
     @Override
     public void renderBackground(
             //#if MC > 11904
             GuiGraphics guiGraphics
             //#if MC > 12001
-            //$$ ,int mouseX,
-            //$$ int mouseY,
-            //$$ float partialTick
+            ,int mouseX,
+            int mouseY,
+            float partialTick
             //#endif
             //#else
             //$$ PoseStack poseStack
