@@ -68,7 +68,7 @@ dependencies {
 }
 
 loom {
-    runConfigs.all {
+    runConfigs.configureEach {
         // Dump modified classes automatically.
         property("mixin.debug.export", "true")
     }
