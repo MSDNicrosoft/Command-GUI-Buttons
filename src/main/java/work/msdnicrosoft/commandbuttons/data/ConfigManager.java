@@ -42,6 +42,8 @@ public class ConfigManager {
             CommandButtonsReference.getLogger().error("Cannot write commands data: ", e);
             CommandButtonsReference.getLogger().warn("Data: {}", string);
         }
+
+        loadFromFile();
     }
 
     private static void loadFromFile() {
