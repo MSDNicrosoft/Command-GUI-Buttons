@@ -36,7 +36,8 @@ For your convenience, download links are listed below:
 | 1.19.2            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.2) | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0) |
 | 1.19.3            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3) | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3) |
 | 1.19.4            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4) | 7.1.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.1.1) |
-| 1.20.2            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.2) | 9.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/9.0.0) |
+| 1.20.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.2) | 9.2.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/9.2.2) |
+| 1.20.4       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.4) | 9.2.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/9.2.2) |
 
 ## Features
 
@@ -64,7 +65,7 @@ commands into the JSON as new buttons are created, and loads the JSON at the nex
 
 ## Support
 
-Current main development for Minecraft version: `1.20.2`
+Current main development for Minecraft version: `1.20.4`
 
 And use `preprocess` to be compatible with the following versions.
 
@@ -79,6 +80,7 @@ And use `preprocess` to be compatible with the following versions.
 - Minecraft `1.19.3`
 - Minecraft `1.19.4`
 - Minecraft `1.20.2`
+- Minecraft `1.20.4`
 
 ### Mappings
 
