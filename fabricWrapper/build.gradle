@@ -1,4 +1,5 @@
 import groovy.json.JsonBuilder
+import groovy.json.JsonSlurper
 
 plugins {
     id("java-library")
@@ -8,7 +9,7 @@ setVersion(project.parent.version)
 setGroup(project.maven_group)
 
 base {
-    archivesBaseName = "${project.archives_base_name}-all"
+    archivesName.set("${project.archives_base_name}-all")
 }
 
 def fabric_subprojects = project.parent.subprojects.findAll({
@@ -45,17 +46,33 @@ jar {
 processResources {
     // disable cache
     outputs.upToDateWhen { false }
-    var jars = []
-    fabric_subprojects.each({
-        jars.add(["file": "META-INF/jars/${it.archivesBaseName}-${it.version}.jar"])
-    })
+
     filesMatching("fabric.mod.json") {
         expand(["mod_version"         : project.version,
                 "mod_id"              : project.mod_id,
                 "mod_name"            : project.mod_name,
                 "mod_sources"         : project.mod_sources,
-                "mod_license"         : project.mod_license,
-                "sub_jars"            : new JsonBuilder(jars).toPrettyString(),
+                "mod_license"         : project.mod_license
         ])
+    }
+
+    doLast {
+        ArrayList<?> mc_condition = []
+        ArrayList<?> jars = []
+
+        fabric_subprojects.each({
+            mc_condition.add("${it.minecraft_dependency}")
+            jars.add(["file": "META-INF/jars/${project.archives_base_name}-mc${it.minecraft_out}-${it.version}.jar"])
+        })
+
+        File file = file("build/resources/main/fabric.mod.json")
+        JsonSlurper slurper = new JsonSlurper()
+        JsonBuilder builder = new JsonBuilder(slurper.parse(file))
+        builder.content.depends.minecraft = mc_condition
+        builder.content.jars = jars
+        BufferedWriter writer = file.newWriter()
+        writer.append(builder.toPrettyString())
+        writer.flush()
+        writer.close()
     }
 }

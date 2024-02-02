@@ -5,6 +5,7 @@ import io.github.cottonmc.cotton.gui.widget.WListPanel;
 import io.github.cottonmc.cotton.gui.widget.WWidget;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 //#if MC <= 11701
@@ -30,6 +31,7 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
 
     @Shadow
     protected BiConsumer<D, W> configurator;
+    @Unique
     private int mgbuttons$index;
 
     //#if MC <= 11701
@@ -55,7 +57,11 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
             at = @At(
                     value = "STORE"
             ),
-            ordinal = 5
+            //#if MC > 12001
+            ordinal = 6
+            //#else
+            //$$ ordinal = 5
+            //#endif
     )
     private int interceptionIndex(int index) {
         if (((Object) this) instanceof CommandEditListPanel) {

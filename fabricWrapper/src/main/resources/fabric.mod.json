@@ -29,6 +29,5 @@
   },
   "custom": {
     "modmenu:clientsideOnly": true
-  },
-  "jars": ${sub_jars}
+  }
 }
