@@ -92,20 +92,23 @@ loom {
     // Setup client default settings.
     runClient {
         defaultCharacterEncoding("UTF-8")
-        if (!new File("${projectDir}/run/client/options.txt").exists()) {
-            new File("${projectDir}/run/client").mkdirs()
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/client/options.txt"))
-            bufferedWriter.writeLine("autoJump:false")
-            bufferedWriter.writeLine("enableVsync:false")
-            bufferedWriter.writeLine("forceUnicodeFont:true")
-            bufferedWriter.writeLine("fov:1.0")
-            bufferedWriter.writeLine("gamma:16.0")
-            bufferedWriter.writeLine("guiScale:3")
-            bufferedWriter.writeLine("lang:${Locale.getDefault().toString()}")
-            bufferedWriter.writeLine("maxFps:260")
-            bufferedWriter.writeLine("renderDistance:10")
-            bufferedWriter.writeLine("soundCategory_master:0.0")
-            bufferedWriter.close()
+        new File("${projectDir}/run/client/options.txt").with { file ->
+            if (!file.exists()) {
+                file.parentFile.mkdirs()
+                file.withWriter { writer ->
+                    writer.writeLine("autoJump:false")
+                    writer.writeLine("enableVsync:false")
+                    writer.writeLine("forceUnicodeFont:true")
+                    writer.writeLine("fov:1.0")
+                    writer.writeLine("gamma:16.0")
+                    writer.writeLine("guiScale:3")
+                    writer.writeLine("lang:${Locale.getDefault().toString()}")
+                    writer.writeLine("maxFps:260")
+                    writer.writeLine("renderDistance:10")
+                    writer.writeLine("soundCategory_master:0.0")
+                }
+            }
+
         }
     }
 
@@ -114,11 +117,13 @@ loom {
     runServer {
         defaultCharacterEncoding("UTF-8")
         // Agree eula before server init.
-        if (!new File("${projectDir}/run/server/eula.txt").exists()) {
-            new File("${projectDir}/run/server").mkdirs()
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/server/eula.txt"))
-            bufferedWriter.writeLine("eula=true")
-            bufferedWriter.close()
+        new File("${projectDir}/run/server/eula.txt").with { file ->
+            if (!file.exists()) {
+                file.parentFile.mkdirs()
+                file.withWriter { writer ->
+                    writer.writeLine("eula=true")
+                }
+            }
         }
     }
 }
