@@ -21,7 +21,7 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 
 | 依赖         | 类型 | 链接                                                                                                                                                   |
 |------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Fabric API | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) \| [Modrinth](https://modrinth.com/mod/fabric-api/)                            | 
+| Fabric API | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) \| [Modrinth](https://modrinth.com/mod/fabric-api/)                            |
 | LibGui     | 必须 | [GitHub](https://github.com/CottonMC/LibGui/releases) \| [Maven(不推荐)](https://server.bbkr.space/artifactory/libs-release/io/github/cottonmc/LibGui/) |
 
 为了方便，下方已列出下载链接：
