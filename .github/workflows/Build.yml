@@ -37,10 +37,10 @@ jobs:
           git config core.filemode false
 
       - name: Preprocess resources
-        run: ./gradlew preprocessResources
+        run: gradle preprocessResources
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: gradle build
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
