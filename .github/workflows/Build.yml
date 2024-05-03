@@ -20,29 +20,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
           java-version: 17
 
-      - name: Cache Gradle
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ./.gradle/loom-cache
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Configuration git
         run: |
           git config core.filemode false
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
 
       - name: Preprocess resources
         run: ./gradlew preprocessResources
