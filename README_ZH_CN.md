@@ -34,8 +34,8 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 | 1.19.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.2) | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0) |
 | 1.19.3       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3) | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3) |
 | 1.19.4       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4) | 7.1.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.1.1) |
-| 1.20.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.2) | 9.2.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/9.2.2) |
-| 1.20.4       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.4) | 9.2.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/9.2.2) |
+| 1.20.6       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.6) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.6) | 10.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/10.0.0) |
+| 1.21       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21) | 11.0.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/11.0.1) |
 
 ## 功能
 
@@ -63,7 +63,7 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 
 ### 支持
 
-当前主开发版本: `1.20.4`
+当前主开发版本: `1.21`
 
 并且使用 `预处理` 来兼容下列版本。
 
@@ -77,8 +77,8 @@ Command GUI Buttons 是 Minecraft 的 Fabric 模组，允许用户在其客户�
 - Minecraft `1.19.2`
 - Minecraft `1.19.3`
 - Minecraft `1.19.4`
-- Minecraft `1.20.2`
-- Minecraft `1.20.4`
+- Minecraft `1.20.6`
+- Minecraft `1.21`
 
 ### 混淆映射表
 

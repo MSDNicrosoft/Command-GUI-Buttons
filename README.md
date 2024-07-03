@@ -15,8 +15,8 @@
 
 Command GUI Buttons is a fabric mod for Minecraft that allows users to create buttons on their clients
 for preset chat messages, commands such as `/warp home`, or anything in the chat box.
-Users can bring up this menu in-game with the <kbd>G</kbd> key, type in the button's Name and Command they want to
-create, and press the `+` to create. Then, the button will appear on users' screen for use whenever they want.
+Users can bring up this menu in-game with the key <kbd>G</kbd>, type in the button's Name and Command they want to
+create, and press the button `+` to create. Then, the button will appear on users' screen for use whenever they want.
 
 
 ## Dependencies
@@ -36,8 +36,8 @@ For your convenience, download links are listed below:
 | 1.19.2            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.2) | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0) |
 | 1.19.3            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3) | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3) |
 | 1.19.4            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4) | 7.1.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.1.1) |
-| 1.20.2       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.2) | 9.2.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/9.2.2) |
-| 1.20.4       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.4) | 9.2.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/9.2.2) |
+| 1.20.6       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.6) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.6) | 10.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/10.0.0) |
+| 1.21       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21) | 11.0.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/11.0.1) |
 
 ## Features
 
@@ -65,7 +65,7 @@ commands into the JSON as new buttons are created, and loads the JSON at the nex
 
 ## Support
 
-Current main development for Minecraft version: `1.20.4`
+Current main development for Minecraft version: `1.21`
 
 And use `preprocess` to be compatible with the following versions.
 
@@ -79,8 +79,8 @@ And use `preprocess` to be compatible with the following versions.
 - Minecraft `1.19.2`
 - Minecraft `1.19.3`
 - Minecraft `1.19.4`
-- Minecraft `1.20.2`
-- Minecraft `1.20.4`
+- Minecraft `1.20.6`
+- Minecraft `1.21`
 
 ### Mappings
 
