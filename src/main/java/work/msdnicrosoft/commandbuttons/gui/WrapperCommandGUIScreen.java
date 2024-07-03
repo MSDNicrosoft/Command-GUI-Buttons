@@ -45,16 +45,23 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
             //#endif
             //#endif
     ) {
-        if (this.minecraft != null && this.minecraft.level == null) {
-            this.renderDirtBackground(
-                    //#if MC > 11904
-                    guiGraphics
-                    //#elseif MC > 11903
-                    //$$ poseStack
-                    //#else
-                    //$$ vOffset
-                    //#endif
-            );
+        if (this.minecraft != null) {
+            //#if MC >= 11906
+            if (this.minecraft.level != null) {
+                this.renderBlurredBackground(0.32F);
+            }
+            this.renderMenuBackground(guiGraphics);
+            //#else
+            //$$ this.renderDirtBackground(
+            //#if MC > 11904
+            //$$ guiGraphics
+            //#elseif MC > 11903
+            //$$ poseStack
+            //#else
+            //$$ vOffset
+            //#endif
+            //$$ );
+            //#endif
         }
     }
 
