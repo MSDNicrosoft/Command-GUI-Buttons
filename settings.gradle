@@ -15,7 +15,7 @@ pluginManagement {
         }
         maven {
             name("Nyan Maven")
-            url("https://maven.hendrixshen.top")
+            url("https://github.com/Hendrix-Shen/Maven/raw/master/")
         }
     }
 }
