@@ -13,9 +13,13 @@ pluginManagement {
             name("Jitpack")
             url("https://jitpack.io")
         }
-        maven {
-            name("Nyan Maven")
-            url("https://github.com/Hendrix-Shen/Maven/raw/master/")
+    }
+
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "com.replaymod.preprocess") {
+                useModule("com.github.Fallen-Breath:preprocessor:${requested.version}")
+            }
         }
     }
 }

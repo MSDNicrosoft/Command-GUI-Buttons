@@ -36,9 +36,6 @@ jobs:
         run: |
           git config core.filemode false
 
-      - name: Preprocess resources
-        run: gradle preprocessResources
-
       - name: Build with Gradle
         run: gradle build
 

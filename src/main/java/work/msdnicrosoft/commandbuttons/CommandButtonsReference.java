@@ -6,9 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CommandButtonsReference {
-    private static final String currentModIdentifier = "${mod_id}-${minecraft_version_id}";
+    private static final String currentModIdentifier = "@MOD_ID@-@MINECRAFT_VERSION_ID@";
     @Getter
-    private static final String modIdentifier = "${mod_id}";
+    private static final String modIdentifier = "@MOD_ID@";
     @Getter
     private static final String modName = FabricLoader.getInstance().getModContainer(currentModIdentifier)
             .orElseThrow(RuntimeException::new).getMetadata().getName();
