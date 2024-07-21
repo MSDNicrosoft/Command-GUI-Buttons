@@ -49,6 +49,10 @@ dependencies {
         transitive(false)
     }
 
+    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-core-fabric:0.8.114") {
+        transitive(false)
+    }
+
     runtimeOnly(project(path: ":fabricWrapper"))
 }
 
