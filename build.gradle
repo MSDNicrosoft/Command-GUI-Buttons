@@ -1,7 +1,7 @@
 plugins {
     id("fabric-loom").version("1.7-SNAPSHOT").apply(false)
     id("com.replaymod.preprocess").version("88169fcb")
-    id("org.ajoberstar.grgit").version("5.2.2")
+    id("org.ajoberstar.grgit").version("5.3.0")
     id("top.hendrixshen.replace-token").version("1.1.2").apply(false)
 }
 
