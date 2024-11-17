@@ -81,36 +81,45 @@ loom {
     // Setup client default settings.
     runClient {
         defaultCharacterEncoding("UTF-8")
-        new File("${projectDir}/run/client/options.txt").with { file ->
-            if (!file.exists()) {
-                file.parentFile.mkdirs()
-                file.withWriter { writer ->
-                    writer.writeLine("autoJump:false")
-                    writer.writeLine("enableVsync:false")
-                    writer.writeLine("forceUnicodeFont:true")
-                    writer.writeLine("fov:1.0")
-                    writer.writeLine("gamma:16.0")
-                    writer.writeLine("guiScale:3")
-                    writer.writeLine("lang:${Locale.getDefault().toString()}")
-                    writer.writeLine("maxFps:260")
-                    writer.writeLine("renderDistance:10")
-                    writer.writeLine("soundCategory_master:0.0")
+
+        doFirst {
+            file("${projectDir}/run/client/options.txt").with { File file ->
+                {
+                    if (!file.exists()) {
+                        file.parentFile.mkdirs()
+                        file.withWriter { BufferedWriter writer ->
+                            writer.writeLine("autoJump:false")
+                            writer.writeLine("enableVsync:false")
+                            writer.writeLine("forceUnicodeFont:true")
+                            writer.writeLine("fov:1.0")
+                            writer.writeLine("gamma:16.0")
+                            writer.writeLine("guiScale:3")
+                            writer.writeLine("lang:${Locale.getDefault().toString()}")
+                            writer.writeLine("maxFps:260")
+                            writer.writeLine("renderDistance:10")
+                            writer.writeLine("soundCategory_master:0.0")
+                        }
+                    }
                 }
             }
-
-        }
+        } 
     }
 
     // Useless, but we write here.
     // Setup server default settings.
     runServer {
         defaultCharacterEncoding("UTF-8")
-        // Agree eula before server init.
-        new File("${projectDir}/run/server/eula.txt").with { file ->
-            if (!file.exists()) {
-                file.parentFile.mkdirs()
-                file.withWriter { writer ->
-                    writer.writeLine("eula=true")
+
+        doFirst {
+            // Agree eula before server init.
+            file("${projectDir}/run/server/eula.txt").with { File file ->
+                {
+                    if (!file.exists()) {
+                        file.parentFile.mkdirs()
+                        file.withWriter { BufferedWriter writer ->
+                            writer.writeLine("eula=true")
+                        }
+                    }
                 }
             }
         }
