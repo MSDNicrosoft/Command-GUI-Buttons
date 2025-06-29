@@ -50,7 +50,12 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
             if (this.minecraft.level == null) {
                 this.renderPanorama(guiGraphics, 0.32F);
             }
-            this.renderBlurredBackground(0.32F);
+            this.renderBlurredBackground(
+                    //#if MC >=12100
+                    //#else
+                    //$$ 0.32F
+                    //#endif
+            );
             this.renderMenuBackground(guiGraphics);
             //#else
             //$$ if (this.minecraft.level == null) {
