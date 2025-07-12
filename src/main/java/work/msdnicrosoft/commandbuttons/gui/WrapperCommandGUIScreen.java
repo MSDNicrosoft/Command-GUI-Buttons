@@ -53,7 +53,7 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
             this.renderBlurredBackground(
                     //#if MC > 12106
                     guiGraphics
-                    //#if MC >=12102
+                    //#elseif MC >=12102
                     //#else
                     //$$ 0.32F
                     //#endif
