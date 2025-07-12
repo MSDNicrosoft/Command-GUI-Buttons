@@ -20,10 +20,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Java JDK
+      - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
+          distribution: 'zulu'
           java-version: 21
 
       - name: Setup Gradle
@@ -32,7 +32,7 @@ jobs:
           validate-wrappers: true
           allow-snapshot-wrappers: true
 
-      - name: Configuration git
+      - name: Configure Git
         run: |
           git config core.filemode false
 
