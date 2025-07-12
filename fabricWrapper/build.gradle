@@ -26,7 +26,7 @@ java {
 }
 
 jar {
-    // disable cache
+    // Disable cache
     outputs.upToDateWhen { false }
     dependsOn(fabric_subprojects.collect {
         it.tasks.remapJar
@@ -49,7 +49,7 @@ jar {
 }
 
 processResources {
-    // disable cache
+    // Disable cache
     outputs.upToDateWhen { false }
 
     filesMatching("fabric.mod.json") {

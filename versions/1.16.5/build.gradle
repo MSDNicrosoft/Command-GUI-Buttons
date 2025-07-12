@@ -49,7 +49,7 @@ dependencies {
     modApi("maven.modrinth:modmenu:${project.modmenu_version}")
 
     // Make development client more comfortable.
-    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.59") {
+    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.60-beta") {
         transitive(false)
     }
 
@@ -61,8 +61,6 @@ dependencies {
 }
 
 tasks.named("runClient") {
-    defaultCharacterEncoding("UTF-8")
-
     doFirst {
         layout.projectDirectory.file("run/client/options.txt").asFile.with { File file ->
             {
@@ -89,9 +87,6 @@ tasks.named("runClient") {
 // Useless, but we write here.
 // Setup server default settings.
 tasks.named("runServer") {
-
-    defaultCharacterEncoding("UTF-8")
-
     doFirst {
         // Agree eula before server init.
         layout.projectDirectory.file("run/server/eula.txt").asFile.with { File file ->
@@ -139,11 +134,11 @@ base {
 }
 
 replaceToken {
-   targetSourceSets.set([sourceSets.main])
+    targetSourceSets.set([sourceSets.main])
 
-   replace("@MOD_ID@", project.mod_id)
-   replace("@MINECRAFT_VERSION_ID@", project.minecraft_version.replace(".", "_"))
-   replaceIn("work/msdnicrosoft/commandbuttons/CommandButtonsReference")
+    replace("@MOD_ID@", project.mod_id)
+    replace("@MINECRAFT_VERSION_ID@", project.minecraft_version.replace(".", "_"))
+    replaceIn("work/msdnicrosoft/commandbuttons/CommandButtonsReference")
 }
 
 processResources {
@@ -181,10 +176,13 @@ java {
     withSourcesJar()
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = "UTF-8"
-}
-
 jar {
     from("../../LICENSE")
+}
+
+tasks.register("cleanRun") {
+    doLast {
+        // Clean up the run directory.
+        layout.projectDirectory.dir("run").asFile.deleteDir()
+    }
 }
