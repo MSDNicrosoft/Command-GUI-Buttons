@@ -37,7 +37,7 @@ if (grgit != null) {
     realVersion += "+nogit"
 }
 
-setVersion(realVersion)
+version = realVersion
 
 tasks.register("cleanPreprocessSources") {
     doFirst {

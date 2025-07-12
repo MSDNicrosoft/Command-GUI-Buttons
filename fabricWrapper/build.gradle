@@ -11,7 +11,7 @@ base {
     archivesName = "${project.archives_base_name}-all"
 }
 
-def fabric_subprojects = project.parent.subprojects.findAll({
+def fabric_subprojects = project.rootProject.subprojects.findAll({
     it.name != "fabricWrapper"
 })
 
@@ -31,18 +31,18 @@ jar {
         it.tasks.remapJar
     })
 
-    from("../LICENSE")
-    from("build/tmp/submods")
+    from(project.rootProject.file("LICENSE"))
+    from(layout.buildDirectory.dir("tmp/submods"))
 
     doFirst {
-        delete fileTree("build/tmp/submods/META-INF/jars")
+        delete fileTree(layout.buildDirectory.dir("tmp/submods/META-INF/jars"))
         copy {
             from {
                 fabric_subprojects.collect {
                     it.remapJar.outputs.files
                 }
             }
-            into("build/tmp/submods/META-INF/jars")
+            into(layout.buildDirectory.dir("tmp/submods/META-INF/jars"))
         }
     }
 }
@@ -69,7 +69,7 @@ processResources {
             jars.add(["file": "META-INF/jars/${project.archives_base_name}-mc${it.minecraft_out}-${it.version}.jar"])
         })
 
-        File file = file("build/resources/main/fabric.mod.json")
+        File file = layout.buildDirectory.file("resources/main/fabric.mod.json").getOrNull().asFile
         JsonSlurper slurper = new JsonSlurper()
         JsonBuilder builder = new JsonBuilder(slurper.parse(file))
         builder.content.depends.minecraft = mc_condition

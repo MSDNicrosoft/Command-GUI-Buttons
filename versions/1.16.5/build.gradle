@@ -123,12 +123,10 @@ loom {
     }
 }
 
-setVersion(project.parent.version)
-setGroup(project.maven_group)
-
-
 base {
-    archivesName.set("${project.archives_base_name}-mc${project.minecraft_out}")
+    version = project.parent.version
+    group = project.maven_group
+    archivesName = "${project.archives_base_name}-mc${project.minecraft_out}"
 }
 
 replaceToken {
@@ -175,7 +173,7 @@ java {
 }
 
 jar {
-    from("../../LICENSE")
+    from(project.rootProject.file("LICENSE"))
 }
 
 tasks.register("cleanRun") {
