@@ -35,11 +35,10 @@ if (grgit != null) {
 
 setVersion(realVersion)
 
-tasks.register('cleanPreprocessSources') {
+tasks.register("cleanPreprocessSources") {
     doFirst {
         subprojects {
-            def path = project.projectDir.toPath().resolve('build/preprocessed')
-            path.toFile().deleteDir()
+            layout.buildDirectory.dir("preprocessed").getOrNull().asFile.deleteDir()
         }
     }
 }

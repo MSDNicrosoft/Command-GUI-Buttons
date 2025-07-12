@@ -4,23 +4,23 @@ apply(plugin: "top.hendrixshen.replace-token")
 
 repositories {
     maven {
-        name("CottonMC")
-        url("https://server.bbkr.space/artifactory/libs-release")
+        name = "CottonMC"
+        url = "https://server.bbkr.space/artifactory/libs-release"
     }
 
     maven {
-        name("Modrinth Maven")
-        url("https://api.modrinth.com/maven")
+        name = "Modrinth Maven"
+        url = "https://api.modrinth.com/maven"
     }
 
     maven {
-        name("HangBing Proxy")
-        url("https://repository.hanbings.io/proxy")
+        name = "HangBing Proxy"
+        url = "https://repository.hanbings.io/proxy"
     }
 
     maven {
-        name("Nyan Maven")
-        url("https://maven.hendrixshen.top/releases")
+        name = "Nyan Maven"
+        url = "https://maven.hendrixshen.top/releases"
     }
 
     mavenCentral()
@@ -50,11 +50,11 @@ dependencies {
 
     // Make development client more comfortable.
     modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.60-beta") {
-        transitive(false)
+        transitive = false
     }
 
     modRuntimeOnly("top.hendrixshen.magiclib:magiclib-core-fabric:0.8.153") {
-        transitive(false)
+        transitive = false
     }
 
     runtimeOnly(project(path: ":fabricWrapper"))
@@ -63,23 +63,22 @@ dependencies {
 tasks.named("runClient") {
     doFirst {
         layout.projectDirectory.file("run/client/options.txt").asFile.with { File file ->
-            {
-                if (!file.exists()) {
-                    file.parentFile.mkdirs()
-                    file.withWriter { BufferedWriter writer ->
-                        writer.writeLine("autoJump:false")
-                        writer.writeLine("enableVsync:false")
-                        writer.writeLine("forceUnicodeFont:true")
-                        writer.writeLine("fov:1.0")
-                        writer.writeLine("gamma:1.0")
-                        writer.writeLine("guiScale:3")
-                        writer.writeLine("lang:${Locale.getDefault().toString()}")
-                        writer.writeLine("maxFps:260")
-                        writer.writeLine("renderDistance:10")
-                        writer.writeLine("soundCategory_master:0.0")
-                    }
+            if (!file.exists()) {
+                file.parentFile.mkdirs()
+                file.withWriter { BufferedWriter writer ->
+                    writer.writeLine("autoJump:false")
+                    writer.writeLine("enableVsync:false")
+                    writer.writeLine("forceUnicodeFont:true")
+                    writer.writeLine("fov:1.0")
+                    writer.writeLine("gamma:1.0")
+                    writer.writeLine("guiScale:3")
+                    writer.writeLine("lang:${Locale.getDefault().toString()}")
+                    writer.writeLine("maxFps:260")
+                    writer.writeLine("renderDistance:10")
+                    writer.writeLine("soundCategory_master:0.0")
                 }
             }
+            null // We don't need to return anything.
         }
     }
 }
@@ -90,14 +89,13 @@ tasks.named("runServer") {
     doFirst {
         // Agree eula before server init.
         layout.projectDirectory.file("run/server/eula.txt").asFile.with { File file ->
-            {
-                if (!file.exists()) {
-                    file.parentFile.mkdirs()
-                    file.withWriter { BufferedWriter writer ->
-                        writer.writeLine("eula=true")
-                    }
+            if (!file.exists()) {
+                file.parentFile.mkdirs()
+                file.withWriter { BufferedWriter writer ->
+                    writer.writeLine("eula=true")
                 }
             }
+            null // We don't need to return anything.
         }
     }
 }
@@ -160,17 +158,17 @@ processResources {
 
 java {
     if (mcVersion > 12004) {
-        sourceCompatibility(JavaVersion.VERSION_21)
-        targetCompatibility(JavaVersion.VERSION_21)
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     } else if (mcVersion > 11701) {
-        sourceCompatibility(JavaVersion.VERSION_17)
-        targetCompatibility(JavaVersion.VERSION_17)
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     } else if (mcVersion > 11605) {
-        sourceCompatibility(JavaVersion.VERSION_16)
-        targetCompatibility(JavaVersion.VERSION_16)
+        sourceCompatibility = JavaVersion.VERSION_16
+        targetCompatibility = JavaVersion.VERSION_16
     } else {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     withSourcesJar()

@@ -5,11 +5,10 @@ plugins {
     id("java-library")
 }
 
-setVersion(project.parent.version)
-setGroup(project.maven_group)
-
 base {
-    archivesName.set("${project.archives_base_name}-all")
+    version = project.parent.version
+    group = project.maven_group
+    archivesName = "${project.archives_base_name}-all"
 }
 
 def fabric_subprojects = project.parent.subprojects.findAll({
@@ -21,8 +20,8 @@ fabric_subprojects.collect {
 }
 
 java {
-    sourceCompatibility(JavaVersion.VERSION_1_8)
-    targetCompatibility(JavaVersion.VERSION_1_8)
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 jar {
@@ -53,11 +52,11 @@ processResources {
     outputs.upToDateWhen { false }
 
     filesMatching("fabric.mod.json") {
-        expand(["mod_version"         : project.version,
-                "mod_id"              : project.mod_id,
-                "mod_name"            : project.mod_name,
-                "mod_sources"         : project.mod_sources,
-                "mod_license"         : project.mod_license
+        expand(["mod_version": project.version,
+                "mod_id"     : project.mod_id,
+                "mod_name"   : project.mod_name,
+                "mod_sources": project.mod_sources,
+                "mod_license": project.mod_license
         ])
     }
 
