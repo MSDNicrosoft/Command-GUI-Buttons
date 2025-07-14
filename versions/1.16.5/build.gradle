@@ -140,16 +140,25 @@ replaceToken {
 processResources {
     outputs.upToDateWhen { false }
 
+    inputs.property("minecraft_dependency", project.minecraft_dependency)
+    inputs.property("minecraft_version_id", project.minecraft_version.replace(".", "_"))
+    inputs.property("minecraft_version_out", project.minecraft_out)
+    inputs.property("mod_id", project.mod_id)
+    inputs.property("mod_name", project.mod_name)
+    inputs.property("mod_license", project.mod_license)
+    inputs.property("mod_sources", project.mod_sources)
+    inputs.property("mod_version", project.version)
+
     filesMatching("fabric.mod.json") {
         expand([
-                "minecraft_dependency" : project.minecraft_dependency,
-                "minecraft_version_id" : project.minecraft_version.replace(".", "_"),
-                "minecraft_version_out": project.minecraft_out,
-                "mod_id"               : project.mod_id,
-                "mod_name"             : project.mod_name,
-                "mod_license"          : project.mod_license,
-                "mod_sources"          : project.mod_sources,
-                "mod_version"          : project.version,
+                "minecraft_dependency" : inputs.properties["minecraft_dependency"],
+                "minecraft_version_id" : inputs.properties["minecraft_version_id"],
+                "minecraft_version_out": inputs.properties["minecraft_version_out"],
+                "mod_id"               : inputs.properties["mod_id"],
+                "mod_name"             : inputs.properties["mod_name"],
+                "mod_license"          : inputs.properties["mod_license"],
+                "mod_sources"          : inputs.properties["mod_sources"],
+                "mod_version"          : inputs.properties["mod_version"],
         ])
     }
 }

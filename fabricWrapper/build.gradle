@@ -51,12 +51,20 @@ processResources {
     // Disable cache
     outputs.upToDateWhen { false }
 
+    inputs.property("mod_version", project.version)
+    inputs.property("mod_id", project.mod_id)
+    inputs.property("mod_name", project.mod_name)
+    inputs.property("mod_sources", project.mod_sources)
+    inputs.property("mod_license", project.mod_license)
+
+    inputs.property("archives_base_name", project.archives_base_name)
+
     filesMatching("fabric.mod.json") {
-        expand(["mod_version": project.version,
-                "mod_id"     : project.mod_id,
-                "mod_name"   : project.mod_name,
-                "mod_sources": project.mod_sources,
-                "mod_license": project.mod_license
+        expand(["mod_version": inputs.properties["mod_version"],
+                "mod_id"     : inputs.properties["mod_id"],
+                "mod_name"   : inputs.properties["mod_name"],
+                "mod_sources": inputs.properties["mod_sources"],
+                "mod_license": inputs.properties["mod_license"],
         ])
     }
 
@@ -66,7 +74,7 @@ processResources {
 
         fabric_subprojects.each({
             mc_condition.add("${it.minecraft_dependency}")
-            jars.add(["file": "META-INF/jars/${project.archives_base_name}-mc${it.minecraft_out}-${it.version}.jar"])
+            jars.add(["file": "META-INF/jars/${inputs.properties["archives_base_name"]}-mc${it.minecraft_out}-${it.version}.jar"])
         })
 
         File file = layout.buildDirectory.file("resources/main/fabric.mod.json").getOrNull().asFile
