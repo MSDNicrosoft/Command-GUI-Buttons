@@ -53,7 +53,7 @@ dependencies {
         transitive = false
     }
 
-    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-core-fabric:0.8.153") {
+    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-core-fabric:0.8.158") {
         transitive = false
     }
 
