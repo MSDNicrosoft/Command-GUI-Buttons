@@ -65,7 +65,7 @@ commands into the JSON as new buttons are created and loads the JSON at the next
 
 ## Support
 
-Current main development for Minecraft version: `1.21.5`
+Current main development for Minecraft version: `1.21.8`
 
 And use `preprocess` to be compatible with the following versions.
 
