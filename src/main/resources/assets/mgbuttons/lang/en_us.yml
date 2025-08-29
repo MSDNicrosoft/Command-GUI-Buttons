@@ -1,0 +1,14 @@
+mgbuttons:
+  gui:
+    command: Command
+    edit:
+      name: Name
+      type: Type command...
+      type_with_index: Type command %d
+    main:
+      delete: Delete mode
+      edit: Edit mode
+      search: Search...
+  key:
+    category: Command GUI Buttons
+    opengui: Open GUI

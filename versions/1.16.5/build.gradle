@@ -1,6 +1,9 @@
-apply(plugin: "fabric-loom")
-apply(plugin: "com.replaymod.preprocess")
-apply(plugin: "top.hendrixshen.replace-token")
+plugins {
+    alias(libs.plugins.fabric.loom)
+    alias(libs.plugins.preprocessor)
+    alias(libs.plugins.yamlang)
+    alias(libs.plugins.replace.token)
+}
 
 repositories {
     maven {
@@ -37,23 +40,23 @@ dependencies {
     // Development environment
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings(loom.officialMojangMappings())
-    modApi("net.fabricmc:fabric-loader:${project.loader_version}")
+    modApi(libs.fabric.loader)
 
     // Annotation processor
-    modApi("org.projectlombok:lombok:${project.lombok_version}")
-    annotationProcessor("org.projectlombok:lombok:${project.lombok_version}")
+    modApi(libs.lombok)
+    annotationProcessor(libs.lombok)
 
-    // Dependency
+    // Dependencies
     modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
     modApi("io.github.cottonmc:LibGui:${project.libgui_version}")
     modApi("maven.modrinth:modmenu:${project.modmenu_version}")
 
     // Make development client more comfortable.
-    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.60-beta") {
+    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.63") {
         transitive = false
     }
 
-    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-core-fabric:0.8.153") {
+    modRuntimeOnly(libs.magiclib.core.fabric) {
         transitive = false
     }
 
@@ -135,6 +138,11 @@ replaceToken {
     replace("@MOD_ID@", project.mod_id)
     replace("@MINECRAFT_VERSION_ID@", project.minecraft_version.replace(".", "_"))
     replaceIn("work/msdnicrosoft/commandbuttons/CommandButtonsReference")
+}
+
+yamlang {
+    targetSourceSets = [sourceSets.main]
+    inputDir = 'assets/mgbuttons/lang'
 }
 
 processResources {

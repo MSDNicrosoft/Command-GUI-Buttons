@@ -1,0 +1,14 @@
+mgbuttons:
+  gui:
+    command: 命令
+    edit:
+      name: 名称
+      type: 输入命令...
+      type_with_index: 输入命令 %d
+    main:
+      delete: 删除模式
+      edit: 编辑模式
+      search: 搜索...
+  key:
+    category: Command GUI Buttons
+    opengui: 打开 GUI
