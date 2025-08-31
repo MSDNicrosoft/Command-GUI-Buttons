@@ -2,5 +2,22 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "fabric-loom",
+        "com.replaymod.preprocess",
+        "com.replaymod.preprocess:com.replaymod.preprocess.gradle.plugin",
+
+        "com.mojang:minecraft",
+
+        "io.github.cottonmc:libgui",
+        "net.fabricmc.fabric-api:fabric-api",
+
+        "maven.modrinth:*"
+      ],
+      "enabled": false
+    }
   ]
 }
