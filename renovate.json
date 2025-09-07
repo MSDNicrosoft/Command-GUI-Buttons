@@ -6,7 +6,8 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "fabric-loom",
+        "fabric-loom:fabric-loom.gradle.plugin",
+        "net.fabricmc:fabric-loom",
         "com.replaymod.preprocess",
         "com.replaymod.preprocess:com.replaymod.preprocess.gradle.plugin",
 
