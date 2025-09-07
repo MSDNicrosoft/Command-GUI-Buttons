@@ -1,7 +1,7 @@
 [versions]
 # Gradle Plugins
 fabric-loom = "1.11-SNAPSHOT"
-preprocessor = "0a04a56"
+preprocessor = "d452ef7"
 grgit = "5.3.3"
 yamlang = "1.5.0"
 replace-token = "1.1.3"
