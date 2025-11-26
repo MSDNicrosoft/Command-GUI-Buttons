@@ -23,4 +23,4 @@ fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-l
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 
 # modRuntimeOnly Dependencies
-magiclib-core-fabric = { module = "top.hendrixshen.magiclib:magiclib-core-fabric", version = "0.8.158" }
+magiclib-core-fabric = { module = "top.hendrixshen.magiclib:magiclib-core-fabric", version = "0.8.160" }
