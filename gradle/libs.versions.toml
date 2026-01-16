@@ -4,7 +4,7 @@ fabric-loom = "1.11-SNAPSHOT"
 preprocessor = "d452ef7"
 grgit = "5.3.3"
 yamlang = "1.5.0"
-replace-token = "1.1.3"
+replace-token = "1.2.0"
 
 # modApi
 fabric-loader = "0.17.2"
