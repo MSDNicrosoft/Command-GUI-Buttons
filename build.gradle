@@ -13,8 +13,10 @@ preprocess {
     def mc1193 = createNode("1.19.3", 1_19_03, "mojang")
     def mc1194 = createNode("1.19.4", 1_19_04, "mojang")
     def mc1206 = createNode("1.20.6", 1_20_06, "mojang")
+    def mc1211 = createNode("1.21.1", 1_21_01, "mojang")
     def mc1215 = createNode("1.21.5", 1_21_05, "mojang")
     def mc1218 = createNode("1.21.8", 1_21_08, "mojang")
+    def mc12110 = createNode("1.21.10", 1_21_10, "mojang")
 
     mc1165.link(mc1171, null)
     mc1171.link(mc1182, null)
@@ -22,8 +24,10 @@ preprocess {
     mc1192.link(mc1193, null)
     mc1193.link(mc1194, null)
     mc1194.link(mc1206, null)
-    mc1206.link(mc1215, null)
+    mc1206.link(mc1211, null)
+    mc1211.link(mc1215, null)
     mc1215.link(mc1218, null)
+    mc1218.link(mc12110, null)
 }
 
 def ENV = System.getenv()

@@ -1,13 +1,13 @@
 [versions]
 # Gradle Plugins
-fabric-loom = "1.11-SNAPSHOT"
+fabric-loom = "1.12-SNAPSHOT"
 preprocessor = "d452ef7"
 grgit = "5.3.3"
 yamlang = "1.5.0"
 replace-token = "1.2.0"
 
 # modApi
-fabric-loader = "0.17.2"
+fabric-loader = "0.18.4"
 lombok = "1.18.42"
 
 [plugins]
@@ -22,5 +22,5 @@ replace-token = { id = "top.hendrixshen.replace-token", version.ref = "replace-t
 fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 
-# modRuntimeOnly Dependencies
+# modRuntimeOnly
 magiclib-core-fabric = { module = "top.hendrixshen.magiclib:magiclib-core-fabric", version = "0.8.160" }

@@ -10,6 +10,9 @@ import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+//#if MC >= 12109
+import net.minecraft.client.input.KeyEvent;
+//#endif
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
@@ -84,16 +87,35 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
     }
 
     @Override
-    public boolean keyPressed(int ch, int keyCode, int modifiers) {
+    public boolean keyPressed(
+            //#if MC >= 12109
+            KeyEvent input
+            //#else
+            //$$ int ch, int keyCode, int modifiers
+            //#endif
+    ) {
         // Support for returning to previous screens.
-        if (ch == GLFW.GLFW_KEY_ESCAPE && this.parent != null) {
+        boolean isEscapeKey =
+                //#if MC >= 12109
+                input.key() == GLFW.GLFW_KEY_ESCAPE
+                //#else
+                //$$ ch == GLFW.GLFW_KEY_ESCAPE
+                //#endif
+                ;
+        if (isEscapeKey && this.parent != null) {
             Minecraft.getInstance().setScreen(this.parent);
             if (this.returnAction != null) {
-                // Need to apply list update in main screen.
+                // Need to apply list update in the main screen.
                 this.returnAction.run();
             }
             return true;
         }
-        return super.keyPressed(ch, keyCode, modifiers);
+        return super.keyPressed(
+                //#if MC >= 12119
+                input
+                //#else
+                //$$ ch, keyCode, modifiers
+                //#endif
+        );
     }
 }

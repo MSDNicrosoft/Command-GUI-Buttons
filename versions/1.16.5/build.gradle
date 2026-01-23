@@ -52,7 +52,7 @@ dependencies {
     modApi("maven.modrinth:modmenu:${project.modmenu_version}")
 
     // Make development client more comfortable.
-    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.63") {
+    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.68-beta") {
         transitive = false
     }
 

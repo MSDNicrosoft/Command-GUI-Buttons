@@ -9,6 +9,6 @@ mgbuttons:
       delete: Delete mode
       edit: Edit mode
       search: Search...
-  key:
-    category: Command GUI Buttons
-    opengui: Open GUI
+  key.opengui: Open GUI
+
+key.category.mgbuttons.category: Command GUI Buttons

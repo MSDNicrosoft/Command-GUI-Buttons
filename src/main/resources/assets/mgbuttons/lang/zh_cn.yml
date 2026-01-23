@@ -9,6 +9,6 @@ mgbuttons:
       delete: 删除模式
       edit: 编辑模式
       search: 搜索...
-  key:
-    category: Command GUI Buttons
-    opengui: 打开 GUI
+  key.opengui: 打开 GUI
+
+key.category.mgbuttons.category: Command GUI Buttons
