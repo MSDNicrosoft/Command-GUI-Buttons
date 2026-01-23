@@ -27,17 +27,19 @@ create, and press the button `+` to create. Then, the button will appear on user
 
 For your convenience, download links are listed below:
 
-| Minecraft Version | Fabric API                                                                                                                                                      | LibGui (**Please use the given version**)                                      |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| 1.16.5            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.16.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.16.5) | 3.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/3.4.0)          |
-| 1.17.1            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.17.1) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.17.1) | 4.2.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/4.2.3)          |
-| 1.18.2            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.18.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.18.2) | 5.4.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/5.4.2)          |
-| 1.19.2            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.2) | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0)          |
-| 1.19.3            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3) | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3)          |
-| 1.19.4            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4) | 7.1.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.1.1)          |
-| 1.20.6            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.6) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.6) | 10.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/10.0.0)        |
-| 1.21.5            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.5) | 13.1.0+1.21.5 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/13.1.0) |
-| 1.21.8            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.8) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.8) | 14.0.0+1.21.6 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/14.0.0) |
+| Minecraft Version | Fabric API                                                                                                                                                        | LibGui (**Please use the given version**)                                      |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| 1.16.5            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.16.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.16.5)   | 3.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/3.4.0)          |
+| 1.17.1            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.17.1) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.17.1)   | 4.2.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/4.2.3)          |
+| 1.18.2            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.18.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.18.2)   | 5.4.2 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/5.4.2)          |
+| 1.19.2            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.2) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.2)   | 6.4.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.4.0)          |
+| 1.19.3            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.3) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.3)   | 6.5.3 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/6.5.3)          |
+| 1.19.4            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.19.4) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.19.4)   | 7.1.1 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/7.1.1)          |
+| 1.20.6            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.20.6) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.20.6)   | 10.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/10.0.0)        |
+| 1.21.1            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.1) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.1)   | 11.1.0+1.21 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/11.1.0)   |
+| 1.21.5            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.5)   | 13.1.0+1.21.5 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/13.1.0) |
+| 1.21.8            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.8) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.8)   | 14.0.0+1.21.6 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/14.0.0) |
+| 1.21.10           | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.10) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.10) | 15.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/15.0.0)        |
 
 ## Features
 
@@ -65,7 +67,7 @@ commands into the JSON as new buttons are created and loads the JSON at the next
 
 ## Support
 
-Current main development for Minecraft version: `1.21.8`
+Current main development for Minecraft version: `1.21.10`
 
 And use `preprocess` to be compatible with the following versions.
 
@@ -80,8 +82,10 @@ And use `preprocess` to be compatible with the following versions.
 - Minecraft `1.19.3`
 - Minecraft `1.19.4`
 - Minecraft `1.20.6`
+- Minecraft `1.21.1`
 - Minecraft `1.21.5`
 - Minecraft `1.21.8`
+- Minecraft `1.21.10`
 
 ### Mappings
 

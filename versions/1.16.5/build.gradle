@@ -23,7 +23,7 @@ repositories {
 
     maven {
         name = "Nyan Maven"
-        url = "https://maven.hendrixshen.top/releases"
+        url = "https://maven.hendrixshen.moe/releases"
     }
 
     mavenCentral()
@@ -124,6 +124,11 @@ loom {
     runConfigs.server {
         runDir("run/server")
     }
+
+    mixin {
+        // suppress "Cannot remap xxx because it does not exists in any of the targets" warning. It does not respect `remap = false` :(
+        useLegacyMixinAp = true
+    }
 }
 
 base {
@@ -136,7 +141,6 @@ replaceToken {
     targetSourceSets.set([sourceSets.main])
 
     replace("@MOD_ID@", project.mod_id)
-    replace("@MINECRAFT_VERSION_ID@", project.minecraft_version.replace(".", "_"))
     replaceIn("work/msdnicrosoft/commandbuttons/CommandButtonsReference")
 }
 

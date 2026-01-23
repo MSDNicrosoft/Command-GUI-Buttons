@@ -5,26 +5,31 @@ import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
-import io.github.cottonmc.cotton.gui.widget.WTextField;
 import io.github.cottonmc.cotton.gui.widget.WToggleButton;
 import net.minecraft.client.Minecraft;
 import org.jetbrains.annotations.NotNull;
 import work.msdnicrosoft.commandbuttons.CommandButtons;
-import work.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
 import work.msdnicrosoft.commandbuttons.data.CommandDestination;
 import work.msdnicrosoft.commandbuttons.data.CommandItem;
 import work.msdnicrosoft.commandbuttons.data.ConfigManager;
 import work.msdnicrosoft.commandbuttons.data.Text;
+import work.msdnicrosoft.commandbuttons.util.ComponentUtil;
 
 import java.util.function.BiConsumer;
 
 public class CommandGUI extends LightweightGuiDescription {
     private final BiConsumer<CommandItem, CommandDestination> creator = this::defBtnBehavior;
 
-    private final WTextFieldExtra search = (WTextFieldExtra) new WTextFieldExtra().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.main.search"));
-    private final WButton addBtn = new WButton(ComponentCompatApi.literal("+")).setOnClick(this::addCallBack);
-    private final WToggleButton editBtn = new WToggleButton(ComponentCompatApi.translatable("mgbuttons.gui.main.edit")).setColor(0xFFFFFF, 0xFFFFFF).setOnToggle(this::editBtnCallback);
-    private final WToggleButton deleteBtn = new WToggleButton(ComponentCompatApi.translatable("mgbuttons.gui.main.delete")).setColor(0xFFFFFF, 0xFFFFFF).setOnToggle(this::deleteBtnCallback);
+    private final WTextFieldExtra search = (WTextFieldExtra) new WTextFieldExtra()
+            .setSuggestion(ComponentUtil.translatable("mgbuttons.gui.main.search"));
+    private final WButton addBtn = new WButton(ComponentUtil.literal("+"))
+            .setOnClick(this::addCallBack);
+    private final WToggleButton editBtn = new WToggleButton(ComponentUtil.translatable("mgbuttons.gui.main.edit"))
+            .setColor(0xFFFFFFFF, 0xFFFFFFFF)
+            .setOnToggle(this::editBtnCallback);
+    private final WToggleButton deleteBtn = new WToggleButton(ComponentUtil.translatable("mgbuttons.gui.main.delete"))
+            .setColor(0xFFFFFFFF, 0xFFFFFFFF)
+            .setOnToggle(this::deleteBtnCallback);
 
     private final CommandListPanel<CommandItem, CommandDestination> commandPanel = new CommandListPanel<>(
             ConfigManager.getData(), CommandDestination::new, creator, this.search);
@@ -59,7 +64,7 @@ public class CommandGUI extends LightweightGuiDescription {
     }
 
     private void defBtnBehavior(@NotNull CommandItem item, @NotNull CommandDestination destination) {
-        destination.getButton().setLabel(ComponentCompatApi.literal(item.getDisplayName()));
+        destination.getButton().setLabel(ComponentUtil.literal(item.getDisplayName()));
         destination.getButton().setOnClick(() -> {
             if (this.editBtn.getToggle()) {
                 CommandEditGUI gui = new CommandEditGUI(item, true);

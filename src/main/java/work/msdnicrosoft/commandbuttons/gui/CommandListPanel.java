@@ -54,7 +54,9 @@ public class CommandListPanel<D, W extends WWidget> extends WListPanel<D, W> {
 
         List<D> data = Lists.newArrayList(this.data);
         if (!this.search.getText().isEmpty()) {
-            data = data.stream().filter(d -> ((CommandItem) d).getDisplayName().contains(this.search.getText().trim())).collect(Collectors.toList());
+            data = data.stream()
+                    .filter(d -> ((CommandItem) d).getDisplayName().contains(this.search.getText().trim()))
+                    .collect(Collectors.toList());
         }
 
         scrollBar.setWindow(cellsHigh);

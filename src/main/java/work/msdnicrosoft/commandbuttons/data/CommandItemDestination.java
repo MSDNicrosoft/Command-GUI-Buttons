@@ -3,15 +3,15 @@ package work.msdnicrosoft.commandbuttons.data;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import lombok.Getter;
-import work.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
 import work.msdnicrosoft.commandbuttons.gui.WTextFieldExtra;
+import work.msdnicrosoft.commandbuttons.util.ComponentUtil;
 
 @Getter
 public class CommandItemDestination extends WPlainPanel {
     private final WTextFieldExtra command = new WTextFieldExtra();
-    private final WButton up = new WButton().setLabel(ComponentCompatApi.literal("↑"));
-    private final WButton down = new WButton().setLabel(ComponentCompatApi.literal("↓"));
-    private final WButton delete = new WButton().setLabel(ComponentCompatApi.literal("×"));
+    private final WButton up = new WButton().setLabel(ComponentUtil.literal("↑"));
+    private final WButton down = new WButton().setLabel(ComponentUtil.literal("↓"));
+    private final WButton delete = new WButton().setLabel(ComponentUtil.literal("×"));
 
     public CommandItemDestination() {
         //#if MC > 11605

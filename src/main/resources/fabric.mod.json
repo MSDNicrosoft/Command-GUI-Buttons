@@ -24,7 +24,7 @@
       "work.msdnicrosoft.commandbuttons.CommandButtons"
     ],
     "modmenu": [
-      "work.msdnicrosoft.commandbuttons.compat.modmenu.ModMenuImpl"
+      "work.msdnicrosoft.commandbuttons.compat.ModMenuCompat"
     ]
   },
   "mixins": [

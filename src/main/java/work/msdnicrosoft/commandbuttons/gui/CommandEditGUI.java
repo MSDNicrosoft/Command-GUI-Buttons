@@ -6,22 +6,25 @@ import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WTextField;
 import org.jetbrains.annotations.NotNull;
-import work.msdnicrosoft.commandbuttons.compat.minecraft.ComponentCompatApi;
 import work.msdnicrosoft.commandbuttons.data.CommandItem;
 import work.msdnicrosoft.commandbuttons.data.CommandItemDestination;
 import work.msdnicrosoft.commandbuttons.data.ConfigManager;
 import work.msdnicrosoft.commandbuttons.data.Text;
+import work.msdnicrosoft.commandbuttons.util.ComponentUtil;
 
 import java.util.Collections;
 import java.util.function.BiConsumer;
 
 public class CommandEditGUI extends LightweightGuiDescription {
-    private final BiConsumer<Text, CommandItemDestination> creator = this::defBtnBehavior;
     private final WGridPanel root = new WGridPanel(5);
     private final CommandItem item;
-    private final WTextFieldExtra displayName = (WTextFieldExtra) new WTextFieldExtra().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.name"));
-    private final WTextField input = new WTextField().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.type")).setMaxLength(Integer.MAX_VALUE);
-    private final WButton addBtn = new WButton(ComponentCompatApi.literal("+")).setOnClick(this::addBtnCallback);
+    private final WTextFieldExtra displayName = (WTextFieldExtra) new WTextFieldExtra()
+            .setSuggestion(ComponentUtil.translatable("mgbuttons.gui.edit.name"));
+    private final WTextField input = new WTextField()
+            .setSuggestion(ComponentUtil.translatable("mgbuttons.gui.edit.type"))
+            .setMaxLength(Integer.MAX_VALUE);
+    private final WButton addBtn = new WButton(ComponentUtil.literal("+"))
+            .setOnClick(this::addBtnCallback);
 
     private final CommandEditListPanel<Text, CommandItemDestination> raw;
     private final boolean editMode;
@@ -32,7 +35,8 @@ public class CommandEditGUI extends LightweightGuiDescription {
 
     public CommandEditGUI(CommandItem item, boolean editMode) {
         this.item = item;
-        this.raw = new CommandEditListPanel<>(this.item.getRaw(), CommandItemDestination::new, this.creator);
+        BiConsumer<Text, CommandItemDestination> creator = this::defBtnBehavior;
+        this.raw = new CommandEditListPanel<>(this.item.getRaw(), CommandItemDestination::new, creator);
         this.editMode = editMode;
         this.setupRoot();
         this.setRootPanel(root);
@@ -78,7 +82,7 @@ public class CommandEditGUI extends LightweightGuiDescription {
         commandItemDestination.getCommand().setMaxLength(Integer.MAX_VALUE);
         commandItemDestination.getCommand().setText(text.getText());
         commandItemDestination.getCommand().setFocusLostCallback((s -> this.item.getRaw().set(index, new Text(s))));
-        commandItemDestination.getCommand().setSuggestion(ComponentCompatApi.translatable("mgbuttons.gui.edit.type_with_index", index + 1));
+        commandItemDestination.getCommand().setSuggestion(ComponentUtil.translatable("mgbuttons.gui.edit.type_with_index", index + 1));
         if (this.item.getRaw().indexOf(text) == 0) {
             commandItemDestination.getUp().setEnabled(false);
         } else {

@@ -20,26 +20,29 @@ import java.util.List;
 public class ConfigManager {
     @Getter
     private static final List<CommandItem> data = Lists.newArrayList();
-    private static final File file = new File("./config/command-gui-buttons");
+    private static final File configDir = new File("./config/command-gui-buttons");
+    private static final Path configFilePath = configDir.toPath().resolve("commands.json");
 
     private static void saveToFile() {
-        Path path = ConfigManager.file.toPath().resolve("commands.json");
-
         if (data.isEmpty()) {
             try {
-                Files.deleteIfExists(path);
+                Files.deleteIfExists(configFilePath);
             } catch (IOException e) {
-                CommandButtonsReference.getLogger().error("Cannot delete empty file '{}':", path.toString(), e);
+                CommandButtonsReference.getLogger().error("Failed to delete empty file '{}':", configFilePath.toString(), e);
             }
             return;
         }
 
-        String string = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(CommandItem.class, new Serializer()).create().toJson(ConfigManager.data);
+        String string = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(CommandItem.class, new Serializer())
+                .create()
+                .toJson(ConfigManager.data);
         ConfigManager.checkDataRoot();
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(configFilePath)) {
             writer.write(string);
         } catch (IOException e) {
-            CommandButtonsReference.getLogger().error("Cannot write commands data: ", e);
+            CommandButtonsReference.getLogger().error("Failed to write commands data: ", e);
             CommandButtonsReference.getLogger().warn("Data: {}", string);
         }
 
@@ -47,19 +50,19 @@ public class ConfigManager {
     }
 
     private static void loadFromFile() {
-        Path path = ConfigManager.file.toPath().resolve("commands.json");
-
-        if (!Files.isRegularFile(path)) {
+        if (!Files.isRegularFile(configFilePath)) {
             return;
         }
 
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
-            List<CommandItem> list = new GsonBuilder().registerTypeAdapter(CommandItem.class, new Serializer()).create().fromJson(reader, new TypeToken<List<CommandItem>>() {
-            }.getType());
+        try (BufferedReader reader = Files.newBufferedReader(configFilePath)) {
+            List<CommandItem> list = new GsonBuilder()
+                    .registerTypeAdapter(CommandItem.class, new Serializer())
+                    .create()
+                    .fromJson(reader, new TypeToken<List<CommandItem>>() {}.getType());
             ConfigManager.data.clear();
             ConfigManager.data.addAll(list);
         } catch (IOException | JsonSyntaxException e) {
-            CommandButtonsReference.getLogger().error("Cannot load commands data: ", e);
+            CommandButtonsReference.getLogger().error("Failed to load commands data: ", e);
         }
     }
 
@@ -98,8 +101,8 @@ public class ConfigManager {
 
 
     private static void checkDataRoot() {
-        if (!ConfigManager.file.exists()) {
-            ConfigManager.file.mkdirs();
+        if (!ConfigManager.configDir.exists()) {
+            ConfigManager.configDir.mkdirs();
         }
     }
 

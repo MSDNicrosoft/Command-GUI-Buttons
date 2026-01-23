@@ -1,11 +1,11 @@
-package work.msdnicrosoft.commandbuttons.compat.modmenu;
+package work.msdnicrosoft.commandbuttons.compat;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import work.msdnicrosoft.commandbuttons.gui.CommandGUI;
 import work.msdnicrosoft.commandbuttons.gui.WrapperCommandGUIScreen;
 
-public class ModMenuImpl implements ModMenuApi {
+public class ModMenuCompat implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return screen -> {

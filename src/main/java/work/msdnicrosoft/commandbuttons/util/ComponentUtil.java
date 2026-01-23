@@ -1,4 +1,4 @@
-package work.msdnicrosoft.commandbuttons.compat.minecraft;
+package work.msdnicrosoft.commandbuttons.util;
 
 import net.minecraft.network.chat.Component;
 //#if MC < 11900
@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public class ComponentCompatApi {
+public class ComponentUtil {
     @Contract(pure = true)
     public static @NotNull Component literal(String string) {
         //#if MC >= 11900
