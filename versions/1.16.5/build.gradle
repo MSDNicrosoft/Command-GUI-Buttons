@@ -17,11 +17,6 @@ repositories {
     }
 
     maven {
-        name = "HangBing Proxy"
-        url = "https://repository.hanbings.io/proxy"
-    }
-
-    maven {
         name = "Nyan Maven"
         url = "https://maven.hendrixshen.moe/releases"
     }
@@ -86,23 +81,6 @@ tasks.named("runClient") {
     }
 }
 
-// Useless, but we write here.
-// Setup server default settings.
-tasks.named("runServer") {
-    doFirst {
-        // Agree eula before server init.
-        layout.projectDirectory.file("run/server/eula.txt").asFile.with { File file ->
-            if (!file.exists()) {
-                file.parentFile.mkdirs()
-                file.withWriter { BufferedWriter writer ->
-                    writer.writeLine("eula=true")
-                }
-            }
-            null // We don't need to return anything.
-        }
-    }
-}
-
 loom {
     runConfigs.configureEach {
         // Dump modified classes automatically.
@@ -118,11 +96,6 @@ loom {
                 "1080",
         ])
         runDir("run/client")
-    }
-
-    // Useless, but we write here.
-    runConfigs.server {
-        runDir("run/server")
     }
 
     mixin {
