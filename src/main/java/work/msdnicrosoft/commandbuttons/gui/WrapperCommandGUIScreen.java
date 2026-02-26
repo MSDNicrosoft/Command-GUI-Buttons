@@ -111,7 +111,7 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
             return true;
         }
         return super.keyPressed(
-                //#if MC >= 12119
+                //#if MC >= 12109
                 input
                 //#else
                 //$$ ch, keyCode, modifiers

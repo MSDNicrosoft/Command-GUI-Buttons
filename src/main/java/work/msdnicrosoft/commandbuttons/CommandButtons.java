@@ -7,11 +7,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-//#if MC >= 12109
-import net.minecraft.resources.ResourceLocation;
-//#endif
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.glfw.GLFW;
 import work.msdnicrosoft.commandbuttons.data.ConfigManager;
 import work.msdnicrosoft.commandbuttons.gui.CommandGUI;
 import work.msdnicrosoft.commandbuttons.gui.WrapperCommandGUIScreen;
@@ -26,16 +22,7 @@ public class CommandButtons implements ModInitializer {
     public void onInitialize() {
         ConfigManager.init();
 
-        KeyMapping keyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-                "mgbuttons.key.opengui",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_G,
-                //#if MC >= 12109
-                KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath("mgbuttons", "category"))
-                //#else
-                //$$ "key.category.mgbuttons.category"
-                //#endif
-        ));
+        KeyMapping keyBinding = KeyBindingHelper.registerKeyBinding(CommandButtonsReference.OPEN_GUI_KEY_MAPPING);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (keyBinding.consumeClick()) {

@@ -31,6 +31,7 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
 
     @Shadow
     protected BiConsumer<D, W> configurator;
+
     @Unique
     private int mgbuttons$index;
 
@@ -51,7 +52,7 @@ public abstract class MixinWListPanel<D, W extends WWidget> extends WClippedPane
     //$$ }
     //#endif
 
-    @SuppressWarnings({"ConstantConditions", "InvalidInjectorMethodSignature"})
+    @SuppressWarnings({"ConstantConditions"})
     @ModifyVariable(
             method = "layout",
             at = @At(
