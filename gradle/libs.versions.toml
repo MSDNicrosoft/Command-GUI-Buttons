@@ -8,7 +8,7 @@ replace-token = "1.2.0"
 
 # modApi
 fabric-loader = "0.18.4"
-lombok = "1.18.42"
+lombok = "1.18.44"
 
 [plugins]
 fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
