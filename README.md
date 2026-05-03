@@ -86,6 +86,7 @@ And use `preprocess` to be compatible with the following versions.
 - Minecraft `1.21.1`
 - Minecraft `1.21.5`
 - Minecraft `1.21.8`
+- Minecraft `1.21.10`
 - Minecraft `1.21.11`
 
 ### Mappings
