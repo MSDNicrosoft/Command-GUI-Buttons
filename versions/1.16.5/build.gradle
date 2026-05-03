@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.fabric.loom)
+    alias(libs.plugins.fabric.loom.remap)
     alias(libs.plugins.preprocessor)
     alias(libs.plugins.yamlang)
     alias(libs.plugins.replace.token)
@@ -8,7 +8,7 @@ plugins {
 repositories {
     maven {
         name = "CottonMC"
-        url = "https://server.bbkr.space/artifactory/libs-release"
+        url = "https://staging.alexiil.uk/maven"
     }
 
     maven {
@@ -123,6 +123,7 @@ yamlang {
 }
 
 processResources {
+    filteringCharset = "UTF-8"
     outputs.upToDateWhen { false }
 
     inputs.property("minecraft_dependency", project.minecraft_dependency)

@@ -1,17 +1,17 @@
 [versions]
 # Gradle Plugins
-fabric-loom = "1.15-SNAPSHOT"
+fabric-loom = "1.16-SNAPSHOT"
 preprocessor = "c5abb4f"
 grgit = "5.3.3"
 yamlang = "1.5.0"
 replace-token = "1.2.0"
 
 # modApi
-fabric-loader = "0.18.4"
-lombok = "1.18.44"
+fabric-loader = "0.19.2"
+lombok = "1.18.46"
 
 [plugins]
-fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
+fabric-loom-remap = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric-loom" }
 preprocessor = { id = "com.replaymod.preprocess", version.ref = "preprocessor" }
 grgit = { id = "org.ajoberstar.grgit", version.ref = "grgit" }
 yamlang = { id = "me.fallenbreath.yamlang", version.ref = "yamlang" }
