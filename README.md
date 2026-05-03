@@ -20,10 +20,10 @@ create, and press the button `+` to create. Then, the button will appear on user
 
 ## Dependencies
 
-| Dependency | Type     | Link                                                                                                                                                           |
-|------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) \| [Modrinth](https://modrinth.com/mod/fabric-api/)                                      | 
-| LibGui     | Required | [GitHub](https://github.com/CottonMC/LibGui/releases) \| [Maven(Not recommend)](https://server.bbkr.space/artifactory/libs-release/io/github/cottonmc/LibGui/) |
+| Dependency | Type     | Link                                                                                                                                         |
+|------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) \| [Modrinth](https://modrinth.com/mod/fabric-api/)                    | 
+| LibGui     | Required | [GitHub](https://github.com/CottonMC/LibGui/releases) \| [Maven(Not recommend)](https://staging.alexiil.uk/maven/io/github/cottonmc/LibGui/) |
 
 For your convenience, download links are listed below:
 
@@ -40,6 +40,7 @@ For your convenience, download links are listed below:
 | 1.21.5            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.5) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.5)   | 13.1.0+1.21.5 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/13.1.0) |
 | 1.21.8            | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.8) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.8)   | 14.0.0+1.21.6 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/14.0.0) |
 | 1.21.10           | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.10) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.10) | 15.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/15.0.0)        |
+| 1.21.11           | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files?version=1.21.11) \| [Modrinth](https://modrinth.com/mod/fabric-api/versions?g=1.21.11) | 15.0.0 [GitHub](https://github.com/CottonMC/LibGui/releases/tag/15.1.0)        |
 
 ## Features
 
