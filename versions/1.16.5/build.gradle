@@ -47,7 +47,7 @@ dependencies {
     modApi("maven.modrinth:modmenu:${project.modmenu_version}")
 
     // Make development client more comfortable.
-    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.68-beta") {
+    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.74") {
         transitive = false
     }
 
@@ -83,19 +83,18 @@ tasks.named("runClient") {
 
 loom {
     runConfigs.configureEach {
-        // Dump modified classes automatically.
-        property("mixin.debug.export", "true")
+        systemProperties.putAll(Map.of(
+                "mixin.debug.export", "true" // Dump modified classes automatically.
+        ))
     }
 
     // We need large window.
     runConfigs.client {
-        programArgs([
-                "--width",
-                "1920",
-                "--height",
-                "1080",
-        ])
-        runDir("run/client")
+        getProgramArguments().addAll(
+                "--width", "1920",
+                "--height", "1080",
+        )
+        getRunDirectory().set(project.file("run/client"))
     }
 
     mixin {

@@ -1,13 +1,13 @@
 [versions]
 # Gradle Plugins
-fabric-loom = "1.17-SNAPSHOT"
-preprocessor = "c5abb4f"
+fabric-loom = "1.18-SNAPSHOT"
+preprocessor = "26.1-hack-SNAPSHOT"
 grgit = "5.3.3"
 yamlang = "1.5.0"
 replace-token = "1.2.0"
 
 # modApi
-fabric-loader = "0.19.2"
+fabric-loader = "0.19.5"
 lombok = "1.18.48"
 
 [plugins]
@@ -23,4 +23,4 @@ fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-l
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 
 # modRuntimeOnly
-magiclib-core-fabric = { module = "top.hendrixshen.magiclib:magiclib-core-fabric", version = "0.8.161" }
+magiclib-core-fabric = { module = "top.hendrixshen.magiclib:magiclib-core-fabric", version = "0.8.163" }

@@ -72,10 +72,10 @@ processResources {
         ArrayList<?> mc_condition = []
         ArrayList<?> jars = []
 
-        fabric_subprojects.each({
+        fabric_subprojects.forEach {
             mc_condition.add("${it.minecraft_dependency}")
             jars.add(["file": "META-INF/jars/${inputs.properties["archives_base_name"]}-mc${it.minecraft_out}-${it.version}.jar"])
-        })
+        }
 
         File file = layout.buildDirectory.file("resources/main/fabric.mod.json").getOrNull().asFile
         JsonSlurper slurper = new JsonSlurper()
