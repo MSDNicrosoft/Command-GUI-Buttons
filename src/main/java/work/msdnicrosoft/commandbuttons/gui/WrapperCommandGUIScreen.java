@@ -45,17 +45,11 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
     //$$ @Override
     //$$ public void renderBackground(
     //$$         //#if MC > 11904
-    //$$         GuiGraphics guiGraphics
-    //$$         //#if MC > 12001
-    //$$         , int mouseX,
-    //$$         int mouseY,
-    //$$         float partialTick
-    //$$         //#endif
-    //$$         //#else
+    //$$         GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick
+    //$$         //#elseif MC >= 11904
     //$$         //$$ PoseStack poseStack
-    //$$         //#if MC < 11904
-    //$$         //$$ ,int vOffset
-    //$$         //#endif
+    //$$         //#else
+    //$$         //$$ PoseStack poseStack, int vOffset
     //$$         //#endif
     //$$ ) {
     //$$     if (this.minecraft != null) {
@@ -66,7 +60,7 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
     //$$         this.renderBlurredBackground(
     //$$                 //#if MC > 12106
     //$$                 guiGraphics
-    //$$                 //#elseif MC >=12102
+    //$$                 //#elseif MC >= 12102
     //$$                 //#else
     //$$                 //$$ 0.32F
     //$$                 //#endif

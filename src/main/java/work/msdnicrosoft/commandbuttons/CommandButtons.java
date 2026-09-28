@@ -33,14 +33,12 @@ public class CommandButtons implements ModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (keyBinding.consumeClick()) {
-                Minecraft.getInstance()
-                        //#if MC >= 260200
-                        .setScreenAndShow(
-                                //#else
-                                //$$ .setScreen(
-                                //#endif
-                                new WrapperCommandGUIScreen(new CommandGUI())
-                        );
+                WrapperCommandGUIScreen screen = new WrapperCommandGUIScreen(new CommandGUI());
+                //#if MC >= 260200
+                Minecraft.getInstance().setScreenAndShow(screen);
+                //#else
+                //$$ Minecraft.getInstance().setScreen(screen);
+                //#endif
             }
         });
     }
