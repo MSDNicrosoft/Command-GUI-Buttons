@@ -11,6 +11,7 @@ fabric-loader = "0.19.5"
 lombok = "1.18.48"
 
 [plugins]
+fabric-loom-noremap = { id = "net.fabricmc.fabric-loom", version.ref = "fabric-loom" }
 fabric-loom-remap = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric-loom" }
 preprocessor = { id = "com.replaymod.preprocess", version.ref = "preprocessor" }
 grgit = { id = "org.ajoberstar.grgit", version.ref = "grgit" }

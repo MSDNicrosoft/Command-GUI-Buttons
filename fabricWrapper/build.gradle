@@ -15,21 +15,22 @@ def fabric_subprojects = project.rootProject.subprojects.findAll({
     it.name != "fabricWrapper"
 })
 
-fabric_subprojects.collect {
-    evaluationDependsOn(":${it.name}")
-}
-
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+def submodJarTasks = {
+    fabric_subprojects.collect { subproject ->
+        def taskName = subproject.tasks.names.contains("remapJar") ? "remapJar" : "jar"
+        subproject.tasks.named(taskName).get()
+    }
+}
+
 jar {
     // Disable cache
     outputs.upToDateWhen { false }
-    dependsOn(fabric_subprojects.collect {
-        it.tasks.remapJar
-    })
+    dependsOn { submodJarTasks() }
 
     from(project.rootProject.file("LICENSE"))
     from(layout.buildDirectory.dir("tmp/submods"))
@@ -37,11 +38,7 @@ jar {
     doFirst {
         delete fileTree(layout.buildDirectory.dir("tmp/submods/META-INF/jars"))
         copy {
-            from {
-                fabric_subprojects.collect {
-                    it.remapJar.outputs.files
-                }
-            }
+            from { submodJarTasks()*.outputs.files }
             into(layout.buildDirectory.dir("tmp/submods/META-INF/jars"))
         }
     }

@@ -1,9 +1,12 @@
 package work.msdnicrosoft.commandbuttons;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+//#if MC >= 260102
+import net.fabricmc.fabric.impl.client.keymapping.KeyMappingRegistryImpl;
+//#else
+//$$ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+//#endif
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -22,7 +25,11 @@ public class CommandButtons implements ModInitializer {
     public void onInitialize() {
         ConfigManager.init();
 
-        KeyMapping keyBinding = KeyBindingHelper.registerKeyBinding(CommandButtonsReference.OPEN_GUI_KEY_MAPPING);
+        //#if MC >= 260102
+        KeyMapping keyBinding = KeyMappingRegistryImpl.registerKeyMapping(CommandButtonsReference.OPEN_GUI_KEY_MAPPING);
+        //#else
+        //$$ KeyMapping keyBinding = KeyBindingHelper.registerKeyBinding(CommandButtonsReference.OPEN_GUI_KEY_MAPPING);
+        //#endif
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (keyBinding.consumeClick()) {

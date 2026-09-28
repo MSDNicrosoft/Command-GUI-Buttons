@@ -31,7 +31,7 @@
     "${mod_id}.mixins.json"
   ],
   "depends": {
-    "fabric-key-binding-api-v1": "*",
+    "${keymapping_api_module}": "*",
     "minecraft": "${minecraft_dependency}",
     "libgui": "*"
   },

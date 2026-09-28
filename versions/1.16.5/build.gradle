@@ -1,9 +1,11 @@
-plugins {
-    alias(libs.plugins.fabric.loom.remap)
-    alias(libs.plugins.preprocessor)
-    alias(libs.plugins.yamlang)
-    alias(libs.plugins.replace.token)
-}
+boolean nonObfuscatedMc = rootProject.isNonObfuscatedMc.call(project.minecraft_version)
+
+def loomPlugin = nonObfuscatedMc ? libs.plugins.fabric.loom.noremap : libs.plugins.fabric.loom.remap
+pluginManager.apply(loomPlugin.get().pluginId)
+
+pluginManager.apply(libs.plugins.preprocessor.get().pluginId)
+pluginManager.apply(libs.plugins.yamlang.get().pluginId)
+pluginManager.apply(libs.plugins.replace.token.get().pluginId)
 
 repositories {
     maven {
@@ -31,10 +33,17 @@ preprocess {
     mcVersion = vars.get().get("MC")
 }
 
+def modApi = { Object notation -> dependencies.add(nonObfuscatedMc ? "api" : "modApi", notation) }
+def modRuntimeOnly = { Object notation, Closure configure ->
+    dependencies.add(nonObfuscatedMc ? "runtimeOnly" : "modRuntimeOnly", notation, configure)
+}
+
 dependencies {
     // Development environment
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings(loom.officialMojangMappings())
+    if (!nonObfuscatedMc) {
+        mappings(loom.officialMojangMappings())
+    }
     modApi(libs.fabric.loader)
 
     // Annotation processor
@@ -54,8 +63,6 @@ dependencies {
     modRuntimeOnly(libs.magiclib.core.fabric) {
         transitive = false
     }
-
-    runtimeOnly(project(path: ":fabricWrapper"))
 }
 
 tasks.named("runClient") {
@@ -99,7 +106,7 @@ loom {
 
     mixin {
         // suppress "Cannot remap xxx because it does not exists in any of the targets" warning. It does not respect `remap = false` :(
-        useLegacyMixinAp = true
+        useLegacyMixinAp = !nonObfuscatedMc
     }
 }
 
@@ -133,6 +140,7 @@ processResources {
     inputs.property("mod_license", project.mod_license)
     inputs.property("mod_sources", project.mod_sources)
     inputs.property("mod_version", project.version)
+    inputs.property("keymapping_api_module", nonObfuscatedMc ? "fabric-key-mapping-api-v1" : "fabric-key-binding-api-v1")
 
     filesMatching("fabric.mod.json") {
         expand([
@@ -144,12 +152,16 @@ processResources {
                 "mod_license"          : inputs.properties["mod_license"],
                 "mod_sources"          : inputs.properties["mod_sources"],
                 "mod_version"          : inputs.properties["mod_version"],
+                "keymapping_api_module": inputs.properties["keymapping_api_module"],
         ])
     }
 }
 
 java {
-    if (mcVersion > 12004) {
+    if (nonObfuscatedMc) {
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
+    } else if (mcVersion > 12004) {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     } else if (mcVersion > 11701) {

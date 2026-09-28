@@ -1,7 +1,14 @@
 plugins {
     alias(libs.plugins.preprocessor)
     alias(libs.plugins.grgit)
+
+    alias(libs.plugins.fabric.loom.noremap).apply(false)
+    alias(libs.plugins.fabric.loom.remap).apply(false)
+    alias(libs.plugins.yamlang).apply(false)
+    alias(libs.plugins.replace.token).apply(false)
 }
+
+ext.isNonObfuscatedMc = { String mcVersion -> !mcVersion.startsWith("1.") }
 
 preprocess {
     strictExtraMappings = false
@@ -18,6 +25,7 @@ preprocess {
     def mc1218 = createNode("1.21.8", 1_21_08, "mojang")
     def mc12110 = createNode("1.21.10", 1_21_10, "mojang")
     def mc12111 = createNode("1.21.11", 1_21_11, "mojang")
+    def mc260102 = createNode("26.1.2", 26_01_02, "mojang")
 
     mc1165.link(mc1171, null)
     mc1171.link(mc1182, null)
@@ -30,6 +38,7 @@ preprocess {
     mc1215.link(mc1218, null)
     mc1218.link(mc12110, null)
     mc12110.link(mc12111, null)
+    mc12111.link(mc260102, null)
 }
 
 def ENV = System.getenv()
