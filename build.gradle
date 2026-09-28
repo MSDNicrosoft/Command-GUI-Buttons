@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.preprocessor)
-    alias(libs.plugins.grgit)
+    alias(libs.plugins.git.version)
 
     alias(libs.plugins.fabric.loom.noremap).apply(false)
     alias(libs.plugins.fabric.loom.remap).apply(false)
@@ -45,16 +45,19 @@ preprocess {
     mc260200.link(mc260300, null)
 }
 
-def ENV = System.getenv()
-String realVersion = "${project.mod_version}+build."
-realVersion += ENV.GITHUB_RUN_NUMBER ? ENV.GITHUB_RUN_NUMBER : new Date().format("yyyyMMdd.HHmmss")
-if (grgit != null) {
-    realVersion += grgit.status().isClean() ? "+${grgit.head().abbreviatedId}" : "+uncommited"
-} else {
-    realVersion += "+nogit"
+def details = null
+try {
+    details = versionDetails()
+} catch (Exception ignored) {
 }
 
-version = realVersion
+def branch = details?.branchName?.replace("/", "-")
+version = ([
+        project.mod_version,
+        branch in ["main", "master"] ? null : branch,
+        details?.gitHash,
+        details != null && gitVersion().endsWith(".dirty") ? "dirty" : null,
+].findAll { it }).join("-")
 
 tasks.register("cleanPreprocessSources") {
     doFirst {

@@ -2,7 +2,7 @@
 # Gradle Plugins
 fabric-loom = "1.18-SNAPSHOT"
 preprocessor = "26.1-hack-SNAPSHOT"
-grgit = "5.3.3"
+git-version = "5.1.0"
 yamlang = "1.5.0"
 replace-token = "1.2.0"
 
@@ -14,7 +14,7 @@ lombok = "1.18.48"
 fabric-loom-noremap = { id = "net.fabricmc.fabric-loom", version.ref = "fabric-loom" }
 fabric-loom-remap = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric-loom" }
 preprocessor = { id = "com.replaymod.preprocess", version.ref = "preprocessor" }
-grgit = { id = "org.ajoberstar.grgit", version.ref = "grgit" }
+git-version = { id = "com.palantir.git-version", version.ref = "git-version" }
 yamlang = { id = "me.fallenbreath.yamlang", version.ref = "yamlang" }
 replace-token = { id = "top.hendrixshen.replace-token", version.ref = "replace-token" }
 
@@ -22,6 +22,3 @@ replace-token = { id = "top.hendrixshen.replace-token", version.ref = "replace-t
 # modApi
 fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
-
-# modRuntimeOnly
-magiclib-core-fabric = { module = "top.hendrixshen.magiclib:magiclib-core-fabric", version = "0.8.163" }
