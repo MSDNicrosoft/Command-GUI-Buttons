@@ -27,16 +27,7 @@ repositories {
     mavenLocal()
 }
 
-int mcVersion = 1
-
-preprocess {
-    mcVersion = vars.get().get("MC")
-}
-
-def modApi = { Object notation -> dependencies.add(nonObfuscatedMc ? "api" : "modApi", notation) }
-def modRuntimeOnly = { Object notation, Closure configure ->
-    dependencies.add(nonObfuscatedMc ? "runtimeOnly" : "modRuntimeOnly", notation, configure)
-}
+Closure<Dependency> modApi = { Object notation -> dependencies.add(nonObfuscatedMc ? "api" : "modApi", notation) }
 
 dependencies {
     // Development environment
@@ -149,22 +140,8 @@ processResources {
 }
 
 java {
-    if (nonObfuscatedMc) {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
-    } else if (mcVersion > 12004) {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    } else if (mcVersion > 11701) {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    } else if (mcVersion > 11605) {
-        sourceCompatibility = JavaVersion.VERSION_16
-        targetCompatibility = JavaVersion.VERSION_16
-    } else {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+    sourceCompatibility = JavaVersion.toVersion(project.java_version)
+    targetCompatibility = JavaVersion.toVersion(project.java_version)
 
     withSourcesJar()
 }
