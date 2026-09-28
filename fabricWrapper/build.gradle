@@ -11,18 +11,16 @@ base {
     archivesName = "${project.archives_base_name}-all"
 }
 
-def fabric_subprojects = project.rootProject.subprojects.findAll({
-    it.name != "fabricWrapper"
-})
+Set<Project> fabricSubprojects = project.rootProject.subprojects.findAll { it.name != "fabricWrapper" }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-def submodJarTasks = {
-    fabric_subprojects.collect { subproject ->
-        def taskName = subproject.tasks.names.contains("remapJar") ? "remapJar" : "jar"
+Closure<List<Task>> submodJarTasks = {
+    fabricSubprojects.collect { subproject ->
+        String taskName = subproject.tasks.names.contains("remapJar") ? "remapJar" : "jar"
         subproject.tasks.named(taskName).get()
     }
 }
@@ -65,23 +63,15 @@ processResources {
         ])
     }
 
+    def outputJson = layout.buildDirectory.file("resources/main/fabric.mod.json").get().asFile
+    def archivesBaseName = project.archives_base_name
+
     doLast {
-        ArrayList<?> mc_condition = []
-        ArrayList<?> jars = []
-
-        fabric_subprojects.forEach {
-            mc_condition.add("${it.minecraft_dependency}")
-            jars.add(["file": "META-INF/jars/${inputs.properties["archives_base_name"]}-mc${it.minecraft_out}-${it.version}.jar"])
+        def json = new JsonSlurper().parse(outputJson)
+        json.depends.minecraft = fabricSubprojects.collect { it.minecraft_dependency }
+        json.jars = fabricSubprojects.collect { subproject ->
+            [file: "META-INF/jars/${archivesBaseName}-mc${subproject.minecraft_out}-${subproject.version}.jar"]
         }
-
-        File file = layout.buildDirectory.file("resources/main/fabric.mod.json").getOrNull().asFile
-        JsonSlurper slurper = new JsonSlurper()
-        JsonBuilder builder = new JsonBuilder(slurper.parse(file))
-        builder.content.depends.minecraft = mc_condition
-        builder.content.jars = jars
-        BufferedWriter writer = file.newWriter()
-        writer.append(builder.toPrettyString())
-        writer.flush()
-        writer.close()
+        outputJson.text = new JsonBuilder(json).toPrettyString()
     }
 }
