@@ -17,7 +17,11 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
 //#endif
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.glfw.GLFW;
+//#if MC >= 260300
+import org.lwjgl.sdl.SDLKeycode;
+//#else
+//$$ import org.lwjgl.glfw.GLFW;
+//#endif
 
 @Getter
 @Setter
@@ -103,8 +107,10 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
     ) {
         // Support for returning to previous screens.
         boolean isEscapeKey =
-                //#if MC >= 12109
-                input.key() == GLFW.GLFW_KEY_ESCAPE
+                //#if MC >= 260300
+                input.key() == SDLKeycode.SDLK_ESCAPE
+                //#elseif MC >= 12109
+                //$$ input.key() == GLFW.GLFW_KEY_ESCAPE
                 //#else
                 //$$ ch == GLFW.GLFW_KEY_ESCAPE
                 //#endif
