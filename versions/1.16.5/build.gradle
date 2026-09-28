@@ -54,15 +54,6 @@ dependencies {
     modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
     modApi("io.github.cottonmc:LibGui:${project.libgui_version}")
     modApi("maven.modrinth:modmenu:${project.modmenu_version}")
-
-    // Make development client more comfortable.
-    modRuntimeOnly("top.hendrixshen.magiclib:magiclib-better-dev-${project.minecraft_version}${project.minecraft_version.size() == 4 ? ".0" : ""}-fabric:0.3.74") {
-        transitive = false
-    }
-
-    modRuntimeOnly(libs.magiclib.core.fabric) {
-        transitive = false
-    }
 }
 
 tasks.named("runClient") {
