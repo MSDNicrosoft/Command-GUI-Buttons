@@ -3,6 +3,7 @@ package work.msdnicrosoft.commandbuttons.gui;
 //#if MC < 12000
 //$$ import com.mojang.blaze3d.vertex.PoseStack;
 //#endif
+
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import lombok.Getter;
@@ -109,7 +110,11 @@ public class WrapperCommandGUIScreen extends CottonClientScreen {
                 //#endif
                 ;
         if (isEscapeKey && this.parent != null) {
-            Minecraft.getInstance().setScreen(this.parent);
+            //#if MC >= 260200
+            Minecraft.getInstance().setScreenAndShow(this.parent);
+            //#else
+            //$$ Minecraft.getInstance().setScreen(this.parent);
+            //#endif
             if (this.returnAction != null) {
                 // Need to apply list update in the main screen.
                 this.returnAction.run();
