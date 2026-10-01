@@ -10,7 +10,9 @@ import net.minecraft.resources.Identifier;
 //#endif
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.glfw.GLFW;
+//#if MC < 260300
+//$$ import org.lwjgl.glfw.GLFW;
+//#endif
 
 public class CommandButtonsReference {
     @Getter
@@ -21,8 +23,14 @@ public class CommandButtonsReference {
 
     public static final KeyMapping OPEN_GUI_KEY_MAPPING = new KeyMapping(
             "mgbuttons.key.opengui",
-            InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_G,
+            //#if MC >= 260300
+            InputConstants.Type.KEYBOARD,
+            InputConstants.KEY_G,
+            //#else
+            //$$ InputConstants.Type.KEYSYM,
+            //$$ GLFW.GLFW_KEY_G,
+            //#endif
+
             //#if MC >= 12111
             KeyMapping.Category.register(Identifier.fromNamespaceAndPath("mgbuttons", "category"))
             //#elseif MC >= 12109

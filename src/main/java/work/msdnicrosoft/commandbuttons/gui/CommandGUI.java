@@ -80,8 +80,13 @@ public class CommandGUI extends LightweightGuiDescription {
                 WrapperCommandGUIScreen guiScreen = new WrapperCommandGUIScreen(gui);
                 guiScreen.setCloseCallback(gui::saveData);
                 guiScreen.setReturnAction(this.commandPanel::layout);
-                guiScreen.setParent(Minecraft.getInstance().screen);
-                Minecraft.getInstance().setScreen(guiScreen);
+                //#if MC >= 260200
+                guiScreen.setParent(Minecraft.getInstance().gui.screen());
+                Minecraft.getInstance().setScreenAndShow(guiScreen);
+                //#else
+                //$$ guiScreen.setParent(Minecraft.getInstance().screen);
+                //$$ Minecraft.getInstance().setScreen(guiScreen);
+                //#endif
             } else if (this.deleteBtn.getToggle()) {
                 ConfigManager.remove(item);
                 this.commandPanel.layout();
@@ -96,8 +101,13 @@ public class CommandGUI extends LightweightGuiDescription {
         WrapperCommandGUIScreen guiScreen = new WrapperCommandGUIScreen(gui);
         guiScreen.setCloseCallback(gui::saveData);
         guiScreen.setReturnAction(this.commandPanel::layout);
-        guiScreen.setParent(Minecraft.getInstance().screen);
-        Minecraft.getInstance().setScreen(guiScreen);
+        //#if MC >= 260200
+        guiScreen.setParent(Minecraft.getInstance().gui.screen());
+        Minecraft.getInstance().setScreenAndShow(guiScreen);
+        //#else
+        //$$ guiScreen.setParent(Minecraft.getInstance().screen);
+        //$$ Minecraft.getInstance().setScreen(guiScreen);
+        //#endif
     }
 
     private void editBtnCallback(@NotNull Boolean aBoolean) {

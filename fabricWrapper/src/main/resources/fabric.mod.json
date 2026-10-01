@@ -24,7 +24,6 @@
     ]
   },
   "depends": {
-    "fabric-key-binding-api-v1": "*",
     "libgui": "*"
   },
   "custom": {

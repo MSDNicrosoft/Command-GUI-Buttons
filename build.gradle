@@ -1,52 +1,48 @@
+import com.replaymod.gradle.preprocess.Node
+import groovy.json.JsonSlurper
+
 plugins {
     alias(libs.plugins.preprocessor)
-    alias(libs.plugins.grgit)
+    alias(libs.plugins.git.version)
+
+    alias(libs.plugins.fabric.loom.noremap).apply(false)
+    alias(libs.plugins.fabric.loom.remap).apply(false)
+    alias(libs.plugins.yamlang).apply(false)
+    alias(libs.plugins.replace.token).apply(false)
 }
+
+ext.isNonObfuscatedMc = { String mcVersion -> !mcVersion.startsWith("1.") }
 
 preprocess {
     strictExtraMappings = false
 
-    def mc1165 = createNode("1.16.5", 1_16_05, "mojang")
-    def mc1171 = createNode("1.17.1", 1_17_01, "mojang")
-    def mc1182 = createNode("1.18.2", 1_18_02, "mojang")
-    def mc1192 = createNode("1.19.2", 1_19_02, "mojang")
-    def mc1193 = createNode("1.19.3", 1_19_03, "mojang")
-    def mc1194 = createNode("1.19.4", 1_19_04, "mojang")
-    def mc1206 = createNode("1.20.6", 1_20_06, "mojang")
-    def mc1211 = createNode("1.21.1", 1_21_01, "mojang")
-    def mc1215 = createNode("1.21.5", 1_21_05, "mojang")
-    def mc1218 = createNode("1.21.8", 1_21_08, "mojang")
-    def mc12110 = createNode("1.21.10", 1_21_10, "mojang")
-    def mc12111 = createNode("1.21.11", 1_21_11, "mojang")
-
-    mc1165.link(mc1171, null)
-    mc1171.link(mc1182, null)
-    mc1182.link(mc1192, null)
-    mc1192.link(mc1193, null)
-    mc1193.link(mc1194, null)
-    mc1194.link(mc1206, null)
-    mc1206.link(mc1211, null)
-    mc1211.link(mc1215, null)
-    mc1215.link(mc1218, null)
-    mc1218.link(mc12110, null)
-    mc12110.link(mc12111, null)
+    List<Node> nodes = new JsonSlurper().parseText(file("versions.json").text)
+            .collect { String version, Map meta -> createNode(version, meta.code, meta.mappings) }
+    nodes.eachWithIndex { node, index ->
+        if (index > 0) {
+            nodes[index - 1].link(node, null)
+        }
+    }
 }
 
-def ENV = System.getenv()
-String realVersion = "${project.mod_version}+build."
-realVersion += ENV.GITHUB_RUN_NUMBER ? ENV.GITHUB_RUN_NUMBER : new Date().format("yyyyMMdd.HHmmss")
-if (grgit != null) {
-    realVersion += grgit.status().isClean() ? "+${grgit.head().abbreviatedId}" : "+uncommited"
-} else {
-    realVersion += "+nogit"
+def details = null
+try {
+    details = versionDetails()
+} catch (Exception ignored) {
 }
 
-version = realVersion
+def branch = details?.branchName?.replace("/", "-")
+version = [
+        project.mod_version,
+        branch in ["main", "master"] ? null : branch,
+        details?.gitHash,
+        details != null ? "dirty" : null,
+].findAll { it }.join("-")
 
 tasks.register("cleanPreprocessSources") {
+    List<File> preprocessedDirs = subprojects.collect { it.layout.buildDirectory.dir("preprocessed").get().asFile }
+
     doFirst {
-        subprojects {
-            layout.buildDirectory.dir("preprocessed").getOrNull().asFile.deleteDir()
-        }
+        preprocessedDirs.forEach { it.deleteDir() }
     }
 }

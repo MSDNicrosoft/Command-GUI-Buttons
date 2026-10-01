@@ -11,25 +11,24 @@ base {
     archivesName = "${project.archives_base_name}-all"
 }
 
-def fabric_subprojects = project.rootProject.subprojects.findAll({
-    it.name != "fabricWrapper"
-})
-
-fabric_subprojects.collect {
-    evaluationDependsOn(":${it.name}")
-}
+Set<Project> fabricSubprojects = project.rootProject.subprojects.findAll { it.name != "fabricWrapper" }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+Closure<List<Task>> submodJarTasks = {
+    fabricSubprojects.collect { subproject ->
+        String taskName = subproject.tasks.names.contains("remapJar") ? "remapJar" : "jar"
+        subproject.tasks.named(taskName).get()
+    }
+}
+
 jar {
     // Disable cache
     outputs.upToDateWhen { false }
-    dependsOn(fabric_subprojects.collect {
-        it.tasks.remapJar
-    })
+    dependsOn { submodJarTasks() }
 
     from(project.rootProject.file("LICENSE"))
     from(layout.buildDirectory.dir("tmp/submods"))
@@ -37,11 +36,7 @@ jar {
     doFirst {
         delete fileTree(layout.buildDirectory.dir("tmp/submods/META-INF/jars"))
         copy {
-            from {
-                fabric_subprojects.collect {
-                    it.remapJar.outputs.files
-                }
-            }
+            from { submodJarTasks()*.outputs.files }
             into(layout.buildDirectory.dir("tmp/submods/META-INF/jars"))
         }
     }
@@ -68,23 +63,15 @@ processResources {
         ])
     }
 
+    def outputJson = layout.buildDirectory.file("resources/main/fabric.mod.json").get().asFile
+    def archivesBaseName = project.archives_base_name
+
     doLast {
-        ArrayList<?> mc_condition = []
-        ArrayList<?> jars = []
-
-        fabric_subprojects.each({
-            mc_condition.add("${it.minecraft_dependency}")
-            jars.add(["file": "META-INF/jars/${inputs.properties["archives_base_name"]}-mc${it.minecraft_out}-${it.version}.jar"])
-        })
-
-        File file = layout.buildDirectory.file("resources/main/fabric.mod.json").getOrNull().asFile
-        JsonSlurper slurper = new JsonSlurper()
-        JsonBuilder builder = new JsonBuilder(slurper.parse(file))
-        builder.content.depends.minecraft = mc_condition
-        builder.content.jars = jars
-        BufferedWriter writer = file.newWriter()
-        writer.append(builder.toPrettyString())
-        writer.flush()
-        writer.close()
+        def json = new JsonSlurper().parse(outputJson)
+        json.depends.minecraft = fabricSubprojects.collect { it.minecraft_dependency }
+        json.jars = fabricSubprojects.collect { subproject ->
+            [file: "META-INF/jars/${archivesBaseName}-mc${subproject.minecraft_out}-${subproject.version}.jar"]
+        }
+        outputJson.text = new JsonBuilder(json).toPrettyString()
     }
 }

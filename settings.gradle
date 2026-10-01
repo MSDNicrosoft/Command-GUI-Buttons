@@ -24,13 +24,28 @@ pluginManagement {
     }
 }
 
-def settings = new JsonSlurper().parseText(file("settings.json").text)
+def versions = new JsonSlurper().parseText(file("versions.json").text)
 
-for (String version : settings.versions) {
-    include(":$version")
-    ProjectDescriptor proj = project(":$version")
-    proj.setProjectDir(file("versions/$version"))
-    proj.setBuildFileName("../${settings.versions.get(0)}/build.gradle")
+versions.each { String mcVersion, Map meta ->
+    include(":$mcVersion")
+    ProjectDescriptor proj = project(":$mcVersion")
+    File location = file("versions/$mcVersion")
+    location.mkdirs()
+    proj.setProjectDir(location)
+    proj.setBuildFileName("../../common.gradle")
+}
+
+gradle.beforeProject { Project p ->
+    def meta = versions[p.name]
+    if (meta != null) {
+        p.ext.minecraft_version = p.name
+        p.ext.minecraft_dependency = meta.dep
+        p.ext.minecraft_out = meta.out
+        p.ext.java_version = meta.java
+        p.ext.fabric_version = meta.fabric
+        p.ext.libgui_version = meta.libgui
+        p.ext.modmenu_version = meta.modmenu
+    }
 }
 
 include(":fabricWrapper")
