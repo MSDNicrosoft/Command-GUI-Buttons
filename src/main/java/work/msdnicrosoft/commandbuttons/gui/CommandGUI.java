@@ -65,6 +65,15 @@ public class CommandGUI extends LightweightGuiDescription {
 
     private void defBtnBehavior(@NotNull CommandItem item, @NotNull CommandDestination destination) {
         destination.getButton().setLabel(ComponentUtil.literal(item.getDisplayName()));
+        destination.getButton().setOnDrag((x, y) -> this.commandPanel.move(
+                item,
+                destination.getX() + destination.getButton().getX() + x,
+                destination.getY() + destination.getButton().getY() + y
+        ));
+        destination.getButton().setOnDragEnd(() -> {
+            ConfigManager.save();
+            this.commandPanel.layout();
+        });
         destination.getButton().setOnClick(() -> {
             if (this.editBtn.getToggle()) {
                 CommandEditGUI gui = new CommandEditGUI(item, true);

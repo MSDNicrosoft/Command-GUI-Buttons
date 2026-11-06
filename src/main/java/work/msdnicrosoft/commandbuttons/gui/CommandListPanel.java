@@ -21,6 +21,44 @@ public class CommandListPanel<D, W extends WWidget> extends WListPanel<D, W> {
         this.search = search;
     }
 
+    private List<D> getVisibleData() {
+        List<D> visibleData = Lists.newArrayList(this.data);
+        if (!this.search.getText().isEmpty()) {
+            visibleData = visibleData.stream()
+                    .filter(d -> ((CommandItem) d).getDisplayName().contains(this.search.getText().trim()))
+                    .collect(Collectors.toList());
+        }
+        return visibleData;
+    }
+
+    /**
+     * Moves an item to the grid cell currently underneath the mouse pointer.
+     * The backing list is the same list ConfigManager serializes, so its order is persistent.
+     */
+    public void move(D dragged, int mouseX, int mouseY) {
+        List<D> visibleData = this.getVisibleData();
+        if (visibleData.size() < 2 || !visibleData.contains(dragged)) {
+            return;
+        }
+
+        int column = Math.max(0, Math.min(mouseX / 83, 3));
+        int row = Math.max(mouseY / 22, 0);
+        int visibleIndex = this.scrollBar.getValue() + row * 4 + column;
+        visibleIndex = Math.min(visibleIndex, visibleData.size() - 1);
+
+        D target = visibleData.get(visibleIndex);
+        if (dragged == target) {
+            return;
+        }
+
+        int targetIndex = this.data.indexOf(target);
+        if (targetIndex < 0 || !this.data.remove(dragged)) {
+            return;
+        }
+        this.data.add(Math.min(targetIndex, this.data.size()), dragged);
+        this.layout();
+    }
+
     /**
      * Modified from LibGui
      */
@@ -52,12 +90,7 @@ public class CommandListPanel<D, W extends WWidget> extends WListPanel<D, W> {
         int layoutHeight = this.getHeight() - 4;
         int cellsHigh = Math.max((layoutHeight + 2) / (cellHeight + 2), 1);
 
-        List<D> data = Lists.newArrayList(this.data);
-        if (!this.search.getText().isEmpty()) {
-            data = data.stream()
-                    .filter(d -> ((CommandItem) d).getDisplayName().contains(this.search.getText().trim()))
-                    .collect(Collectors.toList());
-        }
+        List<D> data = this.getVisibleData();
 
         scrollBar.setWindow(cellsHigh);
         scrollBar.setMaxValue(data.size() > 32 ? data.size() - 8 : 8);

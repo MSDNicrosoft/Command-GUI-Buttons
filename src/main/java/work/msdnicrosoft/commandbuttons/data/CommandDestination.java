@@ -1,12 +1,12 @@
 package work.msdnicrosoft.commandbuttons.data;
 
-import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import lombok.Getter;
+import work.msdnicrosoft.commandbuttons.gui.DraggableButton;
 
 public class CommandDestination extends WPlainPanel {
     @Getter
-    WButton button = new WButton();
+    DraggableButton button = new DraggableButton();
 
     public CommandDestination() {
         //#if MC > 11605
