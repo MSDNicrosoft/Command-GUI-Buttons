@@ -1,15 +1,15 @@
 package work.msdnicrosoft.commandbuttons.gui;
 
 import io.github.cottonmc.cotton.gui.widget.WButton;
-//#if MC >= 12109
-import net.minecraft.client.input.MouseButtonEvent;
-//#endif
 //#if MC > 11605
 import io.github.cottonmc.cotton.gui.widget.data.InputResult;
 //#else
 //$$ import io.github.cottonmc.cotton.gui.widget.WWidget;
 //#endif
-
+import lombok.Setter;
+//#if MC >= 12109
+import net.minecraft.client.input.MouseButtonEvent;
+//#endif
 import java.util.function.BiConsumer;
 
 /**
@@ -19,22 +19,16 @@ import java.util.function.BiConsumer;
 public class DraggableButton extends WButton {
     private static final double DRAG_THRESHOLD = 3.0D;
 
+    @Setter
     private BiConsumer<Integer, Integer> onDrag;
+
+    @Setter
     private Runnable onDragEnd;
+
     private double draggedX;
     private double draggedY;
     private boolean dragging;
     private boolean suppressNextClick;
-
-    public DraggableButton setOnDrag(BiConsumer<Integer, Integer> onDrag) {
-        this.onDrag = onDrag;
-        return this;
-    }
-
-    public DraggableButton setOnDragEnd(Runnable onDragEnd) {
-        this.onDragEnd = onDragEnd;
-        return this;
-    }
 
     private void beginPointerInteraction() {
         this.draggedX = 0.0D;
@@ -46,8 +40,7 @@ public class DraggableButton extends WButton {
     private void drag(int x, int y, double deltaX, double deltaY) {
         this.draggedX += deltaX;
         this.draggedY += deltaY;
-        if (!this.dragging && this.draggedX * this.draggedX + this.draggedY * this.draggedY
-                >= DRAG_THRESHOLD * DRAG_THRESHOLD) {
+        if (!this.dragging && this.draggedX * this.draggedX + this.draggedY * this.draggedY >= DRAG_THRESHOLD * DRAG_THRESHOLD) {
             this.dragging = true;
         }
         if (this.dragging && this.onDrag != null) {
