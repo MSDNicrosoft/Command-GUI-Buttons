@@ -26,6 +26,16 @@ pluginManagement {
 
 def versions = new JsonSlurper().parseText(file("versions.json").text)
 
+def sharedProperties = [
+        "mod_id",
+        "mod_license",
+        "mod_name",
+        "mod_sources",
+        "mod_version",
+        "maven_group",
+        "archives_base_name",
+].collectEntries { name -> [name, providers.gradleProperty(name)] }
+
 versions.each { String mcVersion, Map meta ->
     include(":$mcVersion")
     ProjectDescriptor proj = project(":$mcVersion")
@@ -36,6 +46,11 @@ versions.each { String mcVersion, Map meta ->
 }
 
 gradle.beforeProject { Project p ->
+    if (p.parent != null) {
+        sharedProperties.each { name, value ->
+            p.ext.set(name, value.get())
+        }
+    }
     def meta = versions[p.name]
     if (meta != null) {
         p.ext.minecraft_version = p.name

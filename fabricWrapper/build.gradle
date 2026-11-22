@@ -46,21 +46,18 @@ processResources {
     // Disable cache
     outputs.upToDateWhen { false }
 
-    inputs.property("mod_version", project.version)
-    inputs.property("mod_id", project.mod_id)
-    inputs.property("mod_name", project.mod_name)
-    inputs.property("mod_sources", project.mod_sources)
-    inputs.property("mod_license", project.mod_license)
-
-    inputs.property("archives_base_name", project.archives_base_name)
+    Map<String, String> tokens = [
+            mod_version: project.version.toString(),
+            mod_id     : project.mod_id.toString(),
+            mod_name   : project.mod_name.toString(),
+            mod_sources: project.mod_sources.toString(),
+            mod_license: project.mod_license.toString(),
+            archives_base_name: project.archives_base_name.toString(),
+    ]
+    inputs.properties(tokens)
 
     filesMatching("fabric.mod.json") {
-        expand(["mod_version": inputs.properties["mod_version"],
-                "mod_id"     : inputs.properties["mod_id"],
-                "mod_name"   : inputs.properties["mod_name"],
-                "mod_sources": inputs.properties["mod_sources"],
-                "mod_license": inputs.properties["mod_license"],
-        ])
+        expand(tokens)
     }
 
     def outputJson = layout.buildDirectory.file("resources/main/fabric.mod.json").get().asFile
